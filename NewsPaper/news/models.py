@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.db.models import Sum
 
 
 class Author(models.Model):
@@ -7,7 +8,21 @@ class Author(models.Model):
     author_rate = models.SmallIntegerField(default=0)
 
     def update_rate(self):
-        pass
+        post_rate = self.post_set.all().aggregate(
+            post_rating=Sum('content_rate')
+        )
+        p_rate = 0
+        p_rate += post_rate.get('post_rating')
+
+        comm_rate = self.comment_set.all().aggregate(
+            comment_rating=Sum('comment_rate')
+        )
+        c_rate = 0
+        c_rate += comm_rate.get('comment_rating')
+
+        self.author_rate = p_rate * 3 + c_rate
+
+        self.save()
 
 
 class Category(models.Model):
