@@ -19,12 +19,12 @@ class Post(models.Model):
 
     ARTICLE = 'ART'
     NEWS = 'NWS'
-    CHOiCE_CAT = (
+    CHOICE_CAT = [
         (ARTICLE, 'Статья'),
         (NEWS, 'Новость'),
-    )
+    ]
     type_cat = models.CharField(
-        max_length=3, choices=CHOiCE_CAT, default=ARTICLE
+        max_length=3, choices=CHOICE_CAT, default=ARTICLE
     )
     date_pub = models.DateTimeField(auto_now_add=True)
     post_cat = models.ManyToManyField(Category, through='PostCategory')
