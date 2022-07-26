@@ -51,4 +51,13 @@ ps2.dislike()
 a1.update_rate()
 a2.update_rate()
 
+a_rated = Author.objects.order_by('-author_rate')[:1]
+print(f'Best Author: {a_rated[0].author_user}, rating = {a_rated[0].author_rate}')
 
+b_post = Post.objects.order_by('-content_rate')[:1]
+print(f'Best Post: "{b_post[0].name}", Author: {b_post[0].author_post.author_user}, Date posted: {b_post[0].date_pub.strftime("%m-%d-%Y, %H:%M:%S")}, Rating Post = {b_post[0].content_rate}')
+print(f'Preview this Post: "{b_post[0].preview()}"')
+
+comments = Comment.objects.filter(post_id=b_post[0].pk)
+for comment in comments:
+    print(f'Comment: "{comment.comment}", Commented: {comment.user}, Date comment: {comment.date_comment.strftime("%m-%d-%Y, %H:%M:%S")}, Rating = {comment.comment_rate}')
