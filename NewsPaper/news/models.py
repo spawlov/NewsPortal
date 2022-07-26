@@ -21,7 +21,6 @@ class Author(models.Model):
         c_rate += comm_rate.get('comment_rating')
 
         self.author_rate = p_rate * 3 + c_rate
-
         self.save()
 
 
