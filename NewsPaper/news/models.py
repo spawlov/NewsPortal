@@ -14,7 +14,7 @@ class Author(models.Model):
         p_rate = 0
         p_rate += post_rate.get('post_rating')
 
-        comm_rate = self.comment_set.all().aggregate(
+        comm_rate = self.author_user.comment_set.all().aggregate(
             comment_rating=Sum('comment_rate')
         )
         c_rate = 0
@@ -53,6 +53,9 @@ class Post(models.Model):
     def dislike(self):
         self.content_rate -= 1
         self.save()
+
+    def preview(self):
+        return f'{self.content}...'
 
 
 class PostCategory(models.Model):

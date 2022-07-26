@@ -1,0 +1,54 @@
+from news.models import *
+
+us1 = User.objects.create_user('Vasya')
+us2 = User.objects.create_user('Fedya')
+
+a1 = Author.objects.create(author_user=us1)
+a2 = Author.objects.create(author_user=us2)
+
+cat1 = Category.objects.create(name='IT')
+cat2 = Category.objects.create(name='Python')
+cat3 = Category.objects.create(name='Java')
+cat4 = Category.objects.create(name='React')
+
+ps1 = Post.objects.create(author_post=a1, type_cat='ART', name='Article about Java', content='This is the text of the article about the language Java')
+ps2 = Post.objects.create(author_post=a1, type_cat='ART', name='Article about Python and PHP', content='This is the text of an article about the difference between the languages Python and PHP')
+ps3 = Post.objects.create(author_post=a2, type_cat='NWS', name='News about Django', content='This is text news about Django 4 release')
+
+ps1.post_cat.add(cat1)
+ps1.post_cat.add(cat3)
+
+ps2.post_cat.add(cat1)
+ps2.post_cat.add(cat2)
+
+ps3.post_cat.add(cat1)
+
+cmt1_1 = Comment.objects.create(post=ps1, user=a2.author_user, comment='First comment by Fedya')
+cmt2_1 = Comment.objects.create(post=ps2, user=a2.author_user, comment='First comment by Fedya')
+cmt2_2 = Comment.objects.create(post=ps2, user=a1.author_user, comment='Second comment by Vasya')
+cmt3_1 = Comment.objects.create(post=ps3, user=a1.author_user, comment='First comment by Vasya')
+
+cmt1_1.like()
+cmt2_1.like()
+cmt2_2.like()
+cmt2_2.like()
+cmt2_2.like()
+cmt2_2.like()
+cmt3_1.like()
+cmt2_2.dislike()
+
+ps1.like()
+ps2.like()
+ps2.like()
+ps2.like()
+ps2.like()
+ps2.like()
+ps3.like()
+ps3.like()
+ps2.like()
+ps2.dislike()
+
+a1.update_rate()
+a2.update_rate()
+
+
