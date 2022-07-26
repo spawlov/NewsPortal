@@ -55,7 +55,7 @@ class Post(models.Model):
         self.save()
 
     def preview(self):
-        return f'{self.content}...'
+        return f'{self.content[0:127]}...'
 
 
 class PostCategory(models.Model):
