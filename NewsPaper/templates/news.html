@@ -1,0 +1,54 @@
+{% extends 'default.html' %}
+
+{% block title %}Новости и статьи{% endblock title %}
+
+{% block content %}
+<table xmlns="http://www.w3.org/1999/html">
+    <tr>
+        <th style="text-align: left; width: 45%"><p>Последние новости</p></th>
+        <th style="width: 10%"></th>
+        <th style="text-align: left; width: 45%"><p>Последние статьи</p></th>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">
+            <table>
+                {% for nw in posts %}
+                    {% if nw.type_cat == 'NWS' %}
+                        <tr>
+                            <td style="text-align: left">
+                                <p>
+                                    <a href="{% url 'news:detail' nw.id %}"><b>{{ nw.name }}</b></a>
+                                    <span style="font-size: smaller; color: #04414d">
+                                        | <b>{{ nw.date_pub|date:'d.m.Y' }}</b> |
+                                    </span>
+                                    </br>
+                                {{ nw.content|truncatewords:20 }}</p>
+                            </td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </table>
+        </td>
+        <td style="padding-left: 25px; padding-right: 25px"></td>
+        <td style="vertical-align: top">
+            <table>
+                {% for ar in posts %}
+                    {% if ar.type_cat == 'ART' %}
+                        <tr>
+                            <td style="text-align: left">
+                                <p>
+                                    <a href="{% url 'news:detail' ar.id %}"><b>{{ ar.name }}</b></a>
+                                    <span style="font-size: smaller; color: #04414d">
+                                        | <b>{{ ar.date_pub|date:'d.m.Y' }}</b> |
+                                    </span>
+                                    </br>
+                                {{ ar.content|truncatewords:20 }}</p>
+                            </td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </table>
+        </td>
+    </tr>
+</table>
+{% endblock content %}
