@@ -1,5 +1,8 @@
 {% extends 'default.html' %}
 
+{% load censor %}
+{% load news_tags %}
+
 {% block title %}{{ content.name }}{% endblock title %}
 
 {% block content %}
@@ -8,7 +11,7 @@
     <tr>
         <th style="text-align: left; padding: 5px">
             <span style="text-align: left; color: #06357a">
-                {{ content.name }}
+                {{ content.name|censor }}
             </span>
             <span style="font-size: smaller; color: #0d6efd">
                 | {{ content.date_pub|date:'d.m.Y' }} |
@@ -17,7 +20,7 @@
     </tr>
     <tr>
         <td style="text-align: justify">
-            {{ content.content }}
+            {{ content.content|censor }}
         </td>
     </tr>
 </table>

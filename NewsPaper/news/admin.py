@@ -15,7 +15,7 @@ class PostAdmin(admin.ModelAdmin):
     list_filter = ['date_pub', 'type_cat', 'author_post']
     search_fields = ['name']
 
-    readonly_fields = ['author_post', 'date_pub', 'content_rate']
+    readonly_fields = ['date_pub', 'content_rate']
     fieldsets = [
         ('Автор', {'fields': ['author_post']}),
         ('Контент', {'fields': ['type_cat']}),

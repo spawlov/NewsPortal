@@ -81,7 +81,9 @@ class Post(models.Model):
 
 class PostCategory(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    cat = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name='Категория')
+    cat = models.ForeignKey(
+        Category, on_delete=models.CASCADE, verbose_name='Категория'
+    )
 
     def __str__(self):
         return self.cat.name
@@ -92,10 +94,16 @@ class PostCategory(models.Model):
 
 
 class Comment(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, verbose_name='Пост')
-    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор')
+    post = models.ForeignKey(
+        Post, on_delete=models.CASCADE, verbose_name='Пост'
+    )
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, verbose_name='Автор'
+    )
     comment = models.TextField(verbose_name='Текст комментария')
-    date_comment = models.DateTimeField(auto_now_add=True, verbose_name='Дата комментария')
+    date_comment = models.DateTimeField(
+        auto_now_add=True, verbose_name='Дата комментария'
+    )
     comment_rate = models.SmallIntegerField(default=0, verbose_name='Рейтинг')
 
     @property
