@@ -23,4 +23,3 @@ class PostDetails(generic.DetailView):
             post_id=context['content'].id
         )
         return context
-

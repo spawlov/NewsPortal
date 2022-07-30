@@ -4,8 +4,13 @@ from django.db.models import Sum
 
 
 class Author(models.Model):
-    author_user = models.OneToOneField(User, on_delete=models.CASCADE)
-    author_rate = models.SmallIntegerField(default=0)
+    author_user = models.OneToOneField(
+        User,
+        on_delete=models.CASCADE,
+    )
+    author_rate = models.SmallIntegerField(
+        default=0,
+    )
 
     def update_rate(self):
         post_rate = self.post_set.all().aggregate(
@@ -32,7 +37,10 @@ class Author(models.Model):
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=64, unique=True)
+    name = models.CharField(
+        max_length=64,
+        unique=True,
+    )
 
     def __str__(self):
         return self.name
@@ -43,7 +51,11 @@ class Category(models.Model):
 
 
 class Post(models.Model):
-    author_post = models.ForeignKey(Author, on_delete=models.CASCADE, verbose_name='Автор')
+    author_post = models.ForeignKey(
+        Author,
+        on_delete=models.CASCADE,
+        verbose_name='Автор',
+    )
 
     ARTICLE = 'ART'
     NEWS = 'NWS'
@@ -52,13 +64,30 @@ class Post(models.Model):
         (NEWS, 'Новость'),
     ]
     type_cat = models.CharField(
-        max_length=3, choices=CHOICE_CAT, default=ARTICLE, verbose_name='Тип контента'
+        max_length=3,
+        choices=CHOICE_CAT,
+        default=ARTICLE,
+        verbose_name='Тип контента',
     )
-    date_pub = models.DateTimeField(auto_now_add=True, verbose_name='Дата публикации')
-    post_cat = models.ManyToManyField(Category, through='PostCategory')
-    name = models.CharField(max_length=128, verbose_name='Название')
-    content = models.TextField(verbose_name='Контент')
-    content_rate = models.SmallIntegerField(default=0, verbose_name='Рейтинг')
+    date_pub = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name='Дата публикации',
+    )
+    post_cat = models.ManyToManyField(
+        Category,
+        through='PostCategory',
+    )
+    name = models.CharField(
+        max_length=128,
+        verbose_name='Название',
+    )
+    content = models.TextField(
+        verbose_name='Контент',
+    )
+    content_rate = models.SmallIntegerField(
+        default=0,
+        verbose_name='Рейтинг',
+    )
 
     def like(self):
         self.content_rate += 1
@@ -80,9 +109,14 @@ class Post(models.Model):
 
 
 class PostCategory(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    post = models.ForeignKey(
+        Post,
+        on_delete=models.CASCADE,
+    )
     cat = models.ForeignKey(
-        Category, on_delete=models.CASCADE, verbose_name='Категория'
+        Category,
+        on_delete=models.CASCADE,
+        verbose_name='Категория',
     )
 
     def __str__(self):
@@ -95,16 +129,26 @@ class PostCategory(models.Model):
 
 class Comment(models.Model):
     post = models.ForeignKey(
-        Post, on_delete=models.CASCADE, verbose_name='Пост'
+        Post,
+        on_delete=models.CASCADE,
+        verbose_name='Пост',
     )
     user = models.ForeignKey(
-        User, on_delete=models.CASCADE, verbose_name='Автор'
+        User,
+        on_delete=models.CASCADE,
+        verbose_name='Автор',
     )
-    comment = models.TextField(verbose_name='Текст комментария')
+    comment = models.TextField(
+        verbose_name='Текст комментария',
+    )
     date_comment = models.DateTimeField(
-        auto_now_add=True, verbose_name='Дата комментария'
+        auto_now_add=True,
+        verbose_name='Дата комментария',
     )
-    comment_rate = models.SmallIntegerField(default=0, verbose_name='Рейтинг')
+    comment_rate = models.SmallIntegerField(
+        default=0,
+        verbose_name='Рейтинг',
+    )
 
     @property
     def comments(self):
