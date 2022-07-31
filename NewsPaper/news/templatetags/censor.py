@@ -8,6 +8,7 @@ register = template.Library()
 @register.filter()
 def censor(in_text):
     censured_text = in_text
+
     with open('static/json/bad_words.json', 'r') as censor_file:
         bad_text = json.load(censor_file)
 
