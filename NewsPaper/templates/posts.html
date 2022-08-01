@@ -3,27 +3,43 @@
 {% load censor %}
 {% load news_tags %}
 
-{% block title %}Новости{% endblock title %}
+{% block title %}Новости и статьи{% endblock title %}
 
 {% block content %}
 <table class="news">
     <tr>
-        <th>Последние новости</th>
+        <th>Последние публикации</th>
     </tr>
     <tr>
         <td>
             <table>
-            {% for nw in news %}
+            {% for post in posts %}
             <tr>
                 <td>
                     <span class="metanews">
-                        {{ nw.date_pub|date:'d.m.Y' }}:
+                        {{ post.date_pub|date:'d.m.Y' }}:
                     </span>
-                    <a class="news_title" href="{% url 'news:detail' nw.id %}">
-                        {{ nw.name|censor }}
+                    <a class="news_title" href="{% url 'news:detail' post.id %}">
+                        {{ post.name|censor }}
                     </a>
+                    <span class="metanews">
+                        в разделе
+                    </span>
+                    {% if post.type_cat == 'NWS' %}
+                        <a class="news_title" href="{% url 'news:news' %}">
+                            {{ post.get_type_cat_display|liter }}
+                        </a>
+                    {% elif post.type_cat == 'ART' %}
+                        <a class="news_title" href="{% url 'news:articles' %}">
+                            {{ post.get_type_cat_display|liter }}
+                        </a>
+                    {% else %}
+                        <a class="news_title" href="#">
+                            #
+                        </a>
+                    {% endif %}
                     <br>
-                    <p>{{ nw.content|censor|truncatechars:250 }}</p>
+                    <p>{{ post.content|censor|truncatechars:250 }}</p>
                 </td>
             </tr>
             {% endfor %}

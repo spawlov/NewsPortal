@@ -3,17 +3,17 @@
 {% load censor %}
 {% load news_tags %}
 
-{% block title %}Новости{% endblock title %}
+{% block title %}Статьи{% endblock title %}
 
 {% block content %}
 <table class="news">
     <tr>
-        <th>Последние новости</th>
+        <th>Последние статьи</th>
     </tr>
     <tr>
         <td>
             <table>
-            {% for nw in news %}
+            {% for nw in articles %}
             <tr>
                 <td>
                     <span class="metanews">

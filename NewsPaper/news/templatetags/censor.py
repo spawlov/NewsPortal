@@ -19,3 +19,7 @@ def censor(in_text):
                 f'{word[0]}{"*" * (len(word) - 1)}'
             )
     return censured_text
+
+@register.filter()
+def liter(in_word):
+    return f'{in_word[:-1]}и'

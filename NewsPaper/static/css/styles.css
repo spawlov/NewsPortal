@@ -140,3 +140,39 @@ div.comment {
   text-align: right;
   font-size: 10pt;
 }
+
+table.navigate {
+  width: 80%;
+  border: none;
+  padding-left: 15px;
+  font-family: Calibri, Arial, Helvetica, sans-serif;
+}
+table.navigate td {
+  text-align: left;
+  padding: 10px 30px;
+  background: #2f2f2f;
+  font-size: 14pt;
+  color: #dfdfdf;
+  border: 2px solid #dfdfdf;
+}
+table.navigate td:hover {
+  background: #1f1f1f;
+}
+table.navigate a:link {
+  text-decoration: none;
+  color: #dfdfdf;
+}
+table.navigate a:active {
+  text-decoration: none;
+  color: #dfdfdf;
+}
+table.navigate a:visited {
+  text-decoration: none;
+  color: #dfdfdf;
+}
+table.navigate a:hover {
+  text-decoration: none;
+  color: #dfdfdf;
+}
+
+
