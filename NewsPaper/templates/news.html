@@ -6,52 +6,48 @@
 {% block title %}Новости и статьи{% endblock title %}
 
 {% block content %}
-<table xmlns="http://www.w3.org/1999/html">
+<table class="news">
     <tr>
-        <th style="text-align: left; width: 45%"><p>Последние новости</p></th>
-        <th style="width: 10%"></th>
-        <th style="text-align: left; width: 45%"><p>Последние статьи</p></th>
+        <th>Последние новости</th>
     </tr>
+    {% for nw in posts %}
     <tr>
-        <td style="vertical-align: top">
-            <table>
-                {% for nw in posts %}
-                    {% if nw.type_cat == 'NWS' %}
-                        <tr>
-                            <td style="text-align: left">
-                                <p>
-                                    <a href="{% url 'news:detail' nw.id %}"><b>{{ nw.name|censor }}</b></a>
-                                    <span style="font-size: smaller; color: #04414d">
-                                        | <b>{{ nw.date_pub|date:'d.m.Y' }}</b> |
-                                    </span>
-                                    </br>
-                                {{ nw.content|censor|truncatewords:20 }}</p>
-                            </td>
-                        </tr>
-                    {% endif %}
-                {% endfor %}
-            </table>
-        </td>
-        <td style="padding-left: 25px; padding-right: 25px"></td>
-        <td style="vertical-align: top">
-            <table>
-                {% for ar in posts %}
-                    {% if ar.type_cat == 'ART' %}
-                        <tr>
-                            <td style="text-align: left">
-                                <p>
-                                    <a href="{% url 'news:detail' ar.id %}"><b>{{ ar.name|censor }}</b></a>
-                                    <span style="font-size: smaller; color: #04414d">
-                                        | <b>{{ ar.date_pub|date:'d.m.Y' }}</b> |
-                                    </span>
-                                    </br>
-                                {{ ar.content|censor|truncatewords:20 }}</p>
-                            </td>
-                        </tr>
-                    {% endif %}
-                {% endfor %}
-            </table>
+        <td>
+            <span class="metanews">
+                {{ nw.date_pub|date:'d.m.Y' }}
+                {{nw.author_post }}:
+            </span>
+            <a class="news_title" href="{% url 'news:detail' nw.id %}">
+                {{ nw.name|censor }}
+            </a>
+            <br>
+            <p>{{ nw.content|censor|truncatechars:250 }}</p>
         </td>
     </tr>
+    {% endfor %}
 </table>
+<div class="pagination">
+    {% if page_obj.has_previous %}
+        <a href="?{% url_replace page=1 %}"><<&nbsp;</a>
+        <a href="?{% url_replace page=page_obj.previous_page_number %}"><&nbsp;</a>
+        <a href="?{% url_replace page=1 %}">1</a>
+        {% if page_obj.previous_page_number != 1  %}
+            ...
+            <a href="?{% url_replace page=page_obj.previous_page_number %}">{{ page_obj.previous_page_number }}</a>
+        {% endif %}
+    {% endif %}
+
+    <span class="current">&nbsp;{{ page_obj.number }}&nbsp;</span>
+
+    {% if page_obj.has_next %}
+        <a href="?{% url_replace page=page_obj.next_page_number %}">{{ page_obj.next_page_number }}</a>
+        {% if paginator.num_pages != page_obj.next_page_number %}
+            ...
+            <a href="?{% url_replace page=page_obj.paginator.num_pages %}">{{ page_obj.paginator.num_pages }}</a>
+        {% endif %}
+        <a href="?{% url_replace page=page_obj.next_page_number %}">&nbsp;></a>
+        <a href="?{% url_replace page=page_obj.paginator.num_pages %}">&nbsp;>></a>
+    {% endif %}
+</div>
+
 {% endblock content %}

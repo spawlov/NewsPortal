@@ -7,6 +7,7 @@ class IndexView(generic.ListView):
     ordering = '-date_pub'
     template_name = 'news.html'
     context_object_name = 'posts'
+    paginate_by = 5
 
 
 class PostDetails(generic.DetailView):
