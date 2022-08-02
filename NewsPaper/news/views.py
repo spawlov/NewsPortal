@@ -55,7 +55,6 @@ class PostFind(generic.ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        print(self.request.GET)
         self.postfilter = PostFilter(self.request.GET, queryset)
         return self.postfilter.qs
 
