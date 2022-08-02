@@ -1,0 +1,29 @@
+{% extends 'default.html' %}
+{% load censor %}
+{% load news_tags %}
+{% block content %}
+<table class="news">
+    <tr>
+        <th style="color: red; text-align: center;">
+            Удалить пост {{ object.name|censor }}?
+        </th>
+    </tr>
+    <tr>
+        <td style="padding: 20px 5px; color: red; text-align: center; font-weight: bolder">
+            и все связанные с ним комментарии
+        </td>
+    </tr>
+</table>
+
+<table style="margin-left: auto; margin-right: auto">
+    <tr>
+        <td>
+            <form action="" method="post">
+                {% csrf_token %}
+                <input type="submit" value="Удалить">
+            </form>
+        </td>
+    </tr>
+</table>
+
+{% endblock content %}

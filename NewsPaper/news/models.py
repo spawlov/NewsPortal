@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import Sum
+from django.urls import reverse
 
 
 class Author(models.Model):
@@ -93,6 +94,9 @@ class Post(models.Model):
 
     def preview(self):
         return f'{self.content[0:127]}...'
+
+    def get_absolute_url(self):
+        return reverse('news:detail', args=[str(self.id)])
 
     def __str__(self):
         return self.name

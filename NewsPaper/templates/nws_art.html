@@ -29,6 +29,13 @@
             Рейтинг поста/автора: {{ content.content_rate }}/{{ author.author_rate }}
         </td>
     </tr>
+    <tr>
+        <td class="deledit">
+            <a href="{% url 'news:edit' content.pk %}">Изменить</a>
+            |
+            <a href="{% url 'news:delete' content.pk %}">Удалить</a>
+        </td>
+    </tr>
 </table>
 <table class="comment">
     <tr>

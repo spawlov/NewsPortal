@@ -83,9 +83,25 @@ table.meta_data {
   color: #0a0a0a;
 }
 table.meta_data td {
+  padding-top: 15px;
   text-align: right;
   font-weight: bolder;
   font-size: 11pt;
+}
+table.meta_data a:link {
+  font-size: 12pt;
+  text-decoration: none;
+  color: mediumblue;
+}
+table.meta_data a:visited {
+  font-size: 12pt;
+  text-decoration: none;
+  color: mediumblue;
+}
+ table.meta_data a:hover {
+   font-size: 12pt;
+  text-decoration: none;
+  color: red;
 }
 
 .metanews {
@@ -186,16 +202,30 @@ table.find_form td.label_form {
   text-align: right;
   width: 175px;
 }
+table.find_form th {
+  padding: 5px 10px;
+  text-align: right;
+  width: 175px;
+}
+table.find_form td {
+  padding: 5px 10px;
+  text-align: left;
+  width: 200px;
+}
 table.find_form td.input_form {
   padding: 5px 10px;
   text-align: left;
   width: 200px;
 }
 table.find_form td.submit_form {
+  padding-top: 15px;
   text-align: center;
 }
 table.find_form input {
   width: 160px;
+}
+table.find_form textarea {
+  width: 640px;
 }
 table.find_form select {
   width: 165px;
@@ -204,4 +234,9 @@ table.find_form td.submit_form input{
   width: 350px;
   background-color: #fff;
   text-align: center;
+}
+
+.errorlist {
+  font-weight: bolder;
+  color: red;
 }

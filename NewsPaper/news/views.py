@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 
+from django.urls import reverse_lazy
 from django.views import generic
 
 from .fiters import PostFilter
@@ -20,7 +21,7 @@ class NewsView(generic.ListView):
     ordering = '-date_pub'
     template_name = 'news.html'
     context_object_name = 'news'
-    paginate_by = 5
+    paginate_by = 10
 
 
 class ArticlesView(generic.ListView):
@@ -28,7 +29,7 @@ class ArticlesView(generic.ListView):
     ordering = '-date_pub'
     template_name = 'articles.html'
     context_object_name = 'articles'
-    paginate_by = 5
+    paginate_by = 10
 
 
 class PostDetails(generic.DetailView):
@@ -68,4 +69,16 @@ class PostFind(generic.ListView):
 class PostCreate(generic.CreateView):
     form_class = PostForm
     model = Post
-    template_name = 'create.html'
+    template_name = 'edit.html'
+
+
+class PostEdit(generic.UpdateView):
+    form_class = PostForm
+    model = Post
+    template_name = 'edit.html'
+
+
+class PostDelete(generic.DeleteView):
+    model = Post
+    template_name = 'delete.html'
+    success_url = reverse_lazy('news:index')

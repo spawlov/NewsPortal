@@ -1,0 +1,24 @@
+{% extends 'default.html' %}
+
+{% block title %}Добавить пост{% endblock title %}
+
+{% block content %}
+<table class="news">
+    <tr>
+        <th>Публикация/редактирование поста</th>
+    </tr>
+</table>
+<fieldset style="padding: 25px; width: 90%; margin-right: auto; margin-left: auto">
+    <table class="find_form">
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_table }}
+        <tr>
+            <td colspan="2" class="submit_form">
+                <input type="submit" value="Сохранить">
+            </td>
+        </tr>
+        </form>
+    </table>
+</fieldset>
+{% endblock content %}

@@ -12,6 +12,7 @@
     </tr>
     <tr>
         <td>
+            <fieldset>
             <table class="find_form">
                 <form class="post_filter" action="" method="get">
                 {{ postfilter.form.non_field_errors }}
@@ -20,10 +21,12 @@
                         <td class="label_form">Заголовок содержит:</td>
                         <td class="input_form">{{ postfilter.form.name__icontains }}</td>
                     </tr>
+                    <!--
                     <tr>
                         <td class="label_form">В тексте встречается:</td>
                         <td class="input_form">{{ postfilter.form.content__icontains }}</td>
                     </tr>
+                    -->
                     <tr>
                         <td class="label_form">Относится к разделам:</td>
                         <td class="input_form">{{ postfilter.form.post_cat }}</td>
@@ -44,6 +47,7 @@
                     </tr>
                 </form>
             </table>
+            </fieldset>
         </td>
     </tr>
 </table>
