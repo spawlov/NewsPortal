@@ -1,0 +1,103 @@
+{% extends 'default.html' %}
+
+{% load censor %}
+{% load news_tags %}
+
+{% block title %}Новости и статьи{% endblock title %}
+
+{% block content %}
+<table class="news">
+    <tr>
+        <th>Поиск по сайту</th>
+    </tr>
+    <tr>
+        <td>
+            <table class="find_form">
+                <form class="post_filter" action="" method="get">
+                {{ postfilter.form.non_field_errors }}
+                {{ postfilter.form.name__icontains.errors }}
+                    <tr>
+                        <td class="label_form">Заголовок содержит:</td>
+                        <td class="input_form">{{ postfilter.form.name__icontains }}</td>
+                    </tr>
+                    <tr>
+                        <td class="label_form">В тексте встречается:</td>
+                        <td class="input_form">{{ postfilter.form.content__icontains }}</td>
+                    </tr>
+                    <tr>
+                        <td class="label_form">Относится к разделам:</td>
+                        <td class="input_form">{{ postfilter.form.post_cat }}</td>
+                    </tr>
+                    <tr>
+                        <td class="label_form">Опубликовано после:</td>
+                        <td class="input_form">
+                            <input
+                                id="{{ postfilter.form.date_pub__gt.id_for_label }}"
+                                name="{{ postfilter.form.date_pub__gt.name }}"
+                                type="datetime-local"
+                                value="{{ postfilter.form.date_pub__gt.value }}"
+                                class="form-control">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="submit_form"><input type="submit" value="Найти"></td>
+                    </tr>
+                </form>
+            </table>
+        </td>
+    </tr>
+</table>
+{% if postfilter.form.name__icontains.value or postfilter.form.post_cat.value or postfilter.form.date_pub__gt.value %}
+    {% if find %}
+        <table class="news">
+            <tr>
+                <th>Результаты поиска</th>
+            </tr>
+            <tr>
+                <td>
+                    <table>
+                    {% for post in find %}
+                    <tr>
+                        <td>
+                            <a class="news_title" href="{% url 'news:detail' post.id %}">
+                                {{ post.name|censor }}
+                            </a>
+                            <br>
+                            <p>{{ post.content|censor|truncatechars:250 }}</p>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <div class="pagination">
+            {% if page_obj.has_previous %}
+                <a href="?{% url_replace page=1 %}"><<&nbsp;</a>
+                <a href="?{% url_replace page=page_obj.previous_page_number %}"><&nbsp;</a>
+                <a href="?{% url_replace page=1 %}">1</a>
+                {% if page_obj.previous_page_number != 1  %}
+                    ...
+                    <a href="?{% url_replace page=page_obj.previous_page_number %}">{{ page_obj.previous_page_number }}</a>
+                {% endif %}
+            {% endif %}
+
+            <span class="current">&nbsp;{{ page_obj.number }}&nbsp;</span>
+
+            {% if page_obj.has_next %}
+                <a href="?{% url_replace page=page_obj.next_page_number %}">{{ page_obj.next_page_number }}</a>
+                {% if paginator.num_pages != page_obj.next_page_number %}
+                    ...
+                    <a href="?{% url_replace page=page_obj.paginator.num_pages %}">{{ page_obj.paginator.num_pages }}</a>
+                {% endif %}
+                <a href="?{% url_replace page=page_obj.next_page_number %}">&nbsp;></a>
+                <a href="?{% url_replace page=page_obj.paginator.num_pages %}">&nbsp;>></a>
+            {% endif %}
+        </div>
+    {% else %}
+        <p style="text-align: center; font-weight: bolder; color: brown">
+            По данному запросу ничего не найдено
+        </p>
+    {% endif %}
+{% endif %}
+{% endblock content %}

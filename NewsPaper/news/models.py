@@ -52,9 +52,7 @@ class Category(models.Model):
 
 class Post(models.Model):
     author_post = models.ForeignKey(
-        Author,
-        on_delete=models.CASCADE,
-        verbose_name='Автор',
+        Author, on_delete=models.CASCADE, verbose_name='Автор',
     )
 
     ARTICLE = 'ART'
@@ -64,18 +62,14 @@ class Post(models.Model):
         (NEWS, 'Новость'),
     ]
     type_cat = models.CharField(
-        max_length=3,
-        choices=CHOICE_CAT,
-        default=ARTICLE,
+        max_length=3, choices=CHOICE_CAT, default=ARTICLE,
         verbose_name='Тип контента',
     )
     date_pub = models.DateTimeField(
-        auto_now_add=True,
-        verbose_name='Дата публикации',
+        auto_now_add=True, verbose_name='Дата публикации',
     )
     post_cat = models.ManyToManyField(
-        Category,
-        through='PostCategory',
+        Category, through='PostCategory', verbose_name='Категория',
     )
     name = models.CharField(
         max_length=128,

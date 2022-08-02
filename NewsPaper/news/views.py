@@ -1,14 +1,18 @@
-from django.views import generic
-from .models import Post, Author, Comment
+from datetime import datetime, timedelta
 
-from django.shortcuts import get_object_or_404
+from django.views import generic
+
+from .fiters import PostFilter
+from .models import Post, Author, Comment, Category
+from .form import PostForm
+
 
 class IndexView(generic.ListView):
     model = Post
     ordering = '-date_pub'
     template_name = 'posts.html'
     context_object_name = 'posts'
-    paginate_by = 5
+    paginate_by = 10
 
 
 class NewsView(generic.ListView):
@@ -41,3 +45,28 @@ class PostDetails(generic.DetailView):
             post_id=context['content'].id
         )
         return context
+
+
+class PostFind(generic.ListView):
+    model = Post
+    template_name = 'find.html'
+    context_object_name = 'find'
+    paginate_by = 10
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        print(self.request.GET)
+        self.postfilter = PostFilter(self.request.GET, queryset)
+        return self.postfilter.qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['postfilter'] = self.postfilter
+        context['category'] = Category.objects.all()
+        return context
+
+
+class PostCreate(generic.CreateView):
+    form_class = PostForm
+    model = Post
+    template_name = 'create.html'
