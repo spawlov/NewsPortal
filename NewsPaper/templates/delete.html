@@ -1,6 +1,10 @@
 {% extends 'default.html' %}
+
+{% block title %}Удаление поста - "{{ object.name }}"{% endblock title %}
+
 {% load censor %}
 {% load news_tags %}
+
 {% block content %}
 <table class="news">
     <tr>
