@@ -67,7 +67,7 @@
                                 {{ post.name|censor }}
                             </a>
                             <br>
-                            <p>{{ post.content|censor|truncatechars:250 }}</p>
+                            <p>{{ post.content|safe|censor|truncatechars:250 }}</p>
                         </td>
                     </tr>
                     {% endfor %}
