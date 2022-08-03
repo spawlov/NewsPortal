@@ -58,7 +58,8 @@ a.news_title:active {
   text-decoration: none;
 }
 a.news_title:hover {
-  text-decoration: underline;
+  color: crimson;
+  text-decoration: none;
 }
 
 table.news {
