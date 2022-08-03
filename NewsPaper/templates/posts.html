@@ -30,11 +30,11 @@
                     </span>
                     {% if post.type_cat == 'NWS' %}
                         <a class="news_title" href="{% url 'news:news' %}">
-                            {{ post.get_type_cat_display|liter }}
+                            <span style="font-size: smaller">{{ post.get_type_cat_display|liter }}</span>
                         </a>
                     {% elif post.type_cat == 'ART' %}
                         <a class="news_title" href="{% url 'news:articles' %}">
-                            {{ post.get_type_cat_display|liter }}
+                            <span style="font-size: smaller">{{ post.get_type_cat_display|liter }}</span>
                         </a>
                     {% else %}
                         <a class="news_title" href="#">
@@ -42,7 +42,7 @@
                         </a>
                     {% endif %}
                     <br>
-                    <p>{{ post.content|censor|truncatechars:250 }}</p>
+                    <p>{{ post.content|safe|censor|truncatechars:250 }}</p>
                 </td>
             </tr>
             {% endfor %}

@@ -23,7 +23,7 @@
                         {{ nw.name|censor }}
                     </a>
                     <br>
-                    <p>{{ nw.content|censor|truncatechars:250 }}</p>
+                    <p>{{ nw.content|safe|censor|truncatechars:250 }}</p>
                 </td>
             </tr>
             {% endfor %}
