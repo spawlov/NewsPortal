@@ -42,7 +42,7 @@
                         </a>
                     {% endif %}
                     <br>
-                    <p>{{ post.content|safe|censor|truncatechars:250 }}</p>
+                    <p>{{ post.content|censor|truncatechars:250|safe }}</p>
                 </td>
             </tr>
             {% endfor %}
