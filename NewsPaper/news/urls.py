@@ -10,7 +10,7 @@ urlpatterns = [
     path('articles/', ArticlesView.as_view(), name='articles'),
     path('<int:pk>/', PostDetails.as_view(), name='detail'),
     path('create/', PostCreate.as_view(), name='create'),
-    path('find/', PostFind.as_view(), name='find'),
+    path('search/', PostFind.as_view(), name='search'),
     path('edit/<int:pk>/', PostEdit.as_view(), name='edit'),
     path('delete/<int:pk>/', PostDelete.as_view(), name='delete'),
 ]

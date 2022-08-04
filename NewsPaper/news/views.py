@@ -48,8 +48,8 @@ class PostDetails(generic.DetailView):
 
 class PostFind(generic.ListView):
     model = Post
-    template_name = 'find.html'
-    context_object_name = 'find'
+    template_name = 'search.html'
+    context_object_name = 'search'
     paginate_by = 10
 
     def get_queryset(self):

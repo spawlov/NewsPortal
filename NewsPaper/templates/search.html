@@ -52,7 +52,7 @@
     </tr>
 </table>
 {% if postfilter.form.name__icontains.value or postfilter.form.post_cat.value or postfilter.form.date_pub__gt.value %}
-    {% if find %}
+    {% if search %}
         <table class="news">
             <tr>
                 <th>Результаты поиска</th>
@@ -60,7 +60,7 @@
             <tr>
                 <td>
                     <table>
-                    {% for post in find %}
+                    {% for post in search %}
                     <tr>
                         <td>
                             <a class="news_title" href="{% url 'news:detail' post.id %}">
