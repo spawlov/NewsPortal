@@ -16,9 +16,9 @@
             {% for nw in articles %}
             <tr>
                 <td>
-                    <span class="metanews">
-                        {{ nw.date_pub|date:'d.m.Y' }}:
-                    </span>
+                    <p class="metanews">
+                        {{ nw.author_post }}, {{ nw.date_pub|date:'d.m.Y' }}:
+                    </p>
                     <a class="news_title" href="{% url 'news:detail' nw.id %}">
                         {{ nw.name|censor }}
                     </a>

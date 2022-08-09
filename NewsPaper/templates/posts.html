@@ -19,9 +19,9 @@
             {% for post in posts %}
             <tr>
                 <td>
-                    <span class="metanews">
-                        {{ post.date_pub|date:'d.m.Y' }}:
-                    </span>
+                    <p class="metanews">
+                        {{ post.author_post }}, {{ post.date_pub|date:'d.m.Y' }}:
+                    </p>
                     <a class="news_title" href="{% url 'news:detail' post.id %}">
                         {{ post.name|censor }}
                     </a>
