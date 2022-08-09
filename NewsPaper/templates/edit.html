@@ -5,46 +5,42 @@
 {% block content %}
 
 {% if edit.id == None %}
-<table class="news">
-    <tr>
-        <th>Публикация нового поста</th>
-    </tr>
-</table>
-<fieldset style="padding: 25px; width: 90%; margin-right: auto; margin-left: auto">
-    <table class="find_form">
-        <form action="" method="post">
-            {% csrf_token %}
-            {{ form.as_table }}
+    <table class="news">
         <tr>
-            <td colspan="2" class="submit_form">
-                <input type="submit" value="Сохранить">
-            </td>
+            <th>Публикация нового поста</th>
         </tr>
-        </form>
     </table>
-</fieldset>
-{% else %}
-    {% if request.user.id != edit.author_post.author_user.id %}
-        <h3 style="color: red">У Вас нет прав доступа к данной информации - Вы не являетесь автором этого поста</h3>
-    {% else %}
-        <table class="news">
+    <fieldset style="padding: 25px; width: 90%; margin-right: auto; margin-left: auto">
+        <table class="find_form">
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ form.as_table }}
             <tr>
-                <th>Редактирование поста "{{ edit.name }}"</th>
+                <td colspan="2" class="submit_form">
+                    <input type="submit" value="Сохранить">
+                </td>
             </tr>
+            </form>
         </table>
-        <fieldset style="padding: 25px; width: 90%; margin-right: auto; margin-left: auto">
-            <table class="find_form">
-                <form action="" method="post">
-                    {% csrf_token %}
-                    {{ form.as_table }}
-                <tr>
-                    <td colspan="2" class="submit_form">
-                        <input type="submit" value="Сохранить">
-                    </td>
-                </tr>
-                </form>
-            </table>
-        </fieldset>
-    {% endif %}
+    </fieldset>
+{% else %}
+    <table class="news">
+        <tr>
+            <th>Редактирование поста <i>"{{ edit.name }}"</i></th>
+        </tr>
+    </table>
+    <fieldset style="padding: 25px; width: 90%; margin-right: auto; margin-left: auto">
+        <table class="find_form">
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ form.as_table }}
+            <tr>
+                <td colspan="2" class="submit_form">
+                    <input type="submit" value="Сохранить">
+                </td>
+            </tr>
+            </form>
+        </table>
+    </fieldset>
 {% endif %}
 {% endblock content %}

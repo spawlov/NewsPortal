@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, \
     PermissionRequiredMixin
 from django.contrib.auth.models import User, Group
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, UpdateView, \
     ListView, DetailView
@@ -10,6 +10,8 @@ from django.views.generic import CreateView, DeleteView, UpdateView, \
 from .fiters import PostFilter
 from .models import Post, Author, Comment, Category
 from .form import PostingForm, UserForm
+from .permissions import PermissionAndOwnerRequiredMixin, \
+    ProfileOwnerRequiredMixin
 
 
 class IndexView(ListView):
@@ -85,7 +87,7 @@ class PostCreate(PermissionRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class PostEdit(PermissionRequiredMixin, UpdateView):
+class PostEdit(PermissionAndOwnerRequiredMixin, UpdateView):
     permission_required = (
         'news.change_post',
     )
@@ -95,7 +97,7 @@ class PostEdit(PermissionRequiredMixin, UpdateView):
     template_name = 'edit.html'
 
 
-class PostDelete(PermissionRequiredMixin, DeleteView):
+class PostDelete(PermissionAndOwnerRequiredMixin, DeleteView):
     permission_required = (
         'news.delete_post',
     )
@@ -105,7 +107,11 @@ class PostDelete(PermissionRequiredMixin, DeleteView):
     success_url = reverse_lazy('news:index')
 
 
-class AuthorEdit(LoginRequiredMixin, UpdateView):
+class AuthorEdit(ProfileOwnerRequiredMixin, UpdateView):
+    permission_required = (
+        # 'account.change_email_address',
+        'auth.change_user',
+    )
     form_class = UserForm
     model = User
     context_object_name = 'profile'

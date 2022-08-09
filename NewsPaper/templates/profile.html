@@ -4,9 +4,6 @@
 
 {% block content %}
 
-{% if request.user.id != profile.id %}
-    <h3 style="color: red">У Вас нет прав доступа к данной информации</h3>
-{% elif request.user.id == profile.id %}
 <table class="news">
     <tr>
         <th>Профиль пользователя <i>{{ user }}</i></th>
@@ -33,5 +30,5 @@
         {% endif %}
     </table>
 </fieldset>
-{% endif %}
+
 {% endblock content %}
