@@ -1,0 +1,37 @@
+{% extends 'default.html' %}
+
+{% block title %}Профиль пользователя {{ user }}{% endblock title %}
+
+{% block content %}
+
+{% if request.user.id != profile.id %}
+    <h3 style="color: red">У Вас нет прав доступа к данной информации</h3>
+{% elif request.user.id == profile.id %}
+<table class="news">
+    <tr>
+        <th>Профиль пользователя <i>{{ user }}</i></th>
+    </tr>
+</table>
+
+<fieldset style="padding: 25px; width: 90%; margin-right: auto; margin-left: auto">
+    <table class="profile_form">
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_table }}
+        <tr>
+            <td colspan="2" class="submit_profile">
+                <input type="submit" value="Сохранить">
+            </td>
+        </tr>
+        </form>
+        {% if not is_author %}
+        <tr>
+            <td colspan="2" class="submit_profile">
+                <button><a href="/req_to_author/">Стать автором</a></button>
+            </td>
+        </tr>
+        {% endif %}
+    </table>
+</fieldset>
+{% endif %}
+{% endblock content %}

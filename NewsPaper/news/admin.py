@@ -1,16 +1,18 @@
 from django.contrib import admin
 
+from .form import PostingForm
 from .models import Post, PostCategory, Comment, Category
 
 
 class PostCategoryInLine(admin.TabularInline):
-
     model = PostCategory
     fk_name = 'post'
     extra = 1
 
 
 class PostAdmin(admin.ModelAdmin):
+
+    form = PostingForm
 
     list_display = (
         'name', 'author_post', 'date_pub', 'content_rate',
@@ -32,7 +34,6 @@ class PostAdmin(admin.ModelAdmin):
 
 
 class CommentsAdmin(admin.ModelAdmin):
-
     list_display = (
         'comments', 'post', 'user', 'date_comment', 'comment_rate',
     )
@@ -53,3 +54,4 @@ class CommentsAdmin(admin.ModelAdmin):
 admin.site.register(Post, PostAdmin)
 admin.site.register(Category)
 admin.site.register(Comment, CommentsAdmin)
+

@@ -26,7 +26,7 @@
         <td>
             Автор: {{ content.author_post }}<br>
             Дата публикации: {{ content.date_pub|date:'d.m.Y' }}<br>
-            Рейтинг поста/автора: {{ content.content_rate }}/{{ author.author_rate }}
+            Рейтинг поста/автора: {{ content.content_rate }}/{{ content.author_post.author_rate }}
         </td>
     </tr>
     <tr>
@@ -54,7 +54,7 @@
     <tr>
         <td>
             <strong>
-                {{ comment.date_comment }}, {{ comment.user}} пишет:
+                {{ comment.date_comment }}, {{ comment.user }} пишет:
             </strong>
             {{ comment.comment|censor }}
             <div class="comment">

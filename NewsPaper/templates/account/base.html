@@ -35,7 +35,7 @@
                     {% if user.id %}
                         Пользователь: {% user_display user %}
                         |
-                        <a href="{% url 'news:profile' user.id %}">Профиль</a>
+                        <a href="/profile/{{ user.id }}">Профиль</a>
                         |
                         <a href="/accounts/logout">Выход</a>
                     {% else %}
@@ -45,7 +45,7 @@
             </tr>
         </table>
         <!-- Page content-->
-        <div class="container">
+        <div class="allauth_container">
             <div class="text-center">
                 {% block message %}
                     {% if messages %}
@@ -58,9 +58,19 @@
                     </div>
                     {% endif %}
                 {% endblock %}
+
+                {% load account socialaccount %}
+
+                {% block body %}
+
                 {% block content %}
-                    {{ news.content }}
                 {% endblock content %}
+                {% endblock body %}
+
+                {% block extra_body %}
+                {% endblock extra_body %}
+
+
             </div>
         </div>
     </body>

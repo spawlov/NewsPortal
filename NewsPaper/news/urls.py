@@ -1,7 +1,8 @@
 from django.urls import path
 
-from .views import IndexView, NewsView, PostDetails, ArticlesView, PostCreate, \
-    PostFind, PostEdit, PostDelete
+from .views import IndexView, NewsView, PostDetails, ArticlesView, \
+    PostCreate, PostFind, PostEdit, PostDelete, AuthorEdit, \
+    request_upgrade_group
 
 app_name = 'news'
 urlpatterns = [
@@ -13,4 +14,7 @@ urlpatterns = [
     path('search/', PostFind.as_view(), name='search'),
     path('edit/<int:pk>/', PostEdit.as_view(), name='edit'),
     path('delete/<int:pk>/', PostDelete.as_view(), name='delete'),
+
+    path('profile/<int:pk>/', AuthorEdit.as_view(), name='profile'),
+    path('req_to_author/', request_upgrade_group, name='req_to_author')
 ]

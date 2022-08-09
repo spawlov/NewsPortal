@@ -5,7 +5,6 @@ from django.urls import reverse
 
 
 class Author(models.Model):
-
     author_user = models.OneToOneField(
         User,
         on_delete=models.CASCADE,
@@ -39,7 +38,6 @@ class Author(models.Model):
 
 
 class Category(models.Model):
-
     name = models.CharField(
         max_length=64, unique=True,
     )
@@ -53,7 +51,6 @@ class Category(models.Model):
 
 
 class Post(models.Model):
-
     author_post = models.ForeignKey(
         Author, on_delete=models.CASCADE, verbose_name='Автор',
     )
@@ -113,7 +110,6 @@ class Post(models.Model):
 
 
 class PostCategory(models.Model):
-
     post = models.ForeignKey(
         Post, on_delete=models.CASCADE,
     )
@@ -131,7 +127,6 @@ class PostCategory(models.Model):
 
 
 class Comment(models.Model):
-
     post = models.ForeignKey(
         Post, on_delete=models.CASCADE, verbose_name='Пост',
     )

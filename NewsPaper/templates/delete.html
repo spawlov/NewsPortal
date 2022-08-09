@@ -6,6 +6,10 @@
 {% load news_tags %}
 
 {% block content %}
+
+{% if request.user.id != delete.author_post.author_user.id %}
+    <h3 style="color: red">У Вас нет прав доступа к данной информации - Вы не являетесь автором этого поста</h3>
+{% else %}
 <table class="news">
     <tr>
         <th style="color: red; text-align: center;">
@@ -29,5 +33,5 @@
         </td>
     </tr>
 </table>
-
+{% endif %}
 {% endblock content %}
