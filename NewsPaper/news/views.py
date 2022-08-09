@@ -109,7 +109,6 @@ class PostDelete(PermissionAndOwnerRequiredMixin, DeleteView):
 
 class AuthorEdit(ProfileOwnerRequiredMixin, UpdateView):
     permission_required = (
-        # 'account.change_email_address',
         'auth.change_user',
     )
     form_class = UserForm
