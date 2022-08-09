@@ -25,7 +25,7 @@ class PostingForm(forms.ModelForm):
         content = cleaned_data.get('content')
         name = cleaned_data.get('name')
 
-        if content is not None and len(content) < 10:
+        if content is not None and len(content) < 500:
             raise ValidationError({
                 'content': 'Содержание не может быть менее 500 символов'
             })

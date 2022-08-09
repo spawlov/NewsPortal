@@ -41,14 +41,14 @@ class CommentsAdmin(admin.ModelAdmin):
     ordering = ['-date_comment']
     list_filter = ['date_comment', 'user']
     search_fields = ['comment']
-    readonly_fields = ['user', 'post', 'date_comment', 'comment_rate', ]
-
-    fieldsets = [
-        ('Комментарий', {'fields': ['comment', ]}),
-        ('Информация о комментарии', {
-            'fields': ['user', 'date_comment', 'post', 'comment_rate', ]
-        }),
-    ]
+    # readonly_fields = ['user', 'post', 'date_comment', 'comment_rate', ]
+    #
+    # fieldsets = [
+    #     ('Комментарий', {'fields': ['comment', ]}),
+    #     ('Информация о комментарии', {
+    #         'fields': ['user', 'date_comment', 'post', 'comment_rate', ]
+    #     }),
+    # ]
 
 
 admin.site.register(Post, PostAdmin)
