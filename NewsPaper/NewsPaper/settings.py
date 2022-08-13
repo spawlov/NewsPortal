@@ -54,6 +54,8 @@ INSTALLED_APPS = [
 
 SITE_ID = 1
 
+DEFAULT_FROM_EMAIL = os.getenv('EMAIL')
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -87,6 +89,10 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
+
+ACCOUNT_EMAIL_VRIFICATION = 'mandatory'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_AUTHENTIFICATION_METHOD = 'email'
 
 WSGI_APPLICATION = 'NewsPaper.wsgi.application'
 
