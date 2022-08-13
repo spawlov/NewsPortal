@@ -41,6 +41,11 @@ class Category(models.Model):
     name = models.CharField(
         max_length=64, unique=True,
     )
+    subscribers = models.ManyToManyField(
+        User,
+        through='CatSubscribers',
+        blank=True,
+    )
 
     def __str__(self):
         return self.name
@@ -168,3 +173,27 @@ class Comment(models.Model):
     class Meta:
         verbose_name = 'Комментарий'
         verbose_name_plural = 'Комментарии'
+
+
+class CatSubscribers(models.Model):
+    subscriber = models.ForeignKey(
+        User,
+        blank=True,
+        null=True,
+        on_delete=models.CASCADE,
+    )
+    category = models.ForeignKey(
+        Category,
+        blank=True,
+        null=True,
+        on_delete=models.CASCADE,
+    )
+
+    def __str__(self):
+        return f'' \
+               f'{self.subscriber.username} ({self.subscriber.email}), ' \
+               f'категория: {self.category}'
+
+    class Meta:
+        verbose_name = 'Подписчик'
+        verbose_name_plural = 'Подписчики'

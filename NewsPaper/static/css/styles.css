@@ -77,6 +77,26 @@ table.news td {
   vertical-align: top;
   text-align: justify;
 }
+table.news td a:link{
+  text-decoration: none;
+  color: mediumblue;
+  font-weight: bolder;
+}
+table.news td a:visited{
+  text-decoration: none;
+  color: mediumblue;
+  font-weight: bolder;
+}
+table.news td a:active{
+  text-decoration: none;
+  color: mediumblue;
+  font-weight: bolder;
+}
+table.news td a:hover{
+  text-decoration: none;
+  color: red;
+  font-weight: bolder;
+}
 
 table.meta_data {
   padding: 5px 15px;

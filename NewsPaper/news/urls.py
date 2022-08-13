@@ -2,7 +2,7 @@ from django.urls import path
 
 from .views import IndexView, NewsView, PostDetails, ArticlesView, \
     PostCreate, PostFind, PostEdit, PostDelete, AuthorEdit, \
-    request_upgrade_group
+    request_upgrade_group, subscribe_category, unsubscribe_category
 
 app_name = 'news'
 urlpatterns = [
@@ -16,5 +16,7 @@ urlpatterns = [
     path('delete/<int:pk>/', PostDelete.as_view(), name='delete'),
 
     path('profile/<int:pk>/', AuthorEdit.as_view(), name='profile'),
-    path('req_to_author/', request_upgrade_group, name='req_to_author')
+    path('req_to_author/', request_upgrade_group, name='req_to_author'),
+    path('subscribe_cat/<int:post_cat>/', subscribe_category),
+    path('unsubscribe_cat/<int:post_cat>/', unsubscribe_category),
 ]

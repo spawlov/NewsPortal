@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from .form import PostingForm
-from .models import Post, PostCategory, Comment, Category
+from .models import Post, PostCategory, Comment, Category, CatSubscribers
 
 
 class PostCategoryInLine(admin.TabularInline):
@@ -54,4 +54,5 @@ class CommentsAdmin(admin.ModelAdmin):
 admin.site.register(Post, PostAdmin)
 admin.site.register(Category)
 admin.site.register(Comment, CommentsAdmin)
+admin.site.register(CatSubscribers)
 

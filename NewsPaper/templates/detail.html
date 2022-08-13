@@ -20,6 +20,24 @@
             {{ content.content|censor|safe }}
         </td>
     </tr>
+    <tr>
+        <td class="category">
+            <fieldset style="padding-left: 25px">
+            <legend>Управление подпиской</legend>
+            {% for cat in category %}
+                {% if cat.cat.name not in is_subscribed %}
+                    <p><a href="/subscribe_cat/{{ cat.cat_id }}/">Подписаться на новости в категории: "{{ cat.cat.name }}"</a></p>
+                {% elif cat.cat.name in is_subscribed %}
+                    <p style="color: darkgreen; font-weight: bolder">
+                        Вы подписаны на новости из категории: {{ cat.cat.name }}
+                        |
+                        <a href="/unsubscribe_cat/{{ cat.cat_id }}/">Отписаться от рассылки</a>
+                    </p>
+                {% endif %}
+            {% endfor %}
+            </fieldset>
+        </td>
+    </tr>
 </table>
 <table class="meta_data">
     <tr>
