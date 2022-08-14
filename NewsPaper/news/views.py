@@ -19,7 +19,7 @@ from .permissions import PermissionAndOwnerRequiredMixin, \
 
 
 class IndexView(ListView):
-    """Основная вьюшка - вывод всех новостей и статей"""
+    """Вывод всех новостей и статей"""
     model = Post
     ordering = '-date_pub'
     template_name = 'posts.html'
@@ -167,7 +167,7 @@ def subscribe_category(request, post_cat):
     category = Category.objects.get(pk=post_cat)
     is_subscribed = category.subscribers.filter(id=user.id).exists()
     if not is_subscribed:
-        #  Добавляем подписчика в базу и
+        # Добавляем подписчика в базу и
         # отправляем письмо об успешной подписке
         category.subscribers.add(user)
         try:
