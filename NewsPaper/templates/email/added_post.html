@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h2>
+        В категории "{{ category }}" новая статья
+    </h2>
+    <h4>
+        <a href="{{ link }}">{{ title }}</a>
+    </h4>
+    <p>
+        {{ content|truncatewords:50 }}
+    </p>
+    <p>
+        С уважением, администрация сайта "News Paper".
+    </p>
+</body>
+</html>

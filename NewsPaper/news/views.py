@@ -3,9 +3,10 @@ import os
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.auth.models import User, Group
-from django.core.mail import send_mail
+from django.core.mail import EmailMultiAlternatives
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
+from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, UpdateView, \
     ListView, DetailView
@@ -170,19 +171,21 @@ def subscribe_category(request, post_cat):
         # Добавляем подписчика в базу и
         # отправляем письмо об успешной подписке
         category.subscribers.add(user)
+        html_content = render_to_string(
+            'email/cat_subscribe.html',
+            {
+                'user': user,
+                'category': category.name,
+            }
+        )
+        message = EmailMultiAlternatives(
+            subject=f'{user}, подписка на новости {category.name} оформлена!',
+            from_email=os.getenv('EMAIL'),
+            to=[user.email],
+        )
+        message.attach_alternative(html_content, 'text/html')
         try:
-            send_mail(
-                subject=f'{user}, подписка на новости {category.name} '
-                        f'оформлена!',
-                message=f'{user}, '
-                        f'Вы подписались на рассылку новостей сайта '
-                        f'"Paper News".\n'
-                        f'После публикации новой статьи или новости в '
-                        f'категории {category.name} - Вам придет письмо.\n\n'
-                        f'С уважением, администрация сайта "News Paper"',
-                from_email=os.getenv('EMAIL'),
-                recipient_list=[user.email]
-            )
+            message.send()
         except Exception as e:
             ic(e)
         finally:
