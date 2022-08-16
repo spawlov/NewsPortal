@@ -1,5 +1,6 @@
-from datetime import datetime, timedelta
+# from datetime import datetime, timedelta
 import os
+from datetime import timedelta
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import PermissionRequiredMixin
@@ -9,6 +10,9 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy
+
+from django.utils import timezone
+
 from django.views.generic import CreateView, DeleteView, UpdateView, \
     ListView, DetailView
 from icecream import ic
@@ -121,13 +125,14 @@ class PostCreate(PermissionRequiredMixin, CreateView):
         # Проверяем количество постов автора за текущие сутки
         limit = settings.DAILY_POST_LIMIT
         context['limit'] = limit
-        last_day = datetime.today() - timedelta(days=1)
+        last_day = timezone.now() - timedelta(days=1)
         posts_day_count = Post.objects.filter(
-            author_post_id=self.request.user.id,
+            author_post__author_user=self.request.user,
             date_pub__gte=last_day,
         ).count()
         context['count'] = posts_day_count
         context['post_limit'] = posts_day_count < limit
+
         return context
 
 
