@@ -18,7 +18,7 @@ def notify_subscribers_for_new_post(sender, instance, action, **kwargs):
         # Формируем ссылку на новую статью
         # (на реальном сервере отредактировать)
         site = Site.objects.get_current()
-        link = f'http://{site.domain}:8000{instance.get_absolute_url}'
+        link = f'http://{site.domain}:8000{instance.get_absolute_url()}'
 
         # Формируем список рассылки
         mailing_list = list(
