@@ -21,7 +21,8 @@ from .permissions import PermissionAndOwnerRequiredMixin, \
 
 class IndexView(ListView):
     """Вывод всех новостей и статей"""
-    model = Post
+    # model = Post
+    queryset = Post.objects.all().select_related()
     ordering = '-date_pub'
     template_name = 'posts.html'
     context_object_name = 'posts'
@@ -30,7 +31,7 @@ class IndexView(ListView):
 
 class NewsView(ListView):
     """Вывод контента из раздела Новости"""
-    queryset = Post.objects.filter(type_cat='NWS')
+    queryset = Post.objects.filter(type_cat='NWS').select_related()
     ordering = '-date_pub'
     template_name = 'news.html'
     context_object_name = 'news'
@@ -39,7 +40,7 @@ class NewsView(ListView):
 
 class ArticlesView(ListView):
     """Вывод контента из раздела Статьи"""
-    queryset = Post.objects.filter(type_cat='ART')
+    queryset = Post.objects.filter(type_cat='ART').select_related()
     ordering = '-date_pub'
     template_name = 'articles.html'
     context_object_name = 'articles'
@@ -48,7 +49,8 @@ class ArticlesView(ListView):
 
 class PostDetails(DetailView):
     """Вывод выбранной статьи"""
-    model = Post
+    # model = Post
+    queryset = Post.objects.all().select_related()
     template_name = 'detail.html'
     context_object_name = 'content'
 
@@ -58,10 +60,12 @@ class PostDetails(DetailView):
         context['comments'] = Comment.objects.filter(
             post_id=context['content'].id
         )
+
         # Добавление контекста для подписки
         context['category'] = PostCategory.objects.filter(
             post_id=self.object.pk
-        )
+        ).select_related()
+
         context['is_subscribed'] = Category.objects.filter(
             subscribers=self.request.user.id
         ).values_list('name', flat=True)

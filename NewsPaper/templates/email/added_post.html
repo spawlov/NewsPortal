@@ -6,16 +6,16 @@
 </head>
 <body>
     <h2>
-        В категории "{{ category }}" новая статья
+        {{ name }}, в категории "{{ category }}" новая статья
     </h2>
     <h4>
         <a href="{{ link }}">{{ title }}</a>
     </h4>
     <p>
-        {{ content|truncatewords:50 }}
+        {{ content|truncatewords:30 }}
     </p>
     <p>
-        С уважением, администрация сайта "News Paper".
+        С уважением, администрация сайта "{{ site_name }}".
     </p>
 </body>
 </html>
