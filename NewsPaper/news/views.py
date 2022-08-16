@@ -1,3 +1,4 @@
+from datetime import datetime, timedelta
 import os
 
 from django.contrib.auth.decorators import login_required
@@ -17,6 +18,7 @@ from .models import Post, Author, Comment, Category, PostCategory
 from .form import PostingForm, UserForm
 from .permissions import PermissionAndOwnerRequiredMixin, \
     ProfileOwnerRequiredMixin
+from django.conf import settings
 
 
 class IndexView(ListView):
@@ -98,17 +100,35 @@ class PostCreate(PermissionRequiredMixin, CreateView):
         'news.add_post',
     )
 
+    context_object_name = 'create'
     form_class = PostingForm
     model = Post
     template_name = 'edit.html'
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
+
+        # Добавляем текущего пользователя в форму
         self.object.author_post = Author.objects.get(
             author_user=self.request.user
         )
         self.object.save()
         return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # Проверяем количество постов автора за текущие сутки
+        limit = settings.DAILY_POST_LIMIT
+        context['limit'] = limit
+        last_day = datetime.today() - timedelta(days=1)
+        posts_day_count = Post.objects.filter(
+            author_post_id=self.request.user.id,
+            date_pub__gte=last_day,
+        ).count()
+        context['count'] = posts_day_count
+        context['post_limit'] = posts_day_count < limit
+        return context
 
 
 class PostEdit(PermissionAndOwnerRequiredMixin, UpdateView):

@@ -7,10 +7,16 @@
 {% if edit.id == None %}
     <table class="news">
         <tr>
-            <th>Публикация нового поста</th>
+            <th>
+                Публикация нового поста
+                <span style="font-size: smaller; color: #1f1f1f">
+                    (за текущие сутки опубликовано {{ count }} из {{ limit }})
+                </span>
+            </th>
         </tr>
     </table>
     <fieldset style="padding: 25px; width: 90%; margin-right: auto; margin-left: auto">
+        {% if post_limit %}
         <table class="find_form">
             <form action="" method="post">
                 {% csrf_token %}
@@ -22,6 +28,11 @@
             </tr>
             </form>
         </table>
+        {% else %}
+        <h3 style="color: red">
+            За текущие сутки Вы исчерпали лимит публикаций!
+        </h3>
+        {% endif %}
     </fieldset>
 {% else %}
     <table class="news">
