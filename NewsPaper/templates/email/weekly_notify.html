@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    {% block content %}
+        <p>Здравствуйте, {{ firstname }}</p>
+        <p>За эту неделю на сайте "{{ site_name }}" появились следующие статьи:</p>
+        {% for id, title in titles %}
+            <p>
+                <a href="{{ link }}{{ id }}/">{{ title }}</a>
+            </p>
+        {% endfor %}
+    {% endblock content %}
+    <p>С уважением, администрация сайта "{{ site_name }}"</p>
+</body>
+</html>
