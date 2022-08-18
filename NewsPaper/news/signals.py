@@ -9,11 +9,11 @@ from django.template.loader import render_to_string
 from .models import Post, PostCategory
 
 
-@receiver(m2m_changed, sender=Post)
+@receiver(m2m_changed, sender=PostCategory)
 def notify_subscribers_for_new_post(sender, instance, action, **kwargs):
     """Отправка письма подписчика при добавлении нового поста в категорию"""
 
-    if action == 'post_add' and type(instance).__name__ == 'Post':
+    if action == 'post_add':
 
         # Формируем ссылку на новую статью
         # (на реальном сервере отредактировать)
