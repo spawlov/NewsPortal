@@ -161,12 +161,29 @@ ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-EMAIL = os.getenv('EMAIL')
-EMAIL_HOST = 'smtp.yandex.ru'
-EMAIL_PORT = 465
-EMAIL_HOST_USER = os.getenv('EMAIL_LOGIN')
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PASSWORD')
-EMAIL_USE_SSL = True
+# Yandex
+# EMAIL = os.getenv('EMAIL_YA')
+# EMAIL_HOST = 'smtp.yandex.ru'
+# EMAIL_PORT = 465
+# EMAIL_HOST_USER = os.getenv('EMAIL_LOGIN_YA')
+# EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PASSWORD_YA')
+# EMAIL_USE_SSL = True
+
+# GMail
+# EMAIL_USE_TLS = True
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = 'me@gmail.com'
+# EMAIL_HOST_PASSWORD = 'password'
+
+# Mail.ru
+EMAIL = os.getenv('EMAIL_MAIL')
+EMAIL_HOST = 'smtp.mail.ru'
+EMAIL_PORT = 2525
+EMAIL_HOST_USER = os.getenv('EMAIL_LOGIN_MAIL')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PASSWORD_MAIL')
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
 
 # Session time - seconds
 SESSION_COOKIE_AGE = 86400
@@ -182,3 +199,13 @@ APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"
 # снимается, можете поставить время побольше, но как правило,
 # это сильно бьёт по производительности сервера
 APSCHEDULER_RUN_NOW_TIMEOUT = 25
+
+# Celery & Redis
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379/0'
+BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600}
+CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379/0'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_ENABLE_UTC = False
+CELERY_TIMEZONE = TIME_ZONE

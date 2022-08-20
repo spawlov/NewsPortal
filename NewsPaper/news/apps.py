@@ -8,4 +8,4 @@ class NewsConfig(AppConfig):
 
     def ready(self):
         from . import signals
-        signals.m2m_changed.connect(signals.notify_subscribers_for_new_post)
+        signals.m2m_changed.connect(signals.notify_for_new_post)

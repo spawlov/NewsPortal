@@ -1,4 +1,3 @@
-# from datetime import datetime, timedelta
 import os
 from datetime import timedelta
 
@@ -15,7 +14,6 @@ from django.utils import timezone
 
 from django.views.generic import CreateView, DeleteView, UpdateView, \
     ListView, DetailView
-from icecream import ic
 
 from .fiters import PostFilter
 from .models import Post, Author, Comment, Category, PostCategory
@@ -216,7 +214,7 @@ def subscribe_category(request, post_cat):
         try:
             message.send()
         except Exception as e:
-            ic(e)
+            print(e)
         finally:
             return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
