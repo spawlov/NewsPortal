@@ -4,7 +4,6 @@ from django.core.exceptions import PermissionDenied
 
 class PermissionAndOwnerRequiredMixin(PermissionRequiredMixin):
     """Дополнительная проверка на владельца поста"""
-
     def has_permission(self):
         perms = self.get_permission_required()
         print(perms)
@@ -16,7 +15,6 @@ class PermissionAndOwnerRequiredMixin(PermissionRequiredMixin):
 
 class ProfileOwnerRequiredMixin(PermissionRequiredMixin):
     """Дополнительная проверка на владельца profile"""
-
     def has_permission(self):
         perms = self.get_permission_required()
         print(perms)

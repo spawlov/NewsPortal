@@ -10,9 +10,9 @@ from .models import Post, Author
 
 
 class PostingForm(forms.ModelForm):
+    """Добавление публикации на сайт"""
     class Meta:
         model = Post
-
         fields = [
             'type_cat',
             'name',
@@ -47,6 +47,7 @@ class PostingForm(forms.ModelForm):
 
 
 class UserForm(forms.ModelForm):
+    """Форма профайла пользователя"""
     class Meta:
         model = User
         fields = [
@@ -57,25 +58,26 @@ class UserForm(forms.ModelForm):
         ]
 
 
-class BasicSignupForm(BaseSignupForm):
+def user_added_to_group(user):
+    """Добавление нового пользователя в группу common"""
+    common_group = Group.objects.get(name='common')
+    common_group.user_set.add(user)
+    Author.objects.create(
+        author_user_id=User.objects.get(username=user).id
+    )
 
+
+class BasicSignupForm(BaseSignupForm):
+    """Базовая форма регистрации allauth"""
     def save(self, request):
         user = super(BasicSignupForm, self).save(request)
-        common_group = Group.objects.get(name='common')
-        common_group.user_set.add(user)
-        Author.objects.create(
-            author_user_id=User.objects.get(username=user).id
-        )
+        user_added_to_group(user)
         return user
 
 
 class SocialSignupForm(SocSignupForm):
-
+    """Форма регистрации через провайдера allauth"""
     def save(self, request):
         user = super(SocialSignupForm, self).save(request)
-        common_group = Group.objects.get(name='common')
-        common_group.user_set.add(user)
-        Author.objects.create(
-            author_user_id=User.objects.get(username=user).id
-        )
+        user_added_to_group(user)
         return user

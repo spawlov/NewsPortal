@@ -151,6 +151,7 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 # EMAIL_HOST_USER = os.getenv('EMAIL_LOGIN_YA')
 # EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PASSWORD_YA')
 # EMAIL_USE_SSL = True
+# EMAIL_TIMEOUT = 60
 
 # GMail
 # EMAIL = os.getenv('EMAIL_GMAIL')
@@ -159,6 +160,7 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 # EMAIL_PORT = 587
 # EMAIL_HOST_USER = os.getenv('EMAIL_LOGIN_GMAIL')
 # EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PASSWORD_MAIL')
+# EMAIL_TIMEOUT = 60
 
 # Mail.ru
 EMAIL = os.getenv('EMAIL_MAIL')
@@ -168,13 +170,12 @@ EMAIL_HOST_USER = os.getenv('EMAIL_LOGIN_MAIL')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PASSWORD_MAIL')
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
+EMAIL_TIMEOUT = 60
 
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-LOGIN_REDIRECT_URL = '/'
 
 # Allauth
 ACCOUNT_FORMS = {'signup': 'news.form.BasicSignupForm'}
@@ -186,9 +187,10 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 DEFAULT_FROM_EMAIL = EMAIL
+LOGIN_REDIRECT_URL = '/'
 
 # Session time - seconds
-SESSION_COOKIE_AGE = 86400
+SESSION_COOKIE_AGE = 86_400 * 7
 
 # Лимит публикаций за сутки
 DAILY_POST_LIMIT = 3
@@ -196,7 +198,6 @@ DAILY_POST_LIMIT = 3
 # APScheduler
 # формат даты, которую будет воспринимать наш задачник
 APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"
-
 # если задача не выполняется за 25 секунд, то она автоматически
 # снимается, можете поставить время побольше, но как правило,
 # это сильно бьёт по производительности сервера

@@ -207,7 +207,7 @@ def subscribe_category(request, post_cat):
         )
         message = EmailMultiAlternatives(
             subject=f'{user}, подписка на новости {category.name} оформлена!',
-            from_email=os.getenv('EMAIL'),
+            from_email=settings.EMAIL,
             to=[user.email],
         )
         message.attach_alternative(html_content, 'text/html')

@@ -1,5 +1,3 @@
-import os
-
 from django.contrib.auth.models import User
 from django.core import mail
 from django.template.loader import render_to_string
