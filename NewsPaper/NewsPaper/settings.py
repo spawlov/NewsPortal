@@ -55,8 +55,6 @@ INSTALLED_APPS = [
 
 SITE_ID = 1
 
-DEFAULT_FROM_EMAIL = os.getenv('EMAIL')
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -143,22 +141,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-LOGIN_REDIRECT_URL = '/'
-
-# Allauth
-ACCOUNT_FORMS = {'signup': 'news.form.BasicSignupForm'}
-SOCIALACCOUNT_AUTO_SIGNUP = False
-SOCIALACCOUNT_FORMS = {'signup': 'news.form.SocialSignupForm'}
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_UNIQUE_EMAIL = True
-ACCOUNT_USERNAME_REQUIRED = False
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-
+# SMTP providers
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Yandex
@@ -184,6 +167,24 @@ EMAIL_HOST_USER = os.getenv('EMAIL_LOGIN_MAIL')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PASSWORD_MAIL')
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
+
+
+# Default primary key field type
+# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_REDIRECT_URL = '/'
+
+# Allauth
+ACCOUNT_FORMS = {'signup': 'news.form.BasicSignupForm'}
+SOCIALACCOUNT_AUTO_SIGNUP = False
+SOCIALACCOUNT_FORMS = {'signup': 'news.form.SocialSignupForm'}
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+DEFAULT_FROM_EMAIL = EMAIL
 
 # Session time - seconds
 SESSION_COOKIE_AGE = 86400
