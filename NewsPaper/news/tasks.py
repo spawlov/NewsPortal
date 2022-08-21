@@ -132,7 +132,7 @@ def weekly_notify():
                         subject=f'{firstname}, '
                                 f'недельный дайджест статей в категории '
                                 f'"{category.name}"',
-                        from_email=os.getenv('EMAIL'),
+                        from_email=settings.EMAIL,
                         to=[receiver.email],
                         connection=connection,
                     )

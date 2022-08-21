@@ -13,5 +13,5 @@ def notify_for_new_post(sender, instance, action, **kwargs):
     if action == 'post_add' and instance.__class__.__name__ == 'Post':
         notify_subscribers_for_new_post.apply_async(
             (instance.id, instance.name, instance.content),
-            countdown=5,
+            countdown=300,
         )
