@@ -1,38 +1,33 @@
 {% extends 'default.html' %}
-
+{% load i18n %}
 {% load censor %}
 {% load news_tags %}
 
 {% block title %}Поиск по сайту{% endblock title %}
 
 {% block content %}
-<table class="news">
-    <tr>
-        <th>Поиск по сайту</th>
-    </tr>
-    <tr>
-        <td>
-            <fieldset>
+<div class="container-fluid text-start">
+    <h4 class="pb-1 mb-4 fst-italic">
+        Поиск по сайту
+    </h4>
+</div>
+<div class="container-fluid">
+    <div class="mb-3 pb-3">
+        <fieldset class="form-control">
             <table class="find_form">
-                <form class="post_filter" action="" method="get">
-                {{ postfilter.form.non_field_errors }}
-                {{ postfilter.form.name__icontains.errors }}
+                <form action="" method="get">
+                    {{ postfilter.form.non_field_errors }}
+                    {{ postfilter.form.name__icontains.errors }}
                     <tr>
-                        <td class="label_form">Заголовок содержит:</td>
-                        <td class="input_form">{{ postfilter.form.name__icontains }}</td>
+                        <th class="label_form">Заголовок содержит:</th>
+                        <td class="input_form ">{{ postfilter.form.name__icontains }}</td>
                     </tr>
-                    <!--
                     <tr>
-                        <td class="label_form">В тексте встречается:</td>
-                        <td class="input_form">{{ postfilter.form.content__icontains }}</td>
-                    </tr>
-                    -->
-                    <tr>
-                        <td class="label_form">Относится к разделам:</td>
+                        <th class="label_form">Относится к разделам:</th>
                         <td class="input_form">{{ postfilter.form.post_cat }}</td>
                     </tr>
                     <tr>
-                        <td class="label_form">Опубликовано после:</td>
+                        <th class="label_form">Опубликовано после:</th>
                         <td class="input_form">
                             <input
                                 id="{{ postfilter.form.date_pub__gt.id_for_label }}"
@@ -43,65 +38,66 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="2" class="submit_form"><input type="submit" value="Найти"></td>
+                        <td colspan="2" class="submit_form"><input class="btn btn-outline-primary btn-sm" type="submit" value="Найти"></td>
                     </tr>
                 </form>
             </table>
-            </fieldset>
-        </td>
-    </tr>
-</table>
-{% if postfilter.form.name__icontains.value or postfilter.form.post_cat.value or postfilter.form.date_pub__gt.value %}
-    {% if search %}
-        <table class="news">
-            <tr>
-                <th>Результаты поиска</th>
-            </tr>
-            <tr>
-                <td>
-                    <table>
-                    {% for post in search %}
-                    <tr>
-                        <td>
-                            <a class="news_title" href="{% url 'news:detail' post.id %}">
-                                {{ post.name|censor }}
-                            </a>
-                            <br>
-                            <p>{{ post.content|safe|censor|truncatechars:250 }}</p>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                    </table>
-                </td>
-            </tr>
-        </table>
-        <div class="pagination">
-            {% if page_obj.has_previous %}
-                <a href="?{% url_replace page=1 %}"><<&nbsp;</a>
-                <a href="?{% url_replace page=page_obj.previous_page_number %}"><&nbsp;</a>
-                <a href="?{% url_replace page=1 %}">1</a>
-                {% if page_obj.previous_page_number != 1  %}
-                    ...
-                    <a href="?{% url_replace page=page_obj.previous_page_number %}">{{ page_obj.previous_page_number }}</a>
-                {% endif %}
-            {% endif %}
+        </fieldset>
+    </div>
+</div>
 
-            <span class="current">&nbsp;{{ page_obj.number }}&nbsp;</span>
+    {% if postfilter.form.name__icontains.value or postfilter.form.post_cat.value or postfilter.form.date_pub__gt.value %}
+        {% if search %}
+            <h4 class="pb-1 mb-4 fst-italic">
+                Результаты поиска
+            </h4>
+            {% for item in search %}
+                <article class="blog-post">
+                    <a href="{% url 'news:detail' item.id %}">
+                        <h5 class="pb-1 mb-0 fst-italic">{{ item.name|censor }}</h5>
+                    </a>
+                    <p class="blog-post-meta">
+                        {{ item.date_pub|date:'d.m.Y' }},
+                        {{ item.author_post }}
+                    </p>
+                    <p>{{ item.content|censor|truncatewords:25|safe }}</p>
+                </article>
+            {% endfor %}
 
-            {% if page_obj.has_next %}
-                <a href="?{% url_replace page=page_obj.next_page_number %}">{{ page_obj.next_page_number }}</a>
-                {% if paginator.num_pages != page_obj.next_page_number %}
-                    ...
-                    <a href="?{% url_replace page=page_obj.paginator.num_pages %}">{{ page_obj.paginator.num_pages }}</a>
-                {% endif %}
-                <a href="?{% url_replace page=page_obj.next_page_number %}">&nbsp;></a>
-                <a href="?{% url_replace page=page_obj.paginator.num_pages %}">&nbsp;>></a>
-            {% endif %}
-        </div>
-    {% else %}
-        <p style="text-align: center; font-weight: bolder; color: brown">
-            По данному запросу ничего не найдено
-        </p>
+            <div class="container text-center">
+                <nav class="blog-pagination" aria-label="Pagination">
+                    <ul class="pagination pagination-sm">
+                        {% if page_obj.has_previous %}
+                            <li class="page-item"><a class="page-link" href="?{% url_replace page=1 %}"><<</a></li>
+                            <li class="page-item"><a class="page-link" href="?{% url_replace page=page_obj.previous_page_number %}"><</a>
+                            <li class="page-item"><a class="page-link" href="?{% url_replace page=1 %}">1</a>
+                            {% if page_obj.previous_page_number != 1  %}
+                                <li class="page-item" aria-current="page">
+                                    <span class="page-link disabled">...</span>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="?{% url_replace page=page_obj.previous_page_number %}">{{ page_obj.previous_page_number }}</a></li>
+                            {% endif %}
+                        {% endif %}
+                        <li class="page-item active" aria-current="page">
+                            <span class="page-link">{{ page_obj.number }}</span>
+                        </li>
+                        {% if page_obj.has_next %}
+                            <li class="page-item"><a class="page-link" href="?{% url_replace page=page_obj.next_page_number %}">{{ page_obj.next_page_number }}</a></li>
+                            {% if paginator.num_pages != page_obj.next_page_number %}
+                                <li class="page-item" aria-current="page">
+                                    <span class="page-link disabled">...</span>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="?{% url_replace page=page_obj.paginator.num_pages %}">{{ page_obj.paginator.num_pages }}</a></li>
+                            {% endif %}
+                            <li class="page-item"><a class="page-link" href="?{% url_replace page=page_obj.next_page_number %}">></a></li>
+                            <li class="page-item"><a class="page-link" href="?{% url_replace page=page_obj.paginator.num_pages %}">>></a></li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
+         {% else %}
+                <h5 class="pb-1 mb-0 fst-italic">По данному запросу ничего не найдено</h5>
+        {% endif %}
     {% endif %}
-{% endif %}
 {% endblock content %}
+

@@ -1,87 +1,86 @@
 {% extends 'default.html' %}
-
+{% load i18n %}
 {% load censor %}
 {% load news_tags %}
 
 {% block title %}{{ content.name }}{% endblock title %}
 
 {% block content %}
-
-<table class="news">
-    <tr>
-        <th class="news_title">
-            <h1>
-                {{ content.name|censor }}
-            </h1>
-        </th>
-    </tr>
-    <tr>
-        <td>
-            {{ content.content|censor|safe }}
-        </td>
-    </tr>
-    <tr>
-        <td class="category">
-            <fieldset style="padding-left: 25px">
-            <legend>Управление подпиской</legend>
-            {% for cat in category %}
-                {% if cat.cat.name not in is_subscribed %}
-                    <p><a href="/subscribe_cat/{{ cat.cat_id }}/">Подписаться на новости в категории: "{{ cat.cat.name }}"</a></p>
-                {% elif cat.cat.name in is_subscribed %}
-                    <p style="color: darkgreen; font-weight: bolder">
-                        Вы подписаны на новости из категории: {{ cat.cat.name }}
-                        |
-                        <a href="/unsubscribe_cat/{{ cat.cat_id }}/">Отписаться от рассылки</a>
-                    </p>
-                {% endif %}
-            {% endfor %}
-            </fieldset>
-        </td>
-    </tr>
-</table>
-<table class="meta_data">
-    <tr>
-        <td>
-            Автор: {{ content.author_post }}<br>
-            Дата публикации: {{ content.date_pub|date:'d.m.Y' }}<br>
-            Рейтинг поста/автора: {{ content.content_rate }}/{{ content.author_post.author_rate }}
-        </td>
-    </tr>
-    <tr>
-        <td class="deledit">
-            <a href="{% url 'news:edit' content.pk %}">Изменить</a>
-            |
-            <a href="{% url 'news:delete' content.pk %}">Удалить</a>
-        </td>
-    </tr>
-</table>
-<table class="comment">
-    <tr>
-        <th>
+    <article class="blog-post">
+        <h4 class="pb-1 mb-4 fst-italic">
+            {{ content.name|censor }}
+            {% if user.id == content.author_post.author_user.id %}
+                <div class="container text-end">
+                        <div class="btn-group btn-group-sm" role="group">
+                            <button type="button" class="btn btn-success">
+                                <a class="text-decoration-none text-light" href="{% url 'news:edit' content.pk %}">Редактировать</a>
+                            </button>
+                            <button type="button" class="btn btn-danger">
+                                <a class="text-decoration-none text-light" href="{% url 'news:delete' content.pk %}">Удалить</a>
+                            </button>
+                        </div>
+                    </div>
+            {% endif %}
+        </h4>
+        <p class="blog-post-meta">
+            {{ content.date_pub }}, {{ content.author_post }}, рейтинг автора: {{ content.author_post.author_rate }}
+        </p>
+        <img class="img-fluid  img-thumbnail shadow-lg" src="{{ content.content_image.url }}" alt="{{ content.name|censor }}">
+        <p>{{ content.content|censor|safe }}</p>
+        {% for cat in post_category %}
+            {% if cat.cat.name not in is_subscribed %}
+                <div class="container text-start">
+                    <div class="btn-group btn-group-sm" role="group">
+                        <button type="button" class="btn btn-primary disabled">{{ cat.cat.name }}</button>
+                        <button type="button" class="btn btn-success">
+                            <a class="text-decoration-none text-light" href="/subscribe_cat/{{ cat.cat_id }}/">Подписаться на новости в категории: "{{ cat.cat.name }}"</a>
+                        </button>
+                    </div>
+                </div>
+            {% elif cat.cat.name in is_subscribed %}
+                <div class="container text-start">
+                    <div class="btn-group btn-group-sm" role="group">
+                        <button type="button" class="btn btn-primary disabled">{{ cat.cat.name }}</button>
+                        <button type="button" class="btn btn-danger">
+                            <a class="text-decoration-none text-light" href="/unsubscribe_cat/{{ cat.cat_id }}/">Отписаться от новостей в категории: "{{ cat.cat.name }}"</a>
+                        </button>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </article>
+    <div class="container text-end">
+        <span class="fw-bolder">Оцените статью: &nbsp;</span>
+        <div class="btn-group btn-group-sm" role="group">
+            <button type="button" class="btn btn-secondary">-</button>
+            <button type="button" class="btn btn-secondary disabled">{{ content.content_rate }}</button>
+            <button type="button" class="btn btn-secondary">+</button>
+        </div>
+    </div>
+    <nav class="navbar bg-light">
+        <div class="container-fluid fw-semibold">
             Комментарии ({{ comments.count }})
-        </th>
-    </tr>
+        </div>
+    </nav>
     {% if not comments %}
-    <tr>
-        <td>
+        <div class="alert alert-info fw-normal" role="alert">
             К этому посту пока нет комментариев...
-        </td>
-    </tr>
+        </div>
     {% else %}
-    {% for comment in comments %}
-    <tr>
-        <td>
-            <strong>
-                {{ comment.date_comment }}, {{ comment.user }} пишет:
-            </strong>
-            {{ comment.comment|censor }}
-            <div class="comment">
-                Рейтинг: {{ comment.comment_rate }}
+        {% for comment in comments %}
+            <div class="alert alert-success fw-normal" role="alert">
+                <span class="fw-semibold">
+                    {{ comment.date_comment }}, {{ comment.user }} пишет:
+                </span>
+                {{ comment.comment|censor }}
+                <div class="container text-end">
+                    <div class="btn-group btn-group-sm" role="group">
+                        <button type="button" class="btn btn-secondary">-</button>
+                        <button type="button" class="btn btn-secondary disabled">{{ comment.comment_rate }}</button>
+                        <button type="button" class="btn btn-secondary">+</button>
+                    </div>
+                </div>
             </div>
-        </td>
-    </tr>
-    {% endfor %}
+        {% endfor %}
     {% endif %}
-</table>
-
 {% endblock content %}

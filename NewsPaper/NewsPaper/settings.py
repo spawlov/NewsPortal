@@ -193,7 +193,7 @@ LOGIN_REDIRECT_URL = '/'
 SESSION_COOKIE_AGE = 86_400 * 7
 
 # Лимит публикаций за сутки
-DAILY_POST_LIMIT = 3
+DAILY_POST_LIMIT = 30
 
 # APScheduler
 # формат даты, которую будет воспринимать наш задачник

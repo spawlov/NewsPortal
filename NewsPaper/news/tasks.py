@@ -1,3 +1,5 @@
+from time import sleep
+
 from django.contrib.auth.models import User
 from django.core import mail
 from django.template.loader import render_to_string
@@ -7,10 +9,11 @@ from django.conf import settings
 
 from datetime import timedelta
 
-
-from .models import Post, CatSubscribers, Category, PostCategory
+from .models import Post, CatSubscribers, Category, PostCategory, Author
 
 from celery import shared_task
+
+from .services import article_parser
 
 
 @shared_task
@@ -140,3 +143,40 @@ def weekly_notify():
         finally:
             connection.close()
     return f'{counter_mails} Emails is sent'
+
+
+@shared_task
+def daily_parsing():
+    urls_to_parse = {
+        'Астрономия': 'https://naked-science.ru/article/astronomy',
+        'Космонавтика': 'https://naked-science.ru/article/cosmonautics',
+        'Физика': 'https://naked-science.ru/article/physics',
+        'Химия': 'https://naked-science.ru/article/chemistry',
+        'Hi-Tech': 'https://naked-science.ru/article/hi-tech',
+        'Медицина': 'https://naked-science.ru/article/medicine',
+        'Биология': 'https://naked-science.ru/article/biology',
+        'Геология': 'https://naked-science.ru/article/geology',
+        'История': 'https://naked-science.ru/article/history',
+        'Психология': 'https://naked-science.ru/article/psy',
+    }
+
+    author = Author.objects.get(pk=17)
+    response = []
+    for cat_name, parse_url in urls_to_parse.items():
+        resp, title, content, image_name, date_pub = article_parser(parse_url)
+        if resp == 200:
+            cat = Category.objects.get(name=cat_name)
+            image = f'images/{image_name}'
+            post, created = Post.objects.get_or_create(
+                author_post=author,
+                type_cat='ART',
+                name=title,
+                content=content,
+                content_image=image,
+            )
+            if created:
+                post.post_cat.add(cat)
+        response_item = f'{cat_name}:{resp}'
+        response.append(response_item)
+        sleep(10)
+    return response

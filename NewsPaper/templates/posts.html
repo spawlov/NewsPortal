@@ -1,5 +1,5 @@
 {% extends 'default.html' %}
-
+{% load i18n %}
 {% load censor %}
 {% load news_tags %}
 
@@ -7,71 +7,22 @@
 
 {% block content %}
 
-<table class="news">
-    <tr>
-        <th>
-            Последние публикации
-        </th>
-    </tr>
-    <tr>
-        <td>
-            <table>
-            {% for post in posts %}
-            <tr>
-                <td>
-                    <p class="metanews">
-                        {{ post.author_post }}, {{ post.date_pub|date:'d.m.Y' }}:
-                    </p>
-                    <a class="news_title" href="{% url 'news:detail' post.id %}">
-                        {{ post.name|censor }}
-                    </a>
-                    <span class="metanews">
-                        в разделе
-                    </span>
-                    {% if post.type_cat == 'NWS' %}
-                        <a class="news_title" href="{% url 'news:news' %}">
-                            <span style="font-size: smaller">{{ post.get_type_cat_display|liter }}</span>
-                        </a>
-                    {% elif post.type_cat == 'ART' %}
-                        <a class="news_title" href="{% url 'news:articles' %}">
-                            <span style="font-size: smaller">{{ post.get_type_cat_display|liter }}</span>
-                        </a>
-                    {% else %}
-                        <a class="news_title" href="#">
-                            #
-                        </a>
-                    {% endif %}
-                    <br>
-                    <p>{{ post.content|censor|truncatechars:250|safe }}</p>
-                </td>
-            </tr>
-            {% endfor %}
-            </table>
-        </td>
-    </tr>
-</table>
-<div class="pagination">
-    {% if page_obj.has_previous %}
-        <a href="?{% url_replace page=1 %}"><<&nbsp;</a>
-        <a href="?{% url_replace page=page_obj.previous_page_number %}"><&nbsp;</a>
-        <a href="?{% url_replace page=1 %}">1</a>
-        {% if page_obj.previous_page_number != 1  %}
-            ...
-            <a href="?{% url_replace page=page_obj.previous_page_number %}">{{ page_obj.previous_page_number }}</a>
-        {% endif %}
-    {% endif %}
-
-    <span class="current">&nbsp;{{ page_obj.number }}&nbsp;</span>
-
-    {% if page_obj.has_next %}
-        <a href="?{% url_replace page=page_obj.next_page_number %}">{{ page_obj.next_page_number }}</a>
-        {% if paginator.num_pages != page_obj.next_page_number %}
-            ...
-            <a href="?{% url_replace page=page_obj.paginator.num_pages %}">{{ page_obj.paginator.num_pages }}</a>
-        {% endif %}
-        <a href="?{% url_replace page=page_obj.next_page_number %}">&nbsp;></a>
-        <a href="?{% url_replace page=page_obj.paginator.num_pages %}">&nbsp;>></a>
-    {% endif %}
-</div>
+    <h4 class="pb-1 mb-4 fst-italic">
+        Последние {{ posts.count }} публикаций на сайте
+    </h4>
+    {% for post in posts %}
+        <article class="blog-post">
+            <a class="text-decoration-none" href="{% url 'news:detail' post.id %}">
+                <h5 class="pb-1 mb-0 fst-italic">{{ post.name|censor }}</h5>
+            </a>
+            <p class="blog-post-meta">
+                {{ post.date_pub|date:'d.m.Y' }},
+                {{ post.author_post }},
+                рейтинг автора: {{ post.author_post.author_rate }}
+            </p>
+{#            <img class="rounded float-end" src="{{ post.content_image.url }}">#}
+            <p>{{ post.content|censor|truncatewords:25|safe }}</p>
+        </article>
+    {% endfor %}
 
 {% endblock content %}

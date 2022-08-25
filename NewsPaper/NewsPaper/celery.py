@@ -15,4 +15,12 @@ app.conf.beat_schedule = {
     },
 }
 
+app.conf.beat_schedule = {
+    # Executes every Day at 0:00
+    'parsing-for-add-news': {
+        'task': 'news.tasks.daily_parsing',
+        'schedule': crontab(hour=0, minute=0)
+    }
+}
+
 app.autodiscover_tasks()

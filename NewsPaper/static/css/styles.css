@@ -1,4 +1,5 @@
 @charset "UTF-8";
+/*
 body {
   margin: 0;
   background-color: #f0f0f0;
@@ -212,45 +213,42 @@ table.navigate a:hover {
   text-decoration: none;
   color: #dfdfdf;
 }
-
+*/
 table.find_form {
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   padding: 5px 5px;
 }
 table.find_form td.label_form {
+  vertical-align: top;
   padding: 5px 10px;
   text-align: right;
-  width: 175px;
 }
 table.find_form th {
   padding: 5px 10px;
   text-align: right;
-  width: 175px;
 }
 table.find_form td {
   padding: 5px 10px;
   text-align: left;
-  width: 200px;
 }
 table.find_form td.input_form {
   padding: 5px 10px;
   text-align: left;
-  width: 200px;
-}
-table.find_form td.submit_form {
-  padding-top: 15px;
-  text-align: center;
 }
 table.find_form input {
-  width: 160px;
-}
-table.find_form textarea {
-  width: 640px;
+  width: 180px;
 }
 table.find_form select {
-  width: 165px;
+  width: 180px;
 }
+table.find_form td.submit_form {
+  padding: 25px 15px;
+  text-align: center;
+}
+
+/*
 table.find_form td.submit_form input {
   width: 350px;
   background-color: #fff;
@@ -300,19 +298,17 @@ table.profile_form td.submit_profile button a:active {
 }
 table.profile_form td.submit_profile button a:hover {
   text-decoration: none;
-}
+}*/
 /* Forms allauth */
-.allauth_container {
-  font-weight: normal;
-  text-align: center;
-}
-.allauth_container h1, h2, h3, h4 {
+.allauth h1 {
   padding: 15px 25px;
   margin: auto;
   text-align: center;
-  color: #1f1f1f;
+  font-size: 18pt;
+  color: #0a53be;
+  font-family: Calibri, Helvetica, sans-serif;
 }
-.allauth_container p {
+.allauth p {
   padding: 15px 25px;
   width: 420px;
   margin: auto;
@@ -320,49 +316,55 @@ table.profile_form td.submit_profile button a:hover {
   font-weight: normal;
   color: #1f1f1f;
 }
-.allauth_container a:link {
+.allauth a:link {
   text-decoration: none;
   color: mediumblue;
 }
-.allauth_container a:visited {
+.allauth a:visited {
   text-decoration: none;
   color: mediumblue;
 }
-.allauth_container a:active {
+.allauth a:active {
   text-decoration: none;
   color: mediumblue;
 }
-.allauth_container a:hover {
+.allauth a:hover {
   text-decoration: none;
   color: red;
 }
-.allauth_container label {
+.allauth label {
   font-weight: bolder;
   margin: auto;
 }
-.allauth_container input, button {
+.allauth input, .allauth button {
   margin-right: auto;
   margin-left: auto;
 }
-.allauth_container button {
+.allauth button {
   width: 150px;
+  border: transparent;
   background: #dfdfdf;
+  padding: 5px;
 }
-.allauth_container button:hover {
+.allauth button:hover {
   width: 150px;
-  background: darkred;
+  background: mediumblue;
   color: #f0f0f0;
 }
-div.socialaccount_ballot {
+.socialaccount_ballot {
   margin-right: auto;
   margin-left: auto;
   text-align: center;
   color: #1f1f1f;
 }
-.socialaccount_ballot ul, li {
+.socialaccount_ballot ul, .socialaccount_ballot li {
   padding-right: 10px;
   display: inline;
 }
+/*.socialaccount_ballot li {*/
+/*  padding-right: 10px;*/
+/*  display: inline;*/
+/*}*/
 .google, .google a {
   display: inline-block;
   width: 64px;
@@ -384,6 +386,7 @@ div.socialaccount_ballot {
   background-image: url("/static/img/vk.png");
   text-indent: -9999px;
 }
+
 div.login-or {
   margin-right: auto;
   margin-left: auto;
@@ -406,7 +409,7 @@ div.login-or {
   margin-right: auto;
   margin-left: auto;
 }
-
+/*
 .alert {
   position:relative;
   padding:.75rem 1.25rem;
@@ -514,3 +517,4 @@ div.login-or {
 .alert-dark .alert-link {
   color:#040505
 }
+*/

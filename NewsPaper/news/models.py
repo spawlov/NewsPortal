@@ -22,13 +22,13 @@ class Author(models.Model):
         )
         p_rate = 0
         p_rate += post_rate.get('post_rating')
-
+        print(p_rate)
         comm_rate = self.author_user.comment_set.all().aggregate(
             comment_rating=Sum('comment_rate')
         )
         c_rate = 0
         c_rate += comm_rate.get('comment_rating')
-
+        print(c_rate)
         self.author_rate = p_rate * 3 + c_rate
         self.save()
 
@@ -104,6 +104,12 @@ class Post(models.Model):
     content_rate = models.SmallIntegerField(
         default=0,
         verbose_name='Рейтинг',
+    )
+
+    content_image = models.ImageField(
+        upload_to='images',
+        verbose_name='Изображение',
+        default='no_image.jpg',
     )
 
     def like(self):

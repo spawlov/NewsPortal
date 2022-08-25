@@ -11,14 +11,36 @@ from .models import Post, Author
 
 class PostingForm(forms.ModelForm):
     """Добавление публикации на сайт"""
+    error_css_class = 'text-danger fw-semibold'
+
     class Meta:
         model = Post
         fields = [
             'type_cat',
             'name',
             'content',
+            'content_image',
             'post_cat',
         ]
+        widgets = {
+            'type_cat': forms.Select(
+                attrs={'class': 'form-select border-primary'}
+            ),
+            'name': forms.TextInput(
+                attrs={'class': 'form-control border-primary'}
+            ),
+            'content': forms.Textarea(
+                attrs={'class': 'form-control border-primary'}
+            ),
+            'content_image': forms.FileInput(
+                attrs={'class': 'form-control border-primary'}
+            ),
+            'post_cat': forms.SelectMultiple(
+                attrs={'class': 'form-select border-primary'}
+            ),
+        }
+
+
 
     def clean(self):
         cleaned_data = super().clean()
@@ -54,9 +76,18 @@ class UserForm(forms.ModelForm):
             'username',
             'first_name',
             'last_name',
-            # 'email',
         ]
-
+        widgets = {
+            'username': forms.TextInput(
+                attrs={'class': 'form-control border-primary'}
+            ),
+            'first_name': forms.TextInput(
+                attrs={'class': 'form-control border-primary'}
+            ),
+            'last_name': forms.TextInput(
+                attrs={'class': 'form-control border-primary'}
+            ),
+        }
 
 def user_added_to_group(user):
     """Добавление нового пользователя в группу common"""

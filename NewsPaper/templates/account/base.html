@@ -1,77 +1,211 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>{% block title %}{{ title }}{% endblock title %}</title>
-        {% load static %}
-        <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.png' %}" />
-        <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
-    </head>
-    <body>
-        <!-- Responsive navbar-->
-        <table class="navbar">
-            <tr>
-                <td style="width: 65%">
-                    <a href="{% url 'news:index' %}">News Paper</a>
-                </td>
-                <td style="width: 35%; font-size: 12pt; font-weight: bolder; text-align: right; padding-right: 25px">
-                    <a href="{% url 'news:index' %}">ГЛАВНАЯ</a>
-                    &blacksquare;
-                    <a href="{% url 'news:search' %}">ПОИСК</a>
-                    &blacksquare;
-                    <a href="{% url 'news:news' %}">НОВОСТИ</a>
-                    &blacksquare;
-                    <a href="{% url 'news:articles' %}">СТАТЬИ</a>
-                    &blacksquare;
-                    <a href="{% url 'news:create' %}">ДОБАВИТЬ</a>
-                </td>
-            </tr>
-            {% load account %}
-            <tr>
-                <td colspan="2" style="text-align: right; font-size: 10pt; padding-right: 25px; padding-bottom: 5px; height: 12pt; vertical-align: center;">
-                    {% if user.id %}
-                        Пользователь: {% user_display user %}
-                        |
-                        <a href="/profile/{{ user.id }}">Профиль</a>
-                        |
-                        <a href="/accounts/logout">Выход</a>
-                    {% else %}
-                        <a href="/accounts/login">Вход</a>
-                    {% endif %}
-                </td>
-            </tr>
-        </table>
-        <!-- Page content-->
-        <div class="allauth_container">
-            <div class="text-center">
-                {% block message %}
-                    {% if messages %}
-                    <div class="container">
-                        {% for message in messages %}
-                        <div class="alert {% if message.tags %}alert-{{ message.tags }}{% else %}alert-secondary{% endif %} alert-dismissible rounded-0 fade show" role="alert">
-                            {{ message }}
-                        </div>
-                        {% endfor %}
-                    </div>
-                    {% endif %}
-                {% endblock %}
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.101.0">
+    <title>Blog Template · Bootstrap v5.2</title>
 
-                {% load account socialaccount %}
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/blog/">
+    {% load static %}
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
 
-                {% block body %}
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
 
-                {% block content %}
-                {% endblock content %}
-                {% endblock body %}
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
 
-                {% block extra_body %}
-                {% endblock extra_body %}
+      .b-example-divider {
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
+
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
+
+      .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+      }
+
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+    </style>
 
 
+    <!-- Custom styles for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap" rel="stylesheet">
+       <!-- Custom styles for this template -->
+    <link href="{% static 'css/blog.rtl.css' %}" rel="stylesheet">
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+  </head>
+  <body>
+
+<div class="container">
+  <header class="blog-header lh-1 py-3">
+    <div class="row flex-nowrap justify-content-between align-items-center">
+      <div class="col-4 pt-1">
+          {% if user.id %}
+              <p class="pb-1 mb-0 fst-italic fw-semibold">
+                  {{ user }}
+                  :
+                  <a class="link-primary text-decoration-none" href="{% url 'news:profile' user.id %}">Профиль</a>
+                  :
+                  <a class="link-primary text-decoration-none" href="#">Добавить статью</a>
+              </p>
+          {% endif %}
+      </div>
+      <div class="col-4 text-center">
+        {% for message in messages %}
+          <div class="alert {% if message.tags %}alert-{{ message.tags }}{% else %}alert-secondary{% endif %} alert-dismissible rounded-0 fade show" role="alert">
+              {{ message }}
+          </div>
+        {% endfor %}
+      </div>
+      <div class="col-4 d-flex justify-content-end align-items-center">
+        <a class="link-secondary" href="{% url 'news:search' %}" aria-label="Search">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24"><title>Search</title><circle cx="10.5" cy="10.5" r="7.5"/><path d="M21 21l-5.2-5.2"/></svg>
+        </a>
+          {% if user.id %}
+            <a class="btn btn-sm btn-danger" href="/accounts/logout">Выход</a>
+          {% else %}
+            <a class="btn btn-sm btn-success" href="/accounts/login">Вход | Регистрация</a>
+          {% endif %}
+      </div>
+    </div>
+  </header>
+
+  <nav class="navbar bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'news:index' %}">Главная</a>
+      {% for item in category %}
+        <a class="navbar-brand" href="{% url 'news:category' item.id %}">{{ item.name }}</a>
+      {% endfor %}
+    </div>
+  </nav>
+
+</div>
+
+<main class="container">
+  <div class="p-4 p-md-5 mb-4 rounded text-bg-dark shadow-lg">
+    <div class="col-md-6 px-0">
+      <h1 class="display-4 fst-italic">News Paper</h1>
+      <p class="lead my-3 fst-italic fw-semibold">Учебный проект на курсе "Fullstack разработчик на Python"</p>
+    </div>
+  </div>
+  <div class="row g-5">
+    <div class="col-md-8">
+        {% block message %}
+            {% if messages %}
+            <div class="container">
+                {% for message in messages %}
+                <div class="alert {% if message.tags %}alert-{{ message.tags }}{% else %}alert-secondary{% endif %} alert-dismissible rounded-0 fade show" role="alert">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        {% endblock %}
+        {% load i18n %}
+        {% load account socialaccount %}
+
+        {% block body %}
+        <div class="container-fluid">
+            <div class="allauth mb-3 pb-3 text-center">
+                <fieldset class="form-control pb-4">
+                    {% block content %}
+                    {% endblock content %}
+                </fieldset>
             </div>
         </div>
-    </body>
+        {% endblock body %}
+
+        {% block extra_body %}
+        {% endblock extra_body %}
+    </div>
+
+    <div class="col-md-4">
+      <div class="position-sticky" style="top: 2rem;">
+        <div class="p-4 mb-3 bg-light rounded">
+          <h4 class="fst-italic">О проекте</h4>
+          <p class="mb-0">
+              Здесь написать кратное описание проекта...
+          </p>
+        </div>
+
+        <div class="p-4">
+          <h4 class="fst-italic">Архив</h4>
+          <ol class="list-unstyled mb-0">
+            <li><a href="#">March 2021</a></li>
+            <li><a href="#">February 2021</a></li>
+            <li><a href="#">January 2021</a></li>
+            <li><a href="#">December 2020</a></li>
+            <li><a href="#">November 2020</a></li>
+            <li><a href="#">October 2020</a></li>
+            <li><a href="#">September 2020</a></li>
+            <li><a href="#">August 2020</a></li>
+            <li><a href="#">July 2020</a></li>
+            <li><a href="#">June 2020</a></li>
+            <li><a href="#">May 2020</a></li>
+            <li><a href="#">April 2020</a></li>
+          </ol>
+        </div>
+
+        <div class="p-4">
+          <h4 class="fst-italic">Ссылки</h4>
+          <ol class="list-unstyled">
+            <li><a href="#">GitHub</a></li>
+            <li><a href="#">Twitter</a></li>
+            <li><a href="#">Facebook</a></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer class="blog-footer">
+  <p>Blog template built for <a target="_blank" href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+  <p>
+    <a href="#">Back to top</a>
+  </p>
+</footer>
+
+
+
+  </body>
 </html>

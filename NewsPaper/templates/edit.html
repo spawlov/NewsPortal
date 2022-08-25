@@ -1,57 +1,54 @@
 {% extends 'default.html' %}
-
+{% load i18n %}
 {% block title %}Добавить/изменить пост{% endblock title %}
 
 {% block content %}
 
 {% if edit.id == None %}
-    <table class="news">
-        <tr>
-            <th>
-                Публикация нового поста
-                <span style="font-size: smaller; color: #1f1f1f">
-                    (опубликовано {{ count }} из {{ limit }})
-                </span>
-            </th>
-        </tr>
-    </table>
-    <fieldset style="padding: 25px; width: 90%; margin-right: auto; margin-left: auto">
-        {% if post_limit %}
-        <table class="find_form">
-            <form action="" method="post">
-                {% csrf_token %}
-                {{ form.as_table }}
-            <tr>
-                <td colspan="2" class="submit_form">
-                    <input type="submit" value="Сохранить">
-                </td>
-            </tr>
-            </form>
-        </table>
-        {% else %}
-        <h3 style="color: red">
-            За текущие сутки Вы исчерпали лимит публикаций!
-        </h3>
-        {% endif %}
-    </fieldset>
-{% else %}
-    <table class="news">
-        <tr>
-            <th>Редактирование поста <i>"{{ edit.name }}"</i></th>
-        </tr>
-    </table>
-    <fieldset style="padding: 25px; width: 90%; margin-right: auto; margin-left: auto">
-        <table class="find_form">
-            <form action="" method="post">
-                {% csrf_token %}
-                {{ form.as_table }}
-            <tr>
-                <td colspan="2" class="submit_form">
-                    <input type="submit" value="Сохранить">
-                </td>
-            </tr>
-            </form>
-        </table>
-    </fieldset>
+    <div class="container-fluid text-start">
+        <h4 class="fst-italic">
+            Публикация нового поста
+            <span class="blog-post-meta fs-5">
+                (опубликовано {{ count }} из {{ limit }})
+            </span>
+        </h4>
+    </div>
+    <div class="container-fluid">
+        <div class="mb-3 pb-3">
+            <fieldset class="form-control pb-4">
+                {% if post_limit %}
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <input class="form-control btn btn-outline-primary" type="submit" value="Сохранить">
+                    </form>
+                {% else %}
+                    <div class="container-fluid text-center">
+                        <h5 class="pb-1 mb-4 fst-italic link-danger fw-semibold">
+                            За текущие сутки Вы исчерпали лимит публикаций!
+                        </h5>
+                    </div>
+                {% endif %}
+            </fieldset>
+        </div>
+    </div>
+    {% else %}
+    <div class="container-fluid text-start">
+        <h4 class="fst-italic">
+            Редактирование поста
+            <span class="text-primary">"{{ edit.name }}"</span>
+        </h4>
+    </div>
+    <div class="container-fluid">
+        <div class="mb-3 pb-3">
+            <fieldset class="form-control pb-4">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input class="form-control btn btn-outline-primary" type="submit" value="Сохранить">
+                </form>
+            </fieldset>
+        </div>
+    </div>
 {% endif %}
 {% endblock content %}

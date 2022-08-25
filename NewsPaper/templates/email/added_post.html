@@ -12,7 +12,7 @@
         <a href="{{ link }}">{{ title }}</a>
     </h4>
     <p>
-        {{ content|truncatewords:30 }}
+        {{ content|truncatewords:30|safe }}
     </p>
     <p style="font-style: italic">
         Полностью прочитать статью на сайте Вы можете кликнув на заголовок.

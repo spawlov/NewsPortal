@@ -1,4 +1,3 @@
-import os
 from datetime import timedelta
 
 from django.contrib.auth.decorators import login_required
@@ -25,12 +24,14 @@ from django.conf import settings
 
 class IndexView(ListView):
     """Вывод всех новостей и статей"""
-    # model = Post
-    queryset = Post.objects.all().select_related()
-    ordering = '-date_pub'
+    queryset = Post.objects.select_related().all().order_by('-date_pub')[:10]
     template_name = 'posts.html'
     context_object_name = 'posts'
-    paginate_by = 10
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['category'] = Category.objects.all()
+        return context
 
 
 class NewsView(ListView):
@@ -51,6 +52,35 @@ class ArticlesView(ListView):
     paginate_by = 10
 
 
+class CategoryView(ListView):
+    """Вывод статей определенной категории"""
+    queryset = Post.objects.all()[:1]
+    template_name = 'category.html'
+    context_object_name = 'posts'
+    paginate_by = 10
+
+    def get_context_data(self, **kwargs):
+        cat_id = self.kwargs['pk']
+        context = super().get_context_data(**kwargs)
+        context['posts'] = Post.objects.select_related().filter(
+            post_cat=cat_id
+        ).order_by('-date_pub')
+        context['cat_name'] = PostCategory.objects.filter(
+            cat=cat_id
+        ).values_list('cat__name', flat=True)[0]
+        context['category'] = Category.objects.all()
+
+        # Добавление контекста для подписки
+        context['post_category'] = PostCategory.objects.filter(
+            cat=cat_id
+        ).select_related()[:1]
+        context['is_subscribed'] = Category.objects.filter(
+            subscribers=self.request.user.id
+        ).values_list('name', flat=True)
+
+        return context
+
+
 class PostDetails(DetailView):
     """Вывод выбранной статьи"""
     # model = Post
@@ -60,16 +90,19 @@ class PostDetails(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
+        # Контекст для меню
+        context['category'] = Category.objects.all()
+
         # Подтягиваем комментарии к статье
-        context['comments'] = Comment.objects.filter(
+        context['comments'] = Comment.objects.select_related().filter(
             post_id=context['content'].id
         )
 
         # Добавление контекста для подписки
-        context['category'] = PostCategory.objects.filter(
+        context['post_category'] = PostCategory.objects.filter(
             post_id=self.object.pk
         ).select_related()
-
         context['is_subscribed'] = Category.objects.filter(
             subscribers=self.request.user.id
         ).values_list('name', flat=True)
@@ -80,9 +113,10 @@ class PostDetails(DetailView):
 class PostFind(ListView):
     """Поиск по сайту"""
     model = Post
+    ordering = '-date_pub'
     template_name = 'search.html'
     context_object_name = 'search'
-    paginate_by = 10
+    paginate_by = 5
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -119,6 +153,7 @@ class PostCreate(PermissionRequiredMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['category'] = Category.objects.all()
 
         # Проверяем количество постов автора за текущие сутки
         limit = settings.DAILY_POST_LIMIT
@@ -145,6 +180,11 @@ class PostEdit(PermissionAndOwnerRequiredMixin, UpdateView):
     context_object_name = 'edit'
     template_name = 'edit.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['category'] = Category.objects.all()
+        return context
+
 
 class PostDelete(PermissionAndOwnerRequiredMixin, DeleteView):
     """Удаление Статьи/Новости"""
@@ -156,6 +196,11 @@ class PostDelete(PermissionAndOwnerRequiredMixin, DeleteView):
     context_object_name = 'delete'
     template_name = 'delete.html'
     success_url = reverse_lazy('news:index')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['category'] = Category.objects.all()
+        return context
 
 
 class AuthorEdit(ProfileOwnerRequiredMixin, UpdateView):
@@ -173,6 +218,7 @@ class AuthorEdit(ProfileOwnerRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['category'] = Category.objects.all()
         context['is_author'] = \
             self.request.user.groups.filter(name='authors').exists()
         return context

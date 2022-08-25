@@ -22,7 +22,7 @@ class PostAdmin(admin.ModelAdmin):
     fieldsets = [
         ('Автор', {'fields': ['author_post', ]}),
         ('Контент', {'fields': ['type_cat', ]}),
-        ('Содержание', {'fields': ['name', 'content', ]}),
+        ('Содержание', {'fields': ['name', 'content_image', 'content', ]}),
         ('Информация о посте', {'fields': ['date_pub', 'content_rate', ]}),
     ]
     inlines = [PostCategoryInLine]
