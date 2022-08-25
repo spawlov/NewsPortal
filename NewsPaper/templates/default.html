@@ -100,9 +100,9 @@
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24"><title>Search</title><circle cx="10.5" cy="10.5" r="7.5"/><path d="M21 21l-5.2-5.2"/></svg>
         </a>
           {% if user.id %}
-            <a class="btn btn-sm btn-danger" href="/accounts/logout">Выход</a>
+            <a class="btn btn-sm btn-danger" href="/accounts/logout/">Выход</a>
           {% else %}
-            <a class="btn btn-sm btn-success" href="/accounts/login">Вход | Регистрация</a>
+            <a class="btn btn-sm btn-success" href="/accounts/login/">Вход | Регистрация</a>
           {% endif %}
       </div>
     </div>
@@ -110,9 +110,9 @@
 
   <nav class="navbar bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand" href="{% url 'news:index' %}">Главная</a>
+      <a class="navbar-brand fs-6" href="{% url 'news:index' %}">Главная</a>
       {% for item in category %}
-        <a class="navbar-brand" href="{% url 'news:category' item.id %}">{{ item.name }}</a>
+        <a class="navbar-brand fs-6" href="{% url 'news:category' item.id %}">{{ item.name }}</a>
       {% endfor %}
     </div>
   </nav>
