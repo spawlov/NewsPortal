@@ -17,17 +17,23 @@ class Author(models.Model):
 
     def update_rate(self):
         """Расчет рейтинга автора"""
+        post_rating = 0
         post_rate = self.post_set.all().aggregate(
             post_rating=Sum('content_rate')
         )
+        if post_rate.get('post_rating'):
+            post_rating = post_rate.get('post_rating')
         p_rate = 0
-        p_rate += post_rate.get('post_rating')
-        print(p_rate)
+        p_rate += post_rating
+
+        comment_rating = 0
         comm_rate = self.author_user.comment_set.all().aggregate(
             comment_rating=Sum('comment_rate')
         )
+        if comm_rate.get('comment_rating'):
+            comment_rating = comm_rate.get('comment_rating')
         c_rate = 0
-        c_rate += comm_rate.get('comment_rating')
+        c_rate += comment_rating
         print(c_rate)
         self.author_rate = p_rate * 3 + c_rate
         self.save()

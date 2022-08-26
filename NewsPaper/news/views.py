@@ -1,4 +1,5 @@
 from datetime import timedelta
+from random import randint
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import PermissionRequiredMixin
@@ -30,6 +31,17 @@ class IndexView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        # Получаем контекст для двух случайных статей
+        # first_id = second_id = 1
+        # id_list = list(Post.objects.all().values_list('id', flat=True))
+        # while not Post.objects.filter(id__in=[first_id, second_id]).exists():
+        #     first_id = second_id = randint(id_list[0], id_list[-1])
+        #     while first_id == second_id:
+        #         second_id = randint(id_list[0], id_list[-1])
+        # print(first_id, second_id)
+        # context['first'] = Post.objects.get(pk=first_id)
+        # context['second'] = Post.objects.get(pk=second_id)
+        # Контекст для вывода меню категорий
         context['category'] = Category.objects.all()
         return context
 
