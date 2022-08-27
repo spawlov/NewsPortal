@@ -6,6 +6,8 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.auth.models import User, Group
 from django.core.cache import cache
 from django.core.mail import EmailMultiAlternatives
+from django.db.models import Count
+from django.db.models.functions import ExtractYear, ExtractMonth
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.template.loader import render_to_string
@@ -15,6 +17,7 @@ from django.utils import timezone
 
 from django.views.generic import CreateView, DeleteView, UpdateView, \
     ListView, DetailView
+from icecream import ic
 
 from .fiters import PostFilter
 from .models import Post, Author, Comment, Category, PostCategory
@@ -22,6 +25,14 @@ from .form import PostingForm, UserForm
 from .permissions import PermissionAndOwnerRequiredMixin, \
     ProfileOwnerRequiredMixin
 from django.conf import settings
+
+
+def cache_categories(time_cache=3600):
+    return cache.get_or_set(
+        'category',
+        Category.objects.all(),
+        time_cache
+    )
 
 
 class IndexView(ListView):
@@ -44,12 +55,14 @@ class IndexView(ListView):
         # context['first'] = Post.objects.get(pk=first_id)
         # context['second'] = Post.objects.get(pk=second_id)
 
-        # Контекст для вывода меню категорий - кэш 15 минут
-        context['category'] = cache.get_or_set(
-            'category',
-            Category.objects.all(),
-            900
-        )
+        context['archives'] = Post.objects.annotate(
+            year=ExtractYear('date_pub'),
+            month=ExtractMonth('date_pub')
+        ).values('year', 'month').annotate(total=Count('id'))
+
+        ic(context['archives'])
+
+        context['category'] = cache_categories()
         return context
 
 
@@ -81,30 +94,13 @@ class CategoryView(ListView):
     def get_context_data(self, **kwargs):
         cat_id = self.kwargs['pk']
         context = super().get_context_data(**kwargs)
-
-        # Кэшируем список новостей в категории на 5 минут
-        # context['posts'] = cache.get_or_set(
-        #     'posts',
-        #     Post.objects.select_related().filter(
-        #         post_cat=cat_id
-        #     ).order_by('-date_pub'),
-        #     300
-        # )
         context['posts'] = Post.objects.select_related().filter(
             post_cat=cat_id
         ).order_by('-date_pub')
-
         context['cat_name'] = PostCategory.objects.filter(
             cat=cat_id
         ).values_list('cat__name', flat=True)[0]
-
-        # Контекст для вывода меню категорий - кэш 15 минут
-        context['category'] = cache.get_or_set(
-            'category',
-            Category.objects.all(),
-            900
-        )
-
+        context['category'] = cache_categories()
         # Добавление контекста для подписки
         context['post_category'] = PostCategory.objects.filter(
             cat=cat_id
@@ -112,7 +108,6 @@ class CategoryView(ListView):
         context['is_subscribed'] = Category.objects.filter(
             subscribers=self.request.user.id
         ).values_list('name', flat=True)
-
         return context
 
 
@@ -132,19 +127,12 @@ class PostDetails(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
-        # Контекст для вывода меню категорий - кэш 15 минут
-        context['category'] = cache.get_or_set(
-            'category',
-            Category.objects.all(),
-            900
-        )
-
+        # Контекст для вывода меню категорий - кэш 60 минут
+        context['category'] = cache_categories()
         # Подтягиваем комментарии к статье
         context['comments'] = Comment.objects.select_related().filter(
             post_id=self.kwargs['pk']
         )
-
         # Добавление контекста для подписки
         context['post_category'] = PostCategory.objects.filter(
             post_id=self.object.pk
@@ -152,7 +140,6 @@ class PostDetails(DetailView):
         context['is_subscribed'] = Category.objects.filter(
             subscribers=self.request.user.id
         ).values_list('name', flat=True)
-
         return context
 
 
@@ -171,15 +158,8 @@ class PostFind(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
         context['postfilter'] = self.postfilter
-
-        # Контекст для вывода меню категорий  - кэш 15 минут
-        context['category'] = cache.get_or_set(
-            'category',
-            Category.objects.all(),
-            900
-        )
+        context['category'] = cache_categories()
         return context
 
 
@@ -188,7 +168,6 @@ class PostCreate(PermissionRequiredMixin, CreateView):
     permission_required = (
         'news.add_post',
     )
-
     context_object_name = 'create'
     form_class = PostingForm
     model = Post
@@ -196,7 +175,6 @@ class PostCreate(PermissionRequiredMixin, CreateView):
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
-
         # Добавляем текущего пользователя в форму
         self.object.author_post = Author.objects.get(
             author_user=self.request.user
@@ -206,7 +184,6 @@ class PostCreate(PermissionRequiredMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
         # Проверяем количество постов автора за текущие сутки
         limit = settings.DAILY_POST_LIMIT
         context['limit'] = limit
@@ -217,13 +194,7 @@ class PostCreate(PermissionRequiredMixin, CreateView):
         ).count()
         context['count'] = posts_day_count
         context['post_limit'] = posts_day_count < limit
-
-        # Контекст для вывода меню категорий - кэш 15 минут
-        context['category'] = cache.get_or_set(
-            'category',
-            Category.objects.all(),
-            900
-        )
+        context['category'] = cache_categories()
         return context
 
 
@@ -240,13 +211,7 @@ class PostEdit(PermissionAndOwnerRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
-        # Контекст для вывода меню категорий - кэш 15 минут
-        context['category'] = cache.get_or_set(
-            'category',
-            Category.objects.all(),
-            900
-        )
+        context['category'] = cache_categories()
         return context
 
 
@@ -263,13 +228,7 @@ class PostDelete(PermissionAndOwnerRequiredMixin, DeleteView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
-        # Контекст для вывода меню категорий - кэш 15 минут
-        context['category'] = cache.get_or_set(
-            'category',
-            Category.objects.all(),
-            900
-        )
+        context['category'] = cache_categories()
         return context
 
 
@@ -288,13 +247,7 @@ class AuthorEdit(ProfileOwnerRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
-        # Контекст для вывода меню категорий - кэш 15 минут
-        context['category'] = cache.get_or_set(
-            'category',
-            Category.objects.all(),
-            900
-        )
+        context['category'] = cache_categories()
         context['is_author'] = \
             self.request.user.groups.filter(name='authors').exists()
         return context
