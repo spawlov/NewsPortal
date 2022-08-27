@@ -9,14 +9,14 @@ from .views import IndexView, NewsView, PostDetails, ArticlesView, \
 app_name = 'news'
 urlpatterns = [
     # Classes views
-    path('', cache_page(60)(IndexView.as_view()), name='index'),
+    path('', IndexView.as_view(), name='index'),
     # path('news/', NewsView.as_view(), name='news'),
     # path('articles/', ArticlesView.as_view(), name='articles'),
     path(
-        'caterory/<int:pk>/', cache_page(60)(CategoryView.as_view()),
+        'caterory/<int:pk>/', CategoryView.as_view(),
         name='category'
     ),
-    path('<int:pk>/', cache_page(300)(PostDetails.as_view()), name='detail'),
+    path('<int:pk>/', PostDetails.as_view(), name='detail'),
     path('create/', PostCreate.as_view(), name='create'),
     path('search/', PostFind.as_view(), name='search'),
     path('edit/<int:pk>/', PostEdit.as_view(), name='edit'),
