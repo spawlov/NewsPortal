@@ -4,7 +4,7 @@ from django.views.decorators.cache import cache_page
 from .views import IndexView, NewsView, PostDetails, ArticlesView, \
     PostCreate, PostFind, PostEdit, PostDelete, AuthorEdit, \
     request_upgrade_group, subscribe_category, unsubscribe_category, \
-    CategoryView
+    CategoryView, like_article, dislike_article
 
 app_name = 'news'
 urlpatterns = [
@@ -26,4 +26,7 @@ urlpatterns = [
     path('req_to_author/', request_upgrade_group, name='req_to_author'),
     path('subscribe_cat/<int:post_cat>/', subscribe_category),
     path('unsubscribe_cat/<int:post_cat>/', unsubscribe_category),
+
+    path('like_post/<int:pk>/', like_article),
+    path('dislike_post/<int:pk>/', dislike_article),
 ]

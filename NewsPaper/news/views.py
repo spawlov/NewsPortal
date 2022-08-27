@@ -83,13 +83,16 @@ class CategoryView(ListView):
         context = super().get_context_data(**kwargs)
 
         # Кэшируем список новостей в категории на 5 минут
-        context['posts'] = cache.get_or_set(
-            'posts',
-            Post.objects.select_related().filter(
-                post_cat=cat_id
-            ).order_by('-date_pub'),
-            300
-        )
+        # context['posts'] = cache.get_or_set(
+        #     'posts',
+        #     Post.objects.select_related().filter(
+        #         post_cat=cat_id
+        #     ).order_by('-date_pub'),
+        #     300
+        # )
+        context['posts'] = Post.objects.select_related().filter(
+            post_cat=cat_id
+        ).order_by('-date_pub')
 
         context['cat_name'] = PostCategory.objects.filter(
             cat=cat_id
@@ -346,4 +349,28 @@ def unsubscribe_category(request, post_cat):
     is_subscribed = category.subscribers.filter(id=user.id).exists()
     if is_subscribed:
         category.subscribers.remove(user)
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+@login_required
+def like_article(request, pk):
+    liked_post = Post.objects.get(pk=pk)
+    author_id = liked_post.author_post.id
+    author = Author.objects.get(pk=author_id)
+    print(liked_post)
+    print(author)
+    liked_post.like()
+    author.update_rate()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+@login_required
+def dislike_article(request, pk):
+    disliked_post = Post.objects.get(pk=pk)
+    author_id = disliked_post.author_post.id
+    author = Author.objects.get(pk=author_id)
+    print(disliked_post)
+    print(author)
+    disliked_post.dislike()
+    author.update_rate()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

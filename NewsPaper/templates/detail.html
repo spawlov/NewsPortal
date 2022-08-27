@@ -49,9 +49,13 @@
     <div class="container text-end">
         <span class="fw-bolder">Оцените статью: &nbsp;</span>
         <div class="btn-group btn-group-sm" role="group">
-            <button type="button" class="btn btn-secondary">-</button>
+            <button type="button" class="btn btn-secondary">
+                <a class="text-decoration-none text-light" href="/dislike_post/{{ content.id }}/">-</a>
+            </button>
             <button type="button" class="btn btn-secondary disabled">{{ content.content_rate }}</button>
-            <button type="button" class="btn btn-secondary">+</button>
+            <button type="button" class="btn btn-secondary">
+                <a class="text-decoration-none text-light" href="/like_post/{{ content.id }}/">+</a>
+            </button>
         </div>
     </div>
     <nav class="navbar bg-light">
