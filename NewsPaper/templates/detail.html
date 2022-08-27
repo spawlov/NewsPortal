@@ -1,10 +1,7 @@
 {% extends 'default.html' %}
 {% load i18n %}
 {% load censor %}
-{% load news_tags %}
-
-{% block title %}{{ content.name }}{% endblock title %}
-
+{% block title %}{{ content.name|censor }}{% endblock title %}
 {% block content %}
     <article class="blog-post">
         <h4 class="pb-1 mb-4 fst-italic">

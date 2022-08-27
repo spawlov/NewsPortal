@@ -4,6 +4,7 @@ from random import randint
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.auth.models import User, Group
+from django.core.cache import cache
 from django.core.mail import EmailMultiAlternatives
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
@@ -42,7 +43,11 @@ class IndexView(ListView):
         # context['first'] = Post.objects.get(pk=first_id)
         # context['second'] = Post.objects.get(pk=second_id)
         # Контекст для вывода меню категорий
-        context['category'] = Category.objects.all()
+        context['category'] = cache.get_or_set(
+            'category',
+            Category.objects.all(),
+            900
+        )
         return context
 
 
@@ -80,7 +85,12 @@ class CategoryView(ListView):
         context['cat_name'] = PostCategory.objects.filter(
             cat=cat_id
         ).values_list('cat__name', flat=True)[0]
-        context['category'] = Category.objects.all()
+        # Контекст для вывода меню категорий
+        context['category'] = cache.get_or_set(
+            'category',
+            Category.objects.all(),
+            900
+        )
 
         # Добавление контекста для подписки
         context['post_category'] = PostCategory.objects.filter(
@@ -103,12 +113,16 @@ class PostDetails(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        # Контекст для меню
-        context['category'] = Category.objects.all()
+        # Контекст для вывода меню категорий
+        context['category'] = cache.get_or_set(
+            'category',
+            Category.objects.all(),
+            900
+        )
 
         # Подтягиваем комментарии к статье
         context['comments'] = Comment.objects.select_related().filter(
-            post_id=context['content'].id
+            post_id=self.kwargs['pk']
         )
 
         # Добавление контекста для подписки
@@ -138,7 +152,12 @@ class PostFind(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['postfilter'] = self.postfilter
-        context['category'] = Category.objects.all()
+        # Контекст для вывода меню категорий
+        context['category'] = cache.get_or_set(
+            'category',
+            Category.objects.all(),
+            900
+        )
         return context
 
 
@@ -165,7 +184,6 @@ class PostCreate(PermissionRequiredMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['category'] = Category.objects.all()
 
         # Проверяем количество постов автора за текущие сутки
         limit = settings.DAILY_POST_LIMIT
@@ -177,7 +195,12 @@ class PostCreate(PermissionRequiredMixin, CreateView):
         ).count()
         context['count'] = posts_day_count
         context['post_limit'] = posts_day_count < limit
-
+        # Контекст для вывода меню категорий
+        context['category'] = cache.get_or_set(
+            'category',
+            Category.objects.all(),
+            900
+        )
         return context
 
 
@@ -194,7 +217,12 @@ class PostEdit(PermissionAndOwnerRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['category'] = Category.objects.all()
+        # Контекст для вывода меню категорий
+        context['category'] = cache.get_or_set(
+            'category',
+            Category.objects.all(),
+            900
+        )
         return context
 
 
@@ -211,7 +239,12 @@ class PostDelete(PermissionAndOwnerRequiredMixin, DeleteView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['category'] = Category.objects.all()
+        # Контекст для вывода меню категорий
+        context['category'] = cache.get_or_set(
+            'category',
+            Category.objects.all(),
+            900
+        )
         return context
 
 
@@ -230,7 +263,12 @@ class AuthorEdit(ProfileOwnerRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['category'] = Category.objects.all()
+        # Контекст для вывода меню категорий
+        context['category'] = cache.get_or_set(
+            'category',
+            Category.objects.all(),
+            900
+        )
         context['is_author'] = \
             self.request.user.groups.filter(name='authors').exists()
         return context
