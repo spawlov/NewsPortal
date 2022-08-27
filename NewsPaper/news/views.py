@@ -32,7 +32,8 @@ class IndexView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # Получаем контекст для двух случайных статей
+
+        # Получаем контекст для двух случайных статей (на будущее)
         # first_id = second_id = 1
         # id_list = list(Post.objects.all().values_list('id', flat=True))
         # while not Post.objects.filter(id__in=[first_id, second_id]).exists():
@@ -42,7 +43,8 @@ class IndexView(ListView):
         # print(first_id, second_id)
         # context['first'] = Post.objects.get(pk=first_id)
         # context['second'] = Post.objects.get(pk=second_id)
-        # Контекст для вывода меню категорий
+
+        # Контекст для вывода меню категорий - кэш 15 минут
         context['category'] = cache.get_or_set(
             'category',
             Category.objects.all(),
@@ -79,13 +81,21 @@ class CategoryView(ListView):
     def get_context_data(self, **kwargs):
         cat_id = self.kwargs['pk']
         context = super().get_context_data(**kwargs)
-        context['posts'] = Post.objects.select_related().filter(
-            post_cat=cat_id
-        ).order_by('-date_pub')
+
+        # Кэшируем список новостей в категории на 5 минут
+        context['posts'] = cache.get_or_set(
+            'posts',
+            Post.objects.select_related().filter(
+                post_cat=cat_id
+            ).order_by('-date_pub'),
+            300
+        )
+
         context['cat_name'] = PostCategory.objects.filter(
             cat=cat_id
         ).values_list('cat__name', flat=True)[0]
-        # Контекст для вывода меню категорий
+
+        # Контекст для вывода меню категорий - кэш 15 минут
         context['category'] = cache.get_or_set(
             'category',
             Category.objects.all(),
@@ -113,7 +123,7 @@ class PostDetails(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        # Контекст для вывода меню категорий
+        # Контекст для вывода меню категорий - кэш 15 минут
         context['category'] = cache.get_or_set(
             'category',
             Category.objects.all(),
@@ -151,8 +161,10 @@ class PostFind(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
         context['postfilter'] = self.postfilter
-        # Контекст для вывода меню категорий
+
+        # Контекст для вывода меню категорий  - кэш 15 минут
         context['category'] = cache.get_or_set(
             'category',
             Category.objects.all(),
@@ -195,7 +207,8 @@ class PostCreate(PermissionRequiredMixin, CreateView):
         ).count()
         context['count'] = posts_day_count
         context['post_limit'] = posts_day_count < limit
-        # Контекст для вывода меню категорий
+
+        # Контекст для вывода меню категорий - кэш 15 минут
         context['category'] = cache.get_or_set(
             'category',
             Category.objects.all(),
@@ -217,7 +230,8 @@ class PostEdit(PermissionAndOwnerRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # Контекст для вывода меню категорий
+
+        # Контекст для вывода меню категорий - кэш 15 минут
         context['category'] = cache.get_or_set(
             'category',
             Category.objects.all(),
@@ -239,7 +253,8 @@ class PostDelete(PermissionAndOwnerRequiredMixin, DeleteView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # Контекст для вывода меню категорий
+
+        # Контекст для вывода меню категорий - кэш 15 минут
         context['category'] = cache.get_or_set(
             'category',
             Category.objects.all(),
@@ -263,7 +278,8 @@ class AuthorEdit(ProfileOwnerRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # Контекст для вывода меню категорий
+
+        # Контекст для вывода меню категорий - кэш 15 минут
         context['category'] = cache.get_or_set(
             'category',
             Category.objects.all(),

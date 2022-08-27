@@ -46,6 +46,7 @@
             <p>{{ post.content|censor|truncatewords:25|safe }}</p>
         </article>
     {% endfor %}
+
     <div class="container text-center">
         <nav class="blog-pagination" aria-label="Pagination">
             <ul class="pagination pagination-sm">
@@ -77,4 +78,5 @@
             </ul>
         </nav>
     </div>
+
 {% endblock content %}
