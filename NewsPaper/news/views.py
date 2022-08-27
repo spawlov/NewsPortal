@@ -120,6 +120,13 @@ class PostDetails(DetailView):
     template_name = 'detail.html'
     context_object_name = 'content'
 
+    def get_object(self, *args, **kwargs):
+        obj = cache.get(f'post-{self.kwargs["pk"]}', None)
+        if not obj:
+            obj = super().get_object(queryset=self.queryset)
+            cache.get(f'post-{self.kwargs["pk"]}', obj)
+        return obj
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
