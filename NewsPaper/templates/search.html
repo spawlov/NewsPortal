@@ -60,7 +60,7 @@
                         {{ item.date_pub|date:'d.m.Y' }},
                         {{ item.author_post }}
                     </p>
-                    <p>{{ item.content|censor|truncatewords:25|safe }}</p>
+                    <p>{{ item.content|censor|truncatewords_html:25|safe }}</p>
                 </article>
             {% endfor %}
 

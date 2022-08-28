@@ -5,14 +5,15 @@
     <title>Document</title>
 </head>
 <body>
+    {% load news_filters %}
     <h2>
         {{ name }}, в категории "{{ category }}" новая статья
     </h2>
     <h4>
-        <a href="{{ link }}">{{ title }}</a>
+        <a href="{{ link }}">{{ title|censor }}</a>
     </h4>
     <p>
-        {{ content|truncatewords:30|safe }}
+        {{ content|censor|truncatewords_html:30|safe }}
     </p>
     <p style="font-style: italic">
         Полностью прочитать статью на сайте Вы можете кликнув на заголовок.

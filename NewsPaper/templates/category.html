@@ -1,8 +1,7 @@
 {% extends 'default.html' %}
 {% load i18n %}
-{% load censor %}
+{% load news_filters %}
 {% load news_tags %}
-
 {% block title %}Новости и статьи{% endblock title %}
 {% block content %}
 
@@ -43,7 +42,7 @@
                 рейтинг автора: {{ post.author_post.author_rate }}
             </p>
 {#            <img class="rounded float-end" src="{{ post.content_image.url }}">#}
-            <p>{{ post.content|censor|truncatewords:25|safe }}</p>
+            <p>{{ post.content|censor|truncatewords_html:25|safe }}</p>
         </article>
     {% endfor %}
 

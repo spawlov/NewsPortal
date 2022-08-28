@@ -35,6 +35,13 @@ def cache_categories(time_cache=3600):
     )
 
 
+def get_archive_list():
+    return Post.objects.annotate(
+        year=ExtractYear('date_pub'),
+        month=ExtractMonth('date_pub')
+    ).values('year', 'month').annotate(total=Count('id'))
+
+
 class IndexView(ListView):
     """Вывод всех новостей и статей"""
     queryset = Post.objects.select_related().all().order_by('-date_pub')[:10]
@@ -55,13 +62,7 @@ class IndexView(ListView):
         # context['first'] = Post.objects.get(pk=first_id)
         # context['second'] = Post.objects.get(pk=second_id)
 
-        context['archives'] = Post.objects.annotate(
-            year=ExtractYear('date_pub'),
-            month=ExtractMonth('date_pub')
-        ).values('year', 'month').annotate(total=Count('id'))
-
-        ic(context['archives'])
-
+        context['archives'] = get_archive_list()
         context['category'] = cache_categories()
         return context
 
@@ -101,6 +102,7 @@ class CategoryView(ListView):
             cat=cat_id
         ).values_list('cat__name', flat=True)[0]
         context['category'] = cache_categories()
+        context['archives'] = get_archive_list()
         # Добавление контекста для подписки
         context['post_category'] = PostCategory.objects.filter(
             cat=cat_id
@@ -127,8 +129,8 @@ class PostDetails(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # Контекст для вывода меню категорий - кэш 60 минут
         context['category'] = cache_categories()
+        context['archives'] = get_archive_list()
         # Подтягиваем комментарии к статье
         context['comments'] = Comment.objects.select_related().filter(
             post_id=self.kwargs['pk']
@@ -160,6 +162,7 @@ class PostFind(ListView):
         context = super().get_context_data(**kwargs)
         context['postfilter'] = self.postfilter
         context['category'] = cache_categories()
+        context['archives'] = get_archive_list()
         return context
 
 
@@ -195,6 +198,7 @@ class PostCreate(PermissionRequiredMixin, CreateView):
         context['count'] = posts_day_count
         context['post_limit'] = posts_day_count < limit
         context['category'] = cache_categories()
+        context['archives'] = get_archive_list()
         return context
 
 
@@ -212,6 +216,7 @@ class PostEdit(PermissionAndOwnerRequiredMixin, UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['category'] = cache_categories()
+        context['archives'] = get_archive_list()
         return context
 
 
@@ -229,6 +234,7 @@ class PostDelete(PermissionAndOwnerRequiredMixin, DeleteView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['category'] = cache_categories()
+        context['archives'] = get_archive_list()
         return context
 
 
@@ -248,6 +254,7 @@ class AuthorEdit(ProfileOwnerRequiredMixin, UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['category'] = cache_categories()
+        context['archives'] = get_archive_list()
         context['is_author'] = \
             self.request.user.groups.filter(name='authors').exists()
         return context

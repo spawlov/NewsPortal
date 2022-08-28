@@ -1,6 +1,7 @@
 import json
 
 from django import template
+from django.utils import timezone
 
 register = template.Library()
 
@@ -20,6 +21,14 @@ def censor(in_text):
             )
     return censured_text
 
+
 @register.filter()
 def liter(in_word):
     return f'{in_word[:-1]}и'
+
+
+@register.filter()
+def name_month(val):
+    val_obj = timezone.datetime.strptime(str(val), "%m")
+    val_name = val_obj.strftime("%B")
+    return val_name
