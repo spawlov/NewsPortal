@@ -27,7 +27,7 @@ from .permissions import PermissionAndOwnerRequiredMixin, \
 from django.conf import settings
 
 
-def cache_categories(time_cache=3600):
+def cache_categories(time_cache=900):
     return cache.get_or_set(
         'category',
         Category.objects.all(),
@@ -35,11 +35,15 @@ def cache_categories(time_cache=3600):
     )
 
 
-def get_archive_list():
-    return Post.objects.annotate(
-        year=ExtractYear('date_pub'),
-        month=ExtractMonth('date_pub')
-    ).values('year', 'month').annotate(total=Count('id'))
+def get_archive_list(time_cache=900):
+    return cache.get_or_set(
+        'archive',
+        Post.objects.annotate(
+            year=ExtractYear('date_pub'),
+            month=ExtractMonth('date_pub')
+        ).values('year', 'month').annotate(total=Count('id')),
+        time_cache
+    )
 
 
 class IndexView(ListView):
