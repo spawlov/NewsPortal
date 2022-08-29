@@ -24,7 +24,9 @@
         <fieldset class="form-control pb-4">
             <div class="container-fluid text-center">
                 <h4 class="fst-italic">
-                    Удалить пост: "{{ object.name|censor }}"?
+                    Удалить пост:
+                    <span class="text-primary">"{{ object.name|censor }}"</span>
+                    ?
                     <br>
                     <span class="blog-post-meta fs-5">
                         также будут удалены все связанные с ним комментарии
