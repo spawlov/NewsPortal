@@ -14,34 +14,44 @@
 <div class="container-fluid">
     <div class="mb-3 pb-3">
         <fieldset class="form-control">
-            <table class="find_form">
-                <form action="" method="get">
-                    {{ postfilter.form.non_field_errors }}
-                    {{ postfilter.form.name__icontains.errors }}
-                    <tr>
-                        <th class="label_form">Заголовок содержит:</th>
-                        <td class="input_form ">{{ postfilter.form.name__icontains }}</td>
-                    </tr>
-                    <tr>
-                        <th class="label_form">Относится к разделам:</th>
-                        <td class="input_form">{{ postfilter.form.post_cat }}</td>
-                    </tr>
-                    <tr>
-                        <th class="label_form">Опубликовано после:</th>
-                        <td class="input_form">
-                            <input
-                                id="{{ postfilter.form.date_pub__gt.id_for_label }}"
-                                name="{{ postfilter.form.date_pub__gt.name }}"
-                                type="datetime-local"
-                                value="{{ postfilter.form.date_pub__gt.value }}"
-                                class="form-control">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="submit_form"><input class="btn btn-outline-primary btn-sm" type="submit" value="Найти"></td>
-                    </tr>
-                </form>
-            </table>
+            <form action="" method="get">
+                {{ postfilter.form.non_field_errors }}
+                {{ postfilter.form.name__icontains.errors }}
+                <p>
+                    <label class="form-label" id="{{ postfilter.form.name__icontains.id_for_label }}">{{ postfilter.form.name__icontains.label }}</label>
+                    <input
+                            class="form-control border-primary"
+                            id="{{ postfilter.form.name__icontains.id_for_label }}"
+                            type="text"
+                            name="{{ postfilter.form.name__icontains.name }}"
+                            {% if postfilter.form.name__icontains.value %}
+                                value="{{ postfilter.form.name__icontains.value }}"
+                            {% else %}
+                                value=""
+                            {% endif %}
+                    >
+                </p>
+                <p>
+                    <label class="form-label" id="{{ postfilter.form.post_cat.id_for_label }}">{{ postfilter.form.post_cat.label }}</label>
+                    <select class="form-control border-primary" id="{{ postfilter.form.post_cat.id_for_label }}" name="{{ postfilter.form.post_cat.name }}" multiple>
+                        {% for item in postfilter.form.post_cat %}
+                            {{ item }}
+                        {% endfor %}
+                    </select>
+                </p>
+            <p><label class="form-label" id="{{ postfilter.form.date_pub__gt.id_for_label }}">{{ postfilter.form.date_pub__gt.label }}</label>
+                <input
+                    id="{{ postfilter.form.date_pub__gt.id_for_label }}"
+                    name="{{ postfilter.form.date_pub__gt.name }}"
+                    type="datetime-local"
+                    value="{{ postfilter.form.date_pub__gt.value }}"
+                    class="form-control border-primary">
+            </p>
+            <p>
+                <input class="form-control btn btn-outline-primary btn-sm" type="submit" value="Поиск">
+            </p>
+
+            </form>
         </fieldset>
     </div>
 </div>

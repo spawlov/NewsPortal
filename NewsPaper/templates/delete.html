@@ -1,8 +1,8 @@
-{% extends 'default_old.html' %}
+{% extends 'default.html' %}
 
 {% block title %}Удаление поста - "{{ object.name }}"{% endblock title %}
 
-{% load censor %}
+{% load news_filters %}
 {% load news_tags %}
 
 {% block content %}
