@@ -5,6 +5,7 @@
   {% load static %}
   {% load news_filters %}
   {% load news_tags %}
+  {% load cache %}
 
   <head>
     <meta charset="utf-8">
@@ -97,7 +98,7 @@
           <div class="col-4 text-center">
             {% for message in messages %}
               <div class="alert {% if message.tags %}alert-{{ message.tags }}{% else %}alert-secondary{% endif %} alert-dismissible rounded-0 fade show" role="alert">
-                  {{ message }}
+                  <span class="small">{{ message }}</span>
               </div>
             {% endfor %}
           </div>
@@ -113,7 +114,7 @@
           </div>
         </div>
       </header>
-
+      {% cache 900 navbar %}
       <nav class="navbar bg-light">
         <div class="container-fluid">
           <a class="navbar-brand fs-6" href="{% url 'news:index' %}">Главная</a>
@@ -122,6 +123,7 @@
           {% endfor %}
         </div>
       </nav>
+      {% endcache %}
     </div>
 
     <main class="container">
@@ -137,7 +139,7 @@
                 {{ news.content }}
             {% endblock content %}
         </div>
-
+        {% cache 900 rightcol %}
         <div class="col-md-4">
           <div class="position-sticky" style="top: 2rem;">
             <div class="p-4 mb-3 bg-light rounded shadow-lg">
@@ -171,6 +173,7 @@
             </div>
           </div>
         </div>
+        {% endcache %}
       </div>
     </main>
     <footer class="blog-footer">
