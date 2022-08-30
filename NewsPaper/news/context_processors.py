@@ -5,7 +5,7 @@ from .models import Category, Post
 
 
 def navigate_context(request):
-    # Контекст для блоков повторяющихся на всех страницах
+    """Контекст для блоков повторяющихся на всех страницах"""
     category = Category.objects.all()
     archives = Post.objects.annotate(
         year=ExtractYear('date_pub'),

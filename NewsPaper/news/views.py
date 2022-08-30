@@ -1,13 +1,12 @@
 from datetime import timedelta
 from random import randint
+from icecream import ic
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.auth.models import User, Group
 from django.core.cache import cache
 from django.core.mail import EmailMultiAlternatives
-from django.db.models import Count
-from django.db.models.functions import ExtractYear, ExtractMonth
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.template.loader import render_to_string
@@ -17,7 +16,6 @@ from django.utils import timezone
 
 from django.views.generic import CreateView, DeleteView, UpdateView, \
     ListView, DetailView
-from icecream import ic
 
 from .fiters import PostFilter
 from .models import Post, Author, Comment, Category, PostCategory
@@ -50,22 +48,22 @@ class IndexView(ListView):
         return context
 
 
-class NewsView(ListView):
-    """Вывод контента из раздела Новости"""
-    queryset = Post.objects.filter(type_cat='NWS').select_related()
-    ordering = '-date_pub'
-    template_name = 'news.html'
-    context_object_name = 'news'
-    paginate_by = 10
-
-
-class ArticlesView(ListView):
-    """Вывод контента из раздела Статьи"""
-    queryset = Post.objects.filter(type_cat='ART').select_related()
-    ordering = '-date_pub'
-    template_name = 'articles.html'
-    context_object_name = 'articles'
-    paginate_by = 10
+# class NewsView(ListView):
+#     """Вывод контента из раздела Новости"""
+#     queryset = Post.objects.filter(type_cat='NWS').select_related()
+#     ordering = '-date_pub'
+#     template_name = 'news.html'
+#     context_object_name = 'news'
+#     paginate_by = 10
+#
+#
+# class ArticlesView(ListView):
+#     """Вывод контента из раздела Статьи"""
+#     queryset = Post.objects.filter(type_cat='ART').select_related()
+#     ordering = '-date_pub'
+#     template_name = 'articles.html'
+#     context_object_name = 'articles'
+#     paginate_by = 10
 
 
 class CategoryView(ListView):
