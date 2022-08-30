@@ -27,25 +27,6 @@ from .permissions import PermissionAndOwnerRequiredMixin, \
 from django.conf import settings
 
 
-def cache_categories(time_cache=900):
-    return cache.get_or_set(
-        'category',
-        Category.objects.all(),
-        time_cache
-    )
-
-
-def get_archive_list(time_cache=900):
-    return cache.get_or_set(
-        'archive',
-        Post.objects.annotate(
-            year=ExtractYear('date_pub'),
-            month=ExtractMonth('date_pub')
-        ).values('year', 'month').annotate(total=Count('id')),
-        time_cache
-    )
-
-
 class IndexView(ListView):
     """Вывод всех новостей и статей"""
     queryset = Post.objects.select_related().all().order_by('-date_pub')[:10]
@@ -66,8 +47,6 @@ class IndexView(ListView):
         # context['first'] = Post.objects.get(pk=first_id)
         # context['second'] = Post.objects.get(pk=second_id)
 
-        context['archives'] = get_archive_list()
-        context['category'] = cache_categories()
         return context
 
 
@@ -105,8 +84,6 @@ class CategoryView(ListView):
         context['cat_name'] = PostCategory.objects.filter(
             cat=cat_id
         ).values_list('cat__name', flat=True)[0]
-        context['category'] = cache_categories()
-        context['archives'] = get_archive_list()
         # Добавление контекста для подписки
         context['post_category'] = PostCategory.objects.filter(
             cat=cat_id
@@ -119,7 +96,6 @@ class CategoryView(ListView):
 
 class PostDetails(DetailView):
     """Вывод выбранной статьи"""
-    # model = Post
     queryset = Post.objects.all().select_related()
     template_name = 'detail.html'
     context_object_name = 'content'
@@ -133,8 +109,6 @@ class PostDetails(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['category'] = cache_categories()
-        context['archives'] = get_archive_list()
         # Подтягиваем комментарии к статье
         context['comments'] = Comment.objects.select_related().filter(
             post_id=self.kwargs['pk']
@@ -165,8 +139,6 @@ class PostFind(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['postfilter'] = self.postfilter
-        context['category'] = cache_categories()
-        context['archives'] = get_archive_list()
         return context
 
 
@@ -201,8 +173,6 @@ class PostCreate(PermissionRequiredMixin, CreateView):
         ).count()
         context['count'] = posts_day_count
         context['post_limit'] = posts_day_count < limit
-        context['category'] = cache_categories()
-        context['archives'] = get_archive_list()
         return context
 
 
@@ -217,12 +187,6 @@ class PostEdit(PermissionAndOwnerRequiredMixin, UpdateView):
     context_object_name = 'edit'
     template_name = 'edit.html'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['category'] = cache_categories()
-        context['archives'] = get_archive_list()
-        return context
-
 
 class PostDelete(PermissionAndOwnerRequiredMixin, DeleteView):
     """Удаление Статьи/Новости"""
@@ -234,12 +198,6 @@ class PostDelete(PermissionAndOwnerRequiredMixin, DeleteView):
     context_object_name = 'delete'
     template_name = 'delete.html'
     success_url = reverse_lazy('news:index')
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['category'] = cache_categories()
-        context['archives'] = get_archive_list()
-        return context
 
 
 class AuthorEdit(ProfileOwnerRequiredMixin, UpdateView):
@@ -257,8 +215,6 @@ class AuthorEdit(ProfileOwnerRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['category'] = cache_categories()
-        context['archives'] = get_archive_list()
         context['is_author'] = \
             self.request.user.groups.filter(name='authors').exists()
         return context

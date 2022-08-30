@@ -165,7 +165,18 @@
               Здесь написать кратное описание проекта...
           </p>
         </div>
-
+      {% load news_filters %}
+        <div class="p-4 mb-3 container-fluid shadow-lg">
+              <h4 class="fst-italic">Архив</h4>
+              <ol class="list-unstyled mb-0">
+                  {% for item in archives %}
+                      <li>
+                          <a class="text-decoration-none" href="#">{{ item.month|name_month }} {{ item.year }}</a>
+                          <span class="blog-post-meta">({{ item.total }})</span>
+                      </li>
+                  {% endfor %}
+              </ol>
+            </div>
 {#        <div class="p-4">#}
 {#          <h4 class="fst-italic">Архив</h4>#}
 {#          <ol class="list-unstyled mb-0">#}
