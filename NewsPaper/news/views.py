@@ -8,7 +8,7 @@ from django.contrib.auth.models import User, Group
 from django.core.cache import cache
 from django.core.mail import EmailMultiAlternatives
 from django.http import HttpResponseRedirect
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404, get_list_or_404
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 
@@ -74,14 +74,22 @@ class CategoryView(ListView):
     paginate_by = 10
 
     def get_context_data(self, **kwargs):
-        cat_id = self.kwargs['pk']
         context = super().get_context_data(**kwargs)
-        context['posts'] = Post.objects.select_related().filter(
-            post_cat=cat_id
-        ).order_by('-date_pub')
+        # Проверяем запрос на корректность
+        cat_id = self.kwargs['pk']
+        get_list_or_404(PostCategory, cat_id=cat_id)
+        # Получаем имя категории
         context['cat_name'] = PostCategory.objects.filter(
             cat=cat_id
         ).values_list('cat__name', flat=True)[0]
+        # Получаем кэшируемый контекст для категории
+        context['posts'] = cache.get_or_set(
+            context['cat_name'],
+            Post.objects.select_related().filter(
+                post_cat__exact=cat_id
+            ).order_by('-date_pub'),
+            600
+        )
         # Добавление контекста для подписки
         context['post_category'] = PostCategory.objects.filter(
             cat=cat_id
@@ -275,8 +283,6 @@ def like_article(request, pk):
     liked_post = Post.objects.get(pk=pk)
     author_id = liked_post.author_post.id
     author = Author.objects.get(pk=author_id)
-    print(liked_post)
-    print(author)
     liked_post.like()
     author.update_rate()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
@@ -287,8 +293,6 @@ def dislike_article(request, pk):
     disliked_post = Post.objects.get(pk=pk)
     author_id = disliked_post.author_post.id
     author = Author.objects.get(pk=author_id)
-    print(disliked_post)
-    print(author)
     disliked_post.dislike()
     author.update_rate()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
