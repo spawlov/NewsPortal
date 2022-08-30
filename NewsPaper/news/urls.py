@@ -1,9 +1,8 @@
 from django.urls import path
 from django.views.decorators.cache import cache_page
 
-from .views import IndexView, NewsView, PostDetails, ArticlesView, \
-    PostCreate, PostFind, PostEdit, PostDelete, AuthorEdit, \
-    request_upgrade_group, subscribe_category, unsubscribe_category, \
+from .views import IndexView, PostDetails, PostCreate, PostFind, PostEdit, PostDelete, \
+    AuthorEdit, request_upgrade_group, subscribe_category, unsubscribe_category, \
     CategoryView, like_article, dislike_article
 
 app_name = 'news'
