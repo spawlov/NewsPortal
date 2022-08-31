@@ -84,7 +84,7 @@ class CategoryView(ListView):
         ).values_list('cat__name', flat=True)[0]
         # Получаем кэшируемый контекст для категории
         context['posts'] = cache.get_or_set(
-            context['cat_name'],
+            f'category-id-{cat_id}',
             Post.objects.select_related().filter(
                 post_cat__exact=cat_id
             ).order_by('-date_pub'),
@@ -107,10 +107,10 @@ class PostDetails(DetailView):
     context_object_name = 'content'
 
     def get_object(self, *args, **kwargs):
-        obj = cache.get(f'post-{self.kwargs["pk"]}', None)
+        obj = cache.get(f'post-id-{self.kwargs["pk"]}', None)
         if not obj:
             obj = super().get_object(queryset=self.queryset)
-            cache.get(f'post-{self.kwargs["pk"]}', obj)
+            cache.set(f'post-id-{self.kwargs["pk"]}', obj)
         return obj
 
     def get_context_data(self, **kwargs):

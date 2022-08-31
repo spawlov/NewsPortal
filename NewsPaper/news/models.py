@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.core.cache import cache
+from django.core.cache.utils import make_template_fragment_key
 from django.db import models
 from django.db.models import Sum
 from django.urls import reverse
@@ -59,6 +60,12 @@ class Category(models.Model):
         blank=True,
         verbose_name='Подписчик',
     )
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        key = make_template_fragment_key('navbar')
+        cache.delete(key)
+
 
     def __str__(self):
         return self.name
@@ -135,7 +142,7 @@ class Post(models.Model):
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
-        cache.delete(f'post-{self.pk}')
+        cache.delete(f'post-id-{self.pk}')
 
     def __str__(self):
         return self.name
