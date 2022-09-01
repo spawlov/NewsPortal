@@ -8,7 +8,7 @@ from django.contrib.auth.models import User, Group
 from django.core.cache import cache
 from django.core.mail import EmailMultiAlternatives
 from django.http import HttpResponseRedirect
-from django.shortcuts import redirect, get_object_or_404, get_list_or_404
+from django.shortcuts import redirect, get_list_or_404
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 
@@ -98,7 +98,6 @@ class CategoryView(ListView):
             subscribers=self.request.user.id
         ).values_list('name', flat=True)
         return context
-
 
 class PostDetails(DetailView):
     """Вывод выбранной статьи"""
