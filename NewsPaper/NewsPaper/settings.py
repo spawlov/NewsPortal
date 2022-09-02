@@ -27,6 +27,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+# DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 INTERNAL_IPS = ['127.0.0.1', ]
@@ -251,10 +252,11 @@ LOGGING = {
     # Формат вывода сообщений логгера
     'formatters': {
         # Сообщения в консоль
-        # DEBUG, INFO
+        # DEBUG
         'con_deb': {
-            'format': f'{OKGREEN}%(levelname)s : %(asctime)s : %(message)s{ENDC}'
+            'format': f'{OKGREEN}%(levelname)s : %(module)s : %(asctime)s : %(message)s{ENDC}'
         },
+        # INFO
         'con_info': {
             'format': f'{OKCYAN}%(levelname)s : %(asctime)s : %(module)s : %(message)s{ENDC}'
         },
@@ -266,77 +268,153 @@ LOGGING = {
         'con_error_cr': {
             'format': f'{FAIL}%(levelname)s : %(asctime)s : %(message)s : %(pathname)s : %(message)s : %(exc_info)s{ENDC}'
         },
+        # Логирование в файл
+        # INFO_FILE
+        'file_info_format': {
+            'format': f'%(levelname)s : %(asctime)s : %(module)s : %(message)s'
+        },
         # ERROR_FILE
-        'file_error': {
+        'file_error_format': {
             'format': '%(levelname)s : %(asctime)s : %(message)s : %(pathname)s : %(exc_info)s'
         },
         # SECURITY
         'security': {
             'format': '%(levelname)s : %(asctime)s : %(module)s : %(message)s'
         },
-        # SECURITY
+        # Email сообщение
+        # MAIL
         'mail': {
             'format': '%(levelname)s : %(asctime)s : %(message)s : %(pathname)s'
         }
     },
+    # Фильтрация
     'filters': {
         'require_debug_true': {
             '()': 'django.utils.log.RequireDebugTrue',
         },
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse',
+        },
     },
     'handlers': {
+        # DEBUG в консоль
         'console_debug': {
             'level': 'DEBUG',
             'filters': ['require_debug_true'],
             'class': 'logging.StreamHandler',
             'formatter': 'con_deb',
         },
+        # INFO в консоль
         'console_info': {
             'level': 'INFO',
             'filters': ['require_debug_true'],
             'class': 'logging.StreamHandler',
             'formatter': 'con_info',
         },
+        # WARNING в консоль
         'console_warning': {
             'level': 'WARNING',
-            'filters': ['require_debug_true'],
             'class': 'logging.StreamHandler',
             'formatter': 'con_warning',
         },
+        # ERROR, CRITICAL в консоль
         'console_error': {
             'level': 'ERROR',
-            'filters': ['require_debug_true'],
             'class': 'logging.StreamHandler',
             'formatter': 'con_error_cr',
         },
-        'console_critical': {
-            'level': 'CRITICAL',
-            'filters': ['require_debug_true'],
-            'class': 'logging.StreamHandler',
-            'formatter': 'con_error_cr',
+        # File info
+        'file_info': {
+            'level': 'INFO',
+            'filters': ['require_debug_false'],
+            'class': 'logging.FileHandler',
+            'formatter': 'file_info_format',
+            'filename': 'general.log'
         },
+        # File error
+        'file_error': {
+            'level': 'ERROR',
+            'class': 'logging.FileHandler',
+            'formatter': 'file_error_format',
+            'filename': 'error.log'
+        },
+        # File security
+        'file_security': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'formatter': 'security',
+            'filename': 'security.log'
+        },
+        # Mail admins
         'mail_admins': {
             'level': 'ERROR',
+            'filters': ['require_debug_false'],
             'class': 'django.utils.log.AdminEmailHandler',
+            'formatter': 'mail',
         },
     },
     'loggers': {
+        # Логгеры
+        # Логгер принимающий все сообщения
         'django': {
             'handlers': [
                 'console_debug',
                 'console_info',
                 'console_warning',
                 'console_error',
-                'console_critical',
+                'file_info',
             ],
+            'level': 'DEBUG',
             'propagate': True,
         },
+        # Логгер обрабатывает все сообщения вызванные HTTP-запросами
         'django.request': {
-            'handlers': ['mail_admins'],
+            'handlers': [
+                'mail_admins',
+                'file_error',
+            ],
             'level': 'ERROR',
+            'propagate': False,
+        },
+        # Логгер принимает все сообщения сервера
+        'django.server': {
+            'handlers': [
+                'mail_admins',
+                'file_error',
+            ],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+        # Обрабатывает ошибки, связанные с отображением шаблонов
+        'django.template': {
+            'handlers': [
+                'file_error',
+            ],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+        # Логгер обрабатывает любые сообщения связанные
+        # со взаимодействием кода с базой данных
+        'django.db.backends': {
+            'handlers': [
+                'file_error',
+            ],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+        # Предоставляет обработчики ошибок, связанных с безопасностью
+        'django.security': {
+            'handlers': [
+                'file_security',
+            ],
+            'level': 'INFO',
             'propagate': False,
         },
     },
 }
-
-# simul
+# Отправка почты логгерами
+ADMINS = (
+    ('admin', 'admin@example.com'),
+)
+EMAIL_SUBJECT_PREFIX = '[SuperService] '
+SERVER_EMAIL = DEFAULT_FROM_EMAIL

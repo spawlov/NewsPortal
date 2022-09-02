@@ -1,0 +1,102 @@
+ERROR : 2022-09-02 23:45:52,399 : Internal Server Error: / : /home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py : (<class 'django.template.exceptions.TemplateSyntaxError'>, TemplateSyntaxError("Invalid block tag on line 117: 'cacheEEE'. Did you forget to register or load this tag?"), <traceback object at 0x7f0f05ad5d40>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 505, in parse
+    compile_func = self.tags[command]
+KeyError: 'cacheEEE'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/backends/django.py", line 62, in render
+    return self.template.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/test/utils.py", line 111, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/loader_tags.py", line 132, in render
+    compiled_parent = self.get_parent(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/loader_tags.py", line 129, in get_parent
+    return self.find_template(parent, context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/loader_tags.py", line 107, in find_template
+    template, origin = context.template.engine.find_template(
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 200, in compile_nodelist
+    return parser.parse()
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 507, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 568, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 117: 'cacheEEE'. Did you forget to register or load this tag?
+ERROR : 2022-09-02 23:45:52,549 : "GET / HTTP/1.1" 500 240914 : /home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py : None
+ERROR : 2022-09-03 01:04:25,272 : Internal Server Error: / : /home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py : (<class 'django.template.exceptions.TemplateSyntaxError'>, TemplateSyntaxError("Invalid block tag on line 117: 'cacheS'. Did you forget to register or load this tag?"), <traceback object at 0x7fde46c76b80>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 505, in parse
+    compile_func = self.tags[command]
+KeyError: 'cacheS'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/backends/django.py", line 62, in render
+    return self.template.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/test/utils.py", line 111, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/loader_tags.py", line 132, in render
+    compiled_parent = self.get_parent(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/loader_tags.py", line 129, in get_parent
+    return self.find_template(parent, context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/loader_tags.py", line 107, in find_template
+    template, origin = context.template.engine.find_template(
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 200, in compile_nodelist
+    return parser.parse()
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 507, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 568, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 117: 'cacheS'. Did you forget to register or load this tag?
+ERROR : 2022-09-03 01:04:25,611 : "GET / HTTP/1.1" 500 239641 : /home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py : None
