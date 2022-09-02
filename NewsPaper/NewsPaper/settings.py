@@ -254,7 +254,7 @@ LOGGING = {
         # Сообщения в консоль
         # DEBUG
         'con_deb': {
-            'format': f'{OKGREEN}%(levelname)s : %(module)s : %(asctime)s : %(message)s{ENDC}'
+            'format': f'{OKGREEN}%(levelname)s : %(asctime)s : %(message)s{ENDC}'
         },
         # INFO
         'con_info': {
@@ -266,7 +266,7 @@ LOGGING = {
         },
         # ERROR, CRITICAL
         'con_error_cr': {
-            'format': f'{FAIL}%(levelname)s : %(asctime)s : %(message)s : %(pathname)s : %(message)s : %(exc_info)s{ENDC}'
+            'format': f'{FAIL}%(levelname)s : %(asctime)s : %(message)s : %(pathname)s : %(exc_info)s{ENDC}'
         },
         # Логирование в файл
         # INFO_FILE
@@ -296,6 +296,7 @@ LOGGING = {
             '()': 'django.utils.log.RequireDebugFalse',
         },
     },
+    # Обработчики
     'handlers': {
         # DEBUG в консоль
         'console_debug': {
@@ -323,29 +324,29 @@ LOGGING = {
             'class': 'logging.StreamHandler',
             'formatter': 'con_error_cr',
         },
-        # File info
+        # INFO в файл
         'file_info': {
             'level': 'INFO',
-            'filters': ['require_debug_false'],
+            # 'filters': ['require_debug_false'],
             'class': 'logging.FileHandler',
             'formatter': 'file_info_format',
             'filename': 'general.log'
         },
-        # File error
+        # ERROR в файл
         'file_error': {
             'level': 'ERROR',
             'class': 'logging.FileHandler',
             'formatter': 'file_error_format',
             'filename': 'error.log'
         },
-        # File security
+        # INFO Security в файл
         'file_security': {
             'level': 'INFO',
             'class': 'logging.FileHandler',
             'formatter': 'security',
             'filename': 'security.log'
         },
-        # Mail admins
+        # ERROR на email
         'mail_admins': {
             'level': 'ERROR',
             'filters': ['require_debug_false'],
@@ -353,8 +354,8 @@ LOGGING = {
             'formatter': 'mail',
         },
     },
+    # Логгеры
     'loggers': {
-        # Логгеры
         # Логгер принимающий все сообщения
         'django': {
             'handlers': [
@@ -414,7 +415,7 @@ LOGGING = {
 }
 # Отправка почты логгерами
 ADMINS = (
-    ('admin', 'admin@example.com'),
+    ('admin', os.getenv('EMAIL_YA')),
 )
 EMAIL_SUBJECT_PREFIX = '[SuperService] '
 SERVER_EMAIL = DEFAULT_FROM_EMAIL
