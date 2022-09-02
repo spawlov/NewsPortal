@@ -231,3 +231,112 @@ CACHES = {
         'LOCATION': os.path.join(BASE_DIR, 'cache_files'),
     }
 }
+
+# Logging
+# System colors
+HEADER = '\033[95m'
+OKBLUE = '\033[94m'
+OKCYAN = '\033[96m'
+OKGREEN = '\033[92m'
+WARNING = '\033[93m'
+FAIL = '\033[91m'
+ENDC = '\033[0m'
+BOLD = '\033[1m'
+UNDERLINE = '\033[4m'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'style': '{',
+    # Формат вывода сообщений логгера
+    'formatters': {
+        # Сообщения в консоль
+        # DEBUG, INFO
+        'con_deb': {
+            'format': f'{OKGREEN}%(levelname)s : %(asctime)s : %(message)s{ENDC}'
+        },
+        'con_info': {
+            'format': f'{OKCYAN}%(levelname)s : %(asctime)s : %(module)s : %(message)s{ENDC}'
+        },
+        # WARNING
+        'con_warning': {
+            'format': f'{WARNING}%(levelname)s : %(asctime)s : %(message)s : %(pathname)s{ENDC}'
+        },
+        # ERROR, CRITICAL
+        'con_error_cr': {
+            'format': f'{FAIL}%(levelname)s : %(asctime)s : %(message)s : %(pathname)s : %(message)s : %(exc_info)s{ENDC}'
+        },
+        # ERROR_FILE
+        'file_error': {
+            'format': '%(levelname)s : %(asctime)s : %(message)s : %(pathname)s : %(exc_info)s'
+        },
+        # SECURITY
+        'security': {
+            'format': '%(levelname)s : %(asctime)s : %(module)s : %(message)s'
+        },
+        # SECURITY
+        'mail': {
+            'format': '%(levelname)s : %(asctime)s : %(message)s : %(pathname)s'
+        }
+    },
+    'filters': {
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue',
+        },
+    },
+    'handlers': {
+        'console_debug': {
+            'level': 'DEBUG',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'con_deb',
+        },
+        'console_info': {
+            'level': 'INFO',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'con_info',
+        },
+        'console_warning': {
+            'level': 'WARNING',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'con_warning',
+        },
+        'console_error': {
+            'level': 'ERROR',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'con_error_cr',
+        },
+        'console_critical': {
+            'level': 'CRITICAL',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'con_error_cr',
+        },
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': [
+                'console_debug',
+                'console_info',
+                'console_warning',
+                'console_error',
+                'console_critical',
+            ],
+            'propagate': True,
+        },
+        'django.request': {
+            'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+    },
+}
+
+# simul
