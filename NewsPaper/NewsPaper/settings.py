@@ -248,7 +248,6 @@ UNDERLINE = '\033[4m'
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
-    'style': '{',
     # Формат вывода сообщений логгера
     'formatters': {
         # Сообщения в консоль
@@ -327,7 +326,7 @@ LOGGING = {
         # INFO в файл
         'file_info': {
             'level': 'INFO',
-            # 'filters': ['require_debug_false'],
+            'filters': ['require_debug_false'],
             'class': 'logging.FileHandler',
             'formatter': 'file_info_format',
             'filename': 'general.log'
