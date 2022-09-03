@@ -27,9 +27,10 @@ from django.conf import settings
 
 class IndexView(ListView):
     """Вывод всех новостей и статей"""
-    queryset = Post.objects.select_related().all().order_by('-date_pub')[:10]
+    queryset = Post.objects.select_related().all().order_by('-date_pub')
     template_name = 'posts.html'
     context_object_name = 'posts'
+    paginate_by = 10
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
