@@ -69,7 +69,7 @@ class IndexView(ListView):
 
 class CategoryView(ListView):
     """Вывод статей определенной категории"""
-    queryset = Post.objects.all()[:1]
+    queryset = Post.objects.order_by('-date_pub').all()[:1]
     template_name = 'category.html'
     context_object_name = 'posts'
     paginate_by = 10
