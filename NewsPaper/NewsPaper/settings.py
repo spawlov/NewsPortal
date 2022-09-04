@@ -253,32 +253,32 @@ LOGGING = {
         # Сообщения в консоль
         # DEBUG
         'con_deb': {
-            'format': f'{OKGREEN}%(levelname)s : %(asctime)s : %(message)s{ENDC}'
+            'format': f'{OKGREEN}%(levelname)s::%(asctime)s::%(message)s{ENDC}'
         },
         # INFO
         'con_info': {
-            'format': f'{OKCYAN}%(levelname)s : %(asctime)s : %(module)s : %(message)s{ENDC}'
+            'format': f'{OKCYAN}%(levelname)s::%(asctime)s::%(module)s::%(message)s{ENDC}'
         },
         # WARNING
         'con_warning': {
-            'format': f'{WARNING}%(levelname)s : %(asctime)s : %(message)s : %(pathname)s{ENDC}'
+            'format': f'{WARNING}%(levelname)s::%(asctime)s::%(message)s::%(pathname)s{ENDC}'
         },
         # ERROR, CRITICAL
         'con_error_cr': {
-            'format': f'{FAIL}%(levelname)s : %(asctime)s : %(message)s : %(pathname)s : %(exc_info)s{ENDC}'
+            'format': f'{FAIL}%(levelname)s::%(asctime)s::%(message)s::%(pathname)s::%(exc_info)s{ENDC}'
         },
         # Логирование в файл
         # INFO_FILE
         'file_info_format': {
-            'format': f'%(levelname)s : %(asctime)s : %(module)s : %(message)s'
+            'format': f'%(levelname)s::%(asctime)s::%(module)s::%(message)s'
         },
         # ERROR_FILE
         'file_error_format': {
-            'format': '%(levelname)s : %(asctime)s : %(message)s : %(pathname)s : %(exc_info)s'
+            'format': '%(levelname)s::%(asctime)s::%(message)s::%(pathname)s::%(exc_info)s'
         },
         # SECURITY
         'security': {
-            'format': '%(levelname)s : %(asctime)s : %(module)s : %(message)s'
+            'format': '%(levelname)s::%(asctime)s::%(module)s::%(message)s'
         },
         # Email сообщение
         # MAIL
