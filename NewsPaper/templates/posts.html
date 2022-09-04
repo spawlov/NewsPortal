@@ -7,8 +7,7 @@
 
 {% block content %}
     {% load cache %}
-    {% cache 60 last_news %}
-    {% block last_news %}
+    {% cache 60 last_news page_obj.number %}
     <h4 class="pb-1 mb-4 fst-italic">
         Последние публикации на сайте
     </h4>
@@ -26,7 +25,6 @@
             <p>{{ post.content|censor|truncatewords_html:25|safe }}</p>
         </article>
     {% endfor %}
-    {% endblock last_news %}
     {% endcache %}
     {% if page_obj.has_other_pages %}
         <div class="container text-center">

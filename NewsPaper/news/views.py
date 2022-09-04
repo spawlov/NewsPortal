@@ -85,7 +85,7 @@ class CategoryView(ListView):
         ).values_list('cat__name', flat=True)[0]
         # Получаем кэшируемый контекст для категории
         context['posts'] = cache.get_or_set(
-            f'category-id-{cat_id}',
+            f'category-id-{cat_id}-{context.get("page_obj").number}',
             Post.objects.select_related().filter(
                 post_cat__exact=cat_id
             ).order_by('-date_pub'),
@@ -99,6 +99,7 @@ class CategoryView(ListView):
             subscribers=self.request.user.id
         ).values_list('name', flat=True)
         return context
+
 
 class PostDetails(DetailView):
     """Вывод выбранной статьи"""
