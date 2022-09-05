@@ -45,8 +45,36 @@ class IndexView(ListView):
         # print(first_id, second_id)
         # context['first'] = Post.objects.get(pk=first_id)
         # context['second'] = Post.objects.get(pk=second_id)
-
         return context
+
+
+class ArchiveView(ListView):
+    """Вывод новостей и статей за определенный год и месяц"""
+    model = Post
+    template_name = 'archive.html'
+    context_object_name = 'posts'
+    paginate_by = 10
+
+    def get_queryset(self):
+        year = self.kwargs.get('year', None)
+        month = self.kwargs.get('month', None)
+        queryset = Post.objects.select_related().order_by('-date_pub').filter(
+            date_pub__year=year, date_pub__month=month
+        )
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        year = self.kwargs.get('year', None)
+        month = self.kwargs.get('month', None)
+        # Получаем кэшируемый контекст для категории
+        context['posts'] = cache.get_or_set(
+            f'category-id-{month}-{year}-{context.get("page_obj").number}',
+            context['posts'],
+            300
+        )
+        return context
+
 
 
 # class NewsView(ListView):
@@ -69,10 +97,17 @@ class IndexView(ListView):
 
 class CategoryView(ListView):
     """Вывод статей определенной категории"""
-    queryset = Post.objects.order_by('-date_pub').all()[:1]
+    model = Post
     template_name = 'category.html'
     context_object_name = 'posts'
     paginate_by = 10
+
+    def get_queryset(self):
+        cat_id = self.kwargs['pk']
+        queryset = Post.objects.select_related().filter(
+                post_cat__exact=cat_id
+            ).order_by('-date_pub')
+        return queryset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -86,10 +121,8 @@ class CategoryView(ListView):
         # Получаем кэшируемый контекст для категории
         context['posts'] = cache.get_or_set(
             f'category-id-{cat_id}-{context.get("page_obj").number}',
-            Post.objects.select_related().filter(
-                post_cat__exact=cat_id
-            ).order_by('-date_pub'),
-            600
+            context['posts'],
+            300
         )
         # Добавление контекста для подписки
         context['post_category'] = PostCategory.objects.filter(

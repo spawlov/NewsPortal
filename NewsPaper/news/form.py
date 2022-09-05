@@ -40,8 +40,6 @@ class PostingForm(forms.ModelForm):
             ),
         }
 
-
-
     def clean(self):
         cleaned_data = super().clean()
         content = cleaned_data.get('content')
@@ -70,6 +68,7 @@ class PostingForm(forms.ModelForm):
 
 class UserForm(forms.ModelForm):
     """Форма профайла пользователя"""
+
     class Meta:
         model = User
         fields = [
@@ -89,6 +88,7 @@ class UserForm(forms.ModelForm):
             ),
         }
 
+
 def user_added_to_group(user):
     """Добавление нового пользователя в группу common"""
     common_group = Group.objects.get(name='common')
@@ -100,6 +100,7 @@ def user_added_to_group(user):
 
 class BasicSignupForm(BaseSignupForm):
     """Базовая форма регистрации allauth"""
+
     def save(self, request):
         user = super(BasicSignupForm, self).save(request)
         user_added_to_group(user)
@@ -108,6 +109,7 @@ class BasicSignupForm(BaseSignupForm):
 
 class SocialSignupForm(SocSignupForm):
     """Форма регистрации через провайдера allauth"""
+
     def save(self, request):
         user = super(SocialSignupForm, self).save(request)
         user_added_to_group(user)

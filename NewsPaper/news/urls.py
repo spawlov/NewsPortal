@@ -3,7 +3,7 @@ from django.views.decorators.cache import cache_page
 
 from .views import IndexView, PostDetails, PostCreate, PostFind, PostEdit, PostDelete, \
     AuthorEdit, request_upgrade_group, subscribe_category, unsubscribe_category, \
-    CategoryView, like_article, dislike_article
+    CategoryView, like_article, dislike_article, ArchiveView
 
 app_name = 'news'
 urlpatterns = [
@@ -14,6 +14,10 @@ urlpatterns = [
     path(
         'caterory/<int:pk>/', CategoryView.as_view(),
         name='category'
+    ),
+    path(
+        'archive/<int:year>/<int:month>/', ArchiveView.as_view(),
+        name='archive'
     ),
     path('<int:pk>/', PostDetails.as_view(), name='detail'),
     path('create/', PostCreate.as_view(), name='create'),

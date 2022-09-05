@@ -154,7 +154,7 @@
               <ol class="list-unstyled mb-0">
                   {% for item in archives %}
                       <li>
-                          <a class="text-decoration-none" href="#">{{ item.month|name_month }} {{ item.year }}</a>
+                          <a class="text-decoration-none" href="{% url 'news:archive' item.year item.month %}">{{ item.month|name_month }} {{ item.year }}</a>
                           <span class="blog-post-meta">({{ item.total }})</span>
                       </li>
                   {% endfor %}

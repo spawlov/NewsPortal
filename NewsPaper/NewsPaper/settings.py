@@ -364,7 +364,7 @@ LOGGING = {
                 'console_error',
                 'file_info',
             ],
-            'level': 'DEBUG',
+            'level': 'INFO',
             'propagate': True,
         },
         # Логгер обрабатывает все сообщения вызванные HTTP-запросами
