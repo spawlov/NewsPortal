@@ -1,6 +1,10 @@
+import os
+
 import requests
 from bs4 import BeautifulSoup
 import shutil
+
+from django.utils import timezone
 
 
 def article_parser(parsing_url: str) -> tuple:
@@ -35,7 +39,11 @@ def article_parser(parsing_url: str) -> tuple:
 
         r = requests.get(image, stream=True)
         if r.status_code == 200:
-            with open('images/' + image_name, 'wb') as f:
+            if not os.path.exists(f'images/{timezone.now().strftime("%Y/%m/%d")}'):
+                os.makedirs(f'images/{timezone.now().strftime("%Y/%m/%d")}')
+            with open(
+                    f'images/{timezone.now().strftime("%Y/%m/%d")}/{image_name}', 'wb'
+            ) as f:
                 r.raw.decode_content = True
                 shutil.copyfileobj(r.raw, f)
 

@@ -166,7 +166,7 @@ def daily_parsing():
         resp, title, content, image_name, date_pub = article_parser(parse_url)
         if resp == 200:
             cat = Category.objects.get(name=cat_name)
-            image = f'images/{image_name}'
+            image = f'images/{timezone.now().strftime("%Y/%m/%d")}/{image_name}'
             post, created = Post.objects.get_or_create(
                 author_post=author,
                 type_cat='ART',
