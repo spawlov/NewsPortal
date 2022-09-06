@@ -32,9 +32,8 @@ class IndexView(ListView):
     context_object_name = 'posts'
     paginate_by = 10
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
         # Получаем контекст для двух случайных статей (на будущее)
         # first_id = second_id = 1
         # id_list = list(Post.objects.all().values_list('id', flat=True))
@@ -45,7 +44,7 @@ class IndexView(ListView):
         # print(first_id, second_id)
         # context['first'] = Post.objects.get(pk=first_id)
         # context['second'] = Post.objects.get(pk=second_id)
-        return context
+        # return context
 
 
 class ArchiveView(ListView):
@@ -65,16 +64,9 @@ class ArchiveView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        year = self.kwargs.get('year', None)
-        month = self.kwargs.get('month', None)
-        # Получаем кэшируемый контекст для категории
-        context['posts'] = cache.get_or_set(
-            f'category-id-{month}-{year}-{context.get("page_obj").number}',
-            context['posts'],
-            300
-        )
+        context['month'] = self.kwargs.get('month', None)
+        context['year'] = self.kwargs.get('year', None)
         return context
-
 
 
 # class NewsView(ListView):
@@ -105,16 +97,14 @@ class CategoryView(ListView):
     def get_queryset(self):
         cat_id = self.kwargs['pk']
         queryset = Post.objects.select_related().filter(
-                post_cat__exact=cat_id
-            ).order_by('-date_pub')
+            post_cat__exact=cat_id
+        ).order_by('-date_pub')
         return queryset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # Проверяем запрос на корректность
-        cat_id = self.kwargs['pk']
-        get_list_or_404(PostCategory, cat_id=cat_id)
         # Получаем имя категории
+        cat_id = self.kwargs.get('pk', None)
         context['cat_name'] = PostCategory.objects.filter(
             cat=cat_id
         ).values_list('cat__name', flat=True)[0]

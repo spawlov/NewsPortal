@@ -4,6 +4,7 @@ from django.core.cache.utils import make_template_fragment_key
 from django.db import models
 from django.db.models import Sum
 from django.urls import reverse
+from django.utils import timezone
 
 
 class Author(models.Model):
@@ -121,7 +122,8 @@ class Post(models.Model):
     )
 
     content_image = models.ImageField(
-        upload_to='images',
+        upload_to=f'images/{timezone.now().strftime("%Y/%m/%d")}/',
+        # upload_to='images/%Y/%m/%d/',
         verbose_name='Изображение',
         default='no_image.jpg',
     )

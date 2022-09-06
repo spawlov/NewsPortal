@@ -8,27 +8,27 @@
     <h4 class="pb-1 mb-4 fst-italic">
         Публикации в категории "{{ cat_name }}"
 
-    {% for cat in post_category %}
-        {% if cat.cat.name not in is_subscribed %}
-            <div class="container text-end">
-                <div class="btn-group btn-group-sm" role="group">
-{#                    <button type="button" class="btn btn-primary disabled">{{ cat.cat.name }}</button>#}
-                    <button type="button" class="btn btn-success">
-                        <a class="text-decoration-none text-light" href="/subscribe_cat/{{ cat.cat_id }}/">Подписаться на новости в категории</a>
-                    </button>
+        {% for cat in post_category %}
+            {% if cat.cat.name not in is_subscribed %}
+                <div class="container text-end">
+                    <div class="btn-group btn-group-sm" role="group">
+{#                        <button type="button" class="btn btn-primary disabled">{{ cat.cat.name }}</button>#}
+                        <button type="button" class="btn btn-success">
+                            <a class="text-decoration-none text-light" href="/subscribe_cat/{{ cat.cat_id }}/">Подписаться на новости в категории</a>
+                        </button>
+                    </div>
                 </div>
-            </div>
-        {% elif cat.cat.name in is_subscribed %}
-            <div class="container text-end">
-                <div class="btn-group btn-group-sm" role="group">
-{#                    <button type="button" class="btn btn-primary disabled">{{ cat.cat.name }}</button>#}
-                    <button type="button" class="btn btn-danger">
-                        <a class="text-decoration-none text-light" href="/unsubscribe_cat/{{ cat.cat_id }}/">Отписаться от новостей в категории</a>
-                    </button>
+            {% elif cat.cat.name in is_subscribed %}
+                <div class="container text-end">
+                    <div class="btn-group btn-group-sm" role="group">
+{#                        <button type="button" class="btn btn-primary disabled">{{ cat.cat.name }}</button>#}
+                        <button type="button" class="btn btn-danger">
+                            <a class="text-decoration-none text-light" href="/unsubscribe_cat/{{ cat.cat_id }}/">Отписаться от новостей в категории</a>
+                        </button>
+                    </div>
                 </div>
-            </div>
-        {% endif %}
-    {% endfor %}
+            {% endif %}
+        {% endfor %}
     </h4>
 
     {% for post in posts %}
@@ -46,37 +46,7 @@
         </article>
     {% endfor %}
     {% if page_obj.has_other_pages %}
-        <div class="container text-center">
-            <nav class="blog-pagination" aria-label="Pagination">
-                <ul class="pagination pagination-sm">
-                    {% if page_obj.has_previous %}
-                        <li class="page-item"><a class="page-link" href="?{% url_replace page=1 %}"><<</a></li>
-                        <li class="page-item"><a class="page-link" href="?{% url_replace page=page_obj.previous_page_number %}"><</a>
-                        <li class="page-item"><a class="page-link" href="?{% url_replace page=1 %}">1</a>
-                        {% if page_obj.previous_page_number != 1  %}
-                            <li class="page-item" aria-current="page">
-                                <span class="page-link disabled">...</span>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="?{% url_replace page=page_obj.previous_page_number %}">{{ page_obj.previous_page_number }}</a></li>
-                        {% endif %}
-                    {% endif %}
-                    <li class="page-item active" aria-current="page">
-                        <span class="page-link">{{ page_obj.number }}</span>
-                    </li>
-                    {% if page_obj.has_next %}
-                        <li class="page-item"><a class="page-link" href="?{% url_replace page=page_obj.next_page_number %}">{{ page_obj.next_page_number }}</a></li>
-                        {% if paginator.num_pages != page_obj.next_page_number %}
-                            <li class="page-item" aria-current="page">
-                                <span class="page-link disabled">...</span>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="?{% url_replace page=page_obj.paginator.num_pages %}">{{ page_obj.paginator.num_pages }}</a></li>
-                        {% endif %}
-                        <li class="page-item"><a class="page-link" href="?{% url_replace page=page_obj.next_page_number %}">></a></li>
-                        <li class="page-item"><a class="page-link" href="?{% url_replace page=page_obj.paginator.num_pages %}">>></a></li>
-                    {% endif %}
-                </ul>
-            </nav>
-        </div>
+        {% include 'paginator.html' %}
     {% endif %}
 
 {% endblock content %}

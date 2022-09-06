@@ -5,10 +5,10 @@
 
 {% block title %}News Paper - Новостной портал{% endblock title %}
 {% block content %}
-{#    {% load cache %}#}
-{#    {% cache 3 arch_news page_obj.number %}#}
+    {% load cache %}
+    {% cache 300 arch_news year month page_obj.number %}
     <h4 class="pb-1 mb-4 fst-italic">
-        Последние публикации на сайте
+        Архив публикаций за {{ month|name_month }} {{ year }}
     </h4>
     {% for post in posts %}
         <article class="blog-post">
@@ -24,39 +24,9 @@
             <p>{{ post.content|censor|truncatewords_html:25|safe }}</p>
         </article>
     {% endfor %}
-{#    {% endcache %}#}
+    {% endcache %}
     {% if page_obj.has_other_pages %}
-        <div class="container text-center">
-            <nav class="blog-pagination" aria-label="Pagination">
-                <ul class="pagination pagination-sm">
-                    {% if page_obj.has_previous %}
-                        <li class="page-item"><a class="page-link" href="?{% url_replace page=1 %}"><<</a></li>
-                        <li class="page-item"><a class="page-link" href="?{% url_replace page=page_obj.previous_page_number %}"><</a>
-                        <li class="page-item"><a class="page-link" href="?{% url_replace page=1 %}">1</a>
-                        {% if page_obj.previous_page_number != 1  %}
-                            <li class="page-item" aria-current="page">
-                                <span class="page-link disabled">...</span>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="?{% url_replace page=page_obj.previous_page_number %}">{{ page_obj.previous_page_number }}</a></li>
-                        {% endif %}
-                    {% endif %}
-                    <li class="page-item active" aria-current="page">
-                        <span class="page-link">{{ page_obj.number }}</span>
-                    </li>
-                    {% if page_obj.has_next %}
-                        <li class="page-item"><a class="page-link" href="?{% url_replace page=page_obj.next_page_number %}">{{ page_obj.next_page_number }}</a></li>
-                        {% if paginator.num_pages != page_obj.next_page_number %}
-                            <li class="page-item" aria-current="page">
-                                <span class="page-link disabled">...</span>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="?{% url_replace page=page_obj.paginator.num_pages %}">{{ page_obj.paginator.num_pages }}</a></li>
-                        {% endif %}
-                        <li class="page-item"><a class="page-link" href="?{% url_replace page=page_obj.next_page_number %}">></a></li>
-                        <li class="page-item"><a class="page-link" href="?{% url_replace page=page_obj.paginator.num_pages %}">>></a></li>
-                    {% endif %}
-                </ul>
-            </nav>
-        </div>
+        {% include 'paginator.html' %}
     {% endif %}
 
 {% endblock content %}
