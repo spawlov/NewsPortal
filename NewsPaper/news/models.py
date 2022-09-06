@@ -67,7 +67,6 @@ class Category(models.Model):
         key = make_template_fragment_key('navbar')
         cache.delete(key)
 
-
     def __str__(self):
         return self.name
 

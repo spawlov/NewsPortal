@@ -1,28 +1,24 @@
 from datetime import timedelta
-from random import randint
-from icecream import ic
 
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.auth.models import User, Group
 from django.core.cache import cache
 from django.core.mail import EmailMultiAlternatives
 from django.http import HttpResponseRedirect
-from django.shortcuts import redirect, get_list_or_404
+from django.shortcuts import redirect
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy
-
 from django.utils import timezone
-
 from django.views.generic import CreateView, DeleteView, UpdateView, \
     ListView, DetailView
 
 from .fiters import PostFilter
-from .models import Post, Author, Comment, Category, PostCategory
 from .form import PostingForm, UserForm
+from .models import Post, Author, Comment, Category, PostCategory
 from .permissions import PermissionAndOwnerRequiredMixin, \
     ProfileOwnerRequiredMixin
-from django.conf import settings
 
 
 class IndexView(ListView):
@@ -31,20 +27,6 @@ class IndexView(ListView):
     template_name = 'posts.html'
     context_object_name = 'posts'
     paginate_by = 10
-
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-        # Получаем контекст для двух случайных статей (на будущее)
-        # first_id = second_id = 1
-        # id_list = list(Post.objects.all().values_list('id', flat=True))
-        # while not Post.objects.filter(id__in=[first_id, second_id]).exists():
-        #     first_id = second_id = randint(id_list[0], id_list[-1])
-        #     while first_id == second_id:
-        #         second_id = randint(id_list[0], id_list[-1])
-        # print(first_id, second_id)
-        # context['first'] = Post.objects.get(pk=first_id)
-        # context['second'] = Post.objects.get(pk=second_id)
-        # return context
 
 
 class ArchiveView(ListView):
@@ -67,24 +49,6 @@ class ArchiveView(ListView):
         context['month'] = self.kwargs.get('month', None)
         context['year'] = self.kwargs.get('year', None)
         return context
-
-
-# class NewsView(ListView):
-#     """Вывод контента из раздела Новости"""
-#     queryset = Post.objects.filter(type_cat='NWS').select_related()
-#     ordering = '-date_pub'
-#     template_name = 'news.html'
-#     context_object_name = 'news'
-#     paginate_by = 10
-#
-#
-# class ArticlesView(ListView):
-#     """Вывод контента из раздела Статьи"""
-#     queryset = Post.objects.filter(type_cat='ART').select_related()
-#     ordering = '-date_pub'
-#     template_name = 'articles.html'
-#     context_object_name = 'articles'
-#     paginate_by = 10
 
 
 class CategoryView(ListView):
