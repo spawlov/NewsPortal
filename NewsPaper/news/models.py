@@ -121,8 +121,7 @@ class Post(models.Model):
     )
 
     content_image = models.ImageField(
-        upload_to=f'images/{timezone.now().strftime("%Y/%m/%d")}/',
-        # upload_to='images/%Y/%m/%d/',
+        upload_to='images',
         verbose_name='Изображение',
         default='no_image.jpg',
     )

@@ -39,10 +39,10 @@ def article_parser(parsing_url: str) -> tuple:
 
         r = requests.get(image, stream=True)
         if r.status_code == 200:
-            if not os.path.exists(f'images/{timezone.now().strftime("%Y/%m/%d")}'):
-                os.makedirs(f'images/{timezone.now().strftime("%Y/%m/%d")}')
+            # if not os.path.exists(f'images/{timezone.now().strftime("%Y/%m/%d")}'):
+            #     os.makedirs(f'images/{timezone.now().strftime("%Y/%m/%d")}')
             with open(
-                    f'images/{timezone.now().strftime("%Y/%m/%d")}/{image_name}', 'wb'
+                    f'images/{image_name}', 'wb'
             ) as f:
                 r.raw.decode_content = True
                 shutil.copyfileobj(r.raw, f)
