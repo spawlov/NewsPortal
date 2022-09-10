@@ -1,0 +1,478 @@
+ERROR::2022-09-11 02:44:01,948::Internal Server Error: /admin/news/category/::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'django.db.utils.OperationalError'>, OperationalError('no such column: news_category.name_en_us'), <traceback object at 0x7f946c09b740>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/sqlite3/base.py", line 357, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.OperationalError: no such column: news_category.name_en_us
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/contrib/admin/options.py", line 686, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/decorators.py", line 133, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/views/decorators/cache.py", line 62, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/contrib/admin/sites.py", line 242, in inner
+    return view(request, *args, **kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/decorators.py", line 46, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/decorators.py", line 133, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/contrib/admin/options.py", line 2068, in changelist_view
+    "selection_note": _("0 of %(cnt)s selected") % {"cnt": len(cl.result_list)},
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/query.py", line 376, in __len__
+    self._fetch_all()
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/query.py", line 1866, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/query.py", line 87, in __iter__
+    results = compiler.execute_sql(
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/sql/compiler.py", line 1395, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/debug_toolbar/panels/sql/tracking.py", line 230, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/debug_toolbar/panels/sql/tracking.py", line 154, in _record
+    return method(sql, params)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 103, in execute
+    return super().execute(sql, params)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/sqlite3/base.py", line 357, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.OperationalError: no such column: news_category.name_en_us
+ERROR::2022-09-11 02:44:02,085::"GET /admin/news/category/ HTTP/1.1" 500 194503::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-11 02:44:12,416::Internal Server Error: /::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'django.db.utils.OperationalError'>, OperationalError('no such column: news_category.name_en_us'), <traceback object at 0x7f9467eb3f80>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/sqlite3/base.py", line 357, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.OperationalError: no such column: news_category.name_en_us
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/backends/django.py", line 62, in render
+    return self.template.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/test/utils.py", line 111, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/test/utils.py", line 111, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/loader_tags.py", line 208, in render
+    return template.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 177, in render
+    return self._render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/test/utils.py", line 111, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/templatetags/cache.py", line 53, in render
+    value = self.nodelist.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/defaulttags.py", line 194, in render
+    len_values = len(values)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/query.py", line 376, in __len__
+    self._fetch_all()
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/query.py", line 1866, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/query.py", line 87, in __iter__
+    results = compiler.execute_sql(
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/sql/compiler.py", line 1395, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/debug_toolbar/panels/sql/tracking.py", line 230, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/debug_toolbar/panels/sql/tracking.py", line 154, in _record
+    return method(sql, params)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 103, in execute
+    return super().execute(sql, params)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/sqlite3/base.py", line 357, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.OperationalError: no such column: news_category.name_en_us
+ERROR::2022-09-11 02:44:12,648::"GET / HTTP/1.1" 500 349915::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-11 02:44:48,605::Internal Server Error: /::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'django.db.utils.OperationalError'>, OperationalError('no such column: news_category.name_en_us'), <traceback object at 0x7f9467db6700>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/sqlite3/base.py", line 357, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.OperationalError: no such column: news_category.name_en_us
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/backends/django.py", line 62, in render
+    return self.template.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/test/utils.py", line 111, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/test/utils.py", line 111, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/loader_tags.py", line 208, in render
+    return template.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 177, in render
+    return self._render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/test/utils.py", line 111, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/templatetags/cache.py", line 53, in render
+    value = self.nodelist.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/defaulttags.py", line 194, in render
+    len_values = len(values)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/query.py", line 376, in __len__
+    self._fetch_all()
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/query.py", line 1866, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/query.py", line 87, in __iter__
+    results = compiler.execute_sql(
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/sql/compiler.py", line 1395, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/debug_toolbar/panels/sql/tracking.py", line 230, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/debug_toolbar/panels/sql/tracking.py", line 154, in _record
+    return method(sql, params)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 103, in execute
+    return super().execute(sql, params)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/sqlite3/base.py", line 357, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.OperationalError: no such column: news_category.name_en_us
+ERROR::2022-09-11 02:44:48,807::"GET / HTTP/1.1" 500 349912::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-11 02:45:51,702::Internal Server Error: /::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'django.db.utils.OperationalError'>, OperationalError('no such column: news_category.name_en_us'), <traceback object at 0x7f9467c6e740>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/sqlite3/base.py", line 357, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.OperationalError: no such column: news_category.name_en_us
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/backends/django.py", line 62, in render
+    return self.template.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/test/utils.py", line 111, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/test/utils.py", line 111, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/loader_tags.py", line 208, in render
+    return template.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 177, in render
+    return self._render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/test/utils.py", line 111, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/templatetags/cache.py", line 53, in render
+    value = self.nodelist.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/defaulttags.py", line 194, in render
+    len_values = len(values)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/query.py", line 376, in __len__
+    self._fetch_all()
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/query.py", line 1866, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/query.py", line 87, in __iter__
+    results = compiler.execute_sql(
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/sql/compiler.py", line 1395, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/debug_toolbar/panels/sql/tracking.py", line 230, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/debug_toolbar/panels/sql/tracking.py", line 154, in _record
+    return method(sql, params)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 103, in execute
+    return super().execute(sql, params)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/sqlite3/base.py", line 357, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.OperationalError: no such column: news_category.name_en_us
+ERROR::2022-09-11 02:45:51,889::"GET / HTTP/1.1" 500 349761::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-11 02:47:53,463::Internal Server Error: /::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'django.db.utils.OperationalError'>, OperationalError('no such column: news_category.name_en'), <traceback object at 0x7faebaed7bc0>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/sqlite3/base.py", line 357, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.OperationalError: no such column: news_category.name_en
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/backends/django.py", line 62, in render
+    return self.template.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/test/utils.py", line 111, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/test/utils.py", line 111, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/loader_tags.py", line 208, in render
+    return template.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 177, in render
+    return self._render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/test/utils.py", line 111, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/templatetags/cache.py", line 53, in render
+    value = self.nodelist.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/defaulttags.py", line 194, in render
+    len_values = len(values)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/query.py", line 376, in __len__
+    self._fetch_all()
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/query.py", line 1866, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/query.py", line 87, in __iter__
+    results = compiler.execute_sql(
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/sql/compiler.py", line 1395, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/debug_toolbar/panels/sql/tracking.py", line 230, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/debug_toolbar/panels/sql/tracking.py", line 154, in _record
+    return method(sql, params)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 103, in execute
+    return super().execute(sql, params)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/sqlite3/base.py", line 357, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.OperationalError: no such column: news_category.name_en
+ERROR::2022-09-11 02:47:53,733::"GET / HTTP/1.1" 500 349691::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-11 02:48:05,116::Internal Server Error: /admin/news/category/::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'django.db.utils.OperationalError'>, OperationalError('no such column: news_category.name_en'), <traceback object at 0x7faebabff600>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/sqlite3/base.py", line 357, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.OperationalError: no such column: news_category.name_en
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/contrib/admin/options.py", line 686, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/decorators.py", line 133, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/views/decorators/cache.py", line 62, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/contrib/admin/sites.py", line 242, in inner
+    return view(request, *args, **kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/decorators.py", line 46, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/decorators.py", line 133, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/contrib/admin/options.py", line 2068, in changelist_view
+    "selection_note": _("0 of %(cnt)s selected") % {"cnt": len(cl.result_list)},
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/query.py", line 376, in __len__
+    self._fetch_all()
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/query.py", line 1866, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/query.py", line 87, in __iter__
+    results = compiler.execute_sql(
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/sql/compiler.py", line 1395, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/debug_toolbar/panels/sql/tracking.py", line 230, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/debug_toolbar/panels/sql/tracking.py", line 154, in _record
+    return method(sql, params)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 103, in execute
+    return super().execute(sql, params)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/sqlite3/base.py", line 357, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.OperationalError: no such column: news_category.name_en
+ERROR::2022-09-11 02:48:05,265::"GET /admin/news/category/ HTTP/1.1" 500 194405::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None

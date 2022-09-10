@@ -47,15 +47,7 @@ class CommentsAdmin(admin.ModelAdmin):
     # ]
 
 
-class CategoryAdmin(TranslationAdmin):
-    model = Category
-
-    list_display = (
-        'name', 'name_en_us', 'name_ru',
-    )
-
-
 admin.site.register(Post, PostAdmin)
-admin.site.register(Category, CategoryAdmin)
+admin.site.register(Category)
 admin.site.register(Comment, CommentsAdmin)
 admin.site.register(CatSubscribers)

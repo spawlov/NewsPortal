@@ -1,0 +1,234 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-09-11 00:55+0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: news/models.py:15
+msgid "Имя"
+msgstr "Name"
+
+#: news/models.py:19 news/models.py:121 news/models.py:196
+msgid "Рейтинг"
+msgstr "Rating"
+
+#: news/models.py:49 news/models.py:83 news/models.py:185
+msgid "Автор"
+msgstr "Author"
+
+#: news/models.py:50
+msgid "Авторы"
+msgstr "Authors"
+
+#: news/models.py:57
+msgid "Имя категории"
+msgstr "Category name"
+
+#: news/models.py:63 news/models.py:228 news/models.py:244
+msgid "Подписчик"
+msgstr "Subscriber"
+
+#: news/models.py:75 news/models.py:107 news/models.py:165 news/models.py:172
+#: news/models.py:235
+msgid "Категория"
+msgstr "Category"
+
+#: news/models.py:76 news/models.py:173
+msgid "Категории"
+msgstr "Categories"
+
+#: news/models.py:89
+msgid "Статья"
+msgstr "Article"
+
+#: news/models.py:90
+msgid "Новость"
+msgstr "News"
+
+#: news/models.py:96
+msgid "Тип контента"
+msgstr "Content type"
+
+#: news/models.py:101
+#, fuzzy
+#| msgid "Архив публикаций за"
+msgid "Дата публикации"
+msgstr "Date of publication"
+
+#: news/models.py:112
+msgid "Название"
+msgstr "Title"
+
+#: news/models.py:116
+msgid "Контент"
+msgstr "Content"
+
+#: news/models.py:126
+msgid "Изображение"
+msgstr "Image"
+
+#: news/models.py:152 news/models.py:160 news/models.py:180
+msgid "Пост"
+msgstr "Post"
+
+#: news/models.py:153
+msgid "Посты"
+msgstr "Posts"
+
+#: news/models.py:188
+msgid "Текст комментария"
+msgstr "Comment text"
+
+#: news/models.py:192
+msgid "Дата комментария"
+msgstr "Date of the comment"
+
+#: news/models.py:218
+msgid "Комментарий"
+msgstr "Comment"
+
+#: news/models.py:219
+msgid "Комментарии"
+msgstr "Comments"
+
+#: news/models.py:245
+msgid "Подписчики"
+msgstr "Subscribers"
+
+#: templates/archive.html:11
+msgid "Архив публикаций за"
+msgstr "Archive of publications for"
+
+#: templates/category.html:9
+#, python-format
+msgid "Публикации в категории \"%(cat_name)s\""
+msgstr "Publications in the \"%(cat_name)s\" category"
+
+#: templates/category.html:17
+msgid "Подписаться на новости в категории"
+msgstr "Subscribe to news in the category"
+
+#: templates/category.html:26
+msgid "Отписаться от новостей в категории"
+msgstr "Unsubscribe from news in the category"
+
+#: templates/delete.html:14
+msgid "Удалить пост:"
+msgstr "Delete a post:"
+
+#: templates/delete.html:19
+msgid "также будут удалены все связанные с ним комментарии"
+msgstr "all related comments will also be deleted"
+
+#: templates/delete.html:26 templates/detail.html:17
+msgid "Удалить"
+msgstr "Delete"
+
+#: templates/detail.html:14
+msgid "Редактировать"
+msgstr "Edit"
+
+#: templates/detail.html:24 templates/post_card.html:19
+msgid "рейтинг автора:"
+msgstr "author rate:"
+
+#: templates/detail.html:34
+#, python-format
+msgid "Подписаться на новости в категории: \"%(cat_name)s\""
+msgstr "Subscribe to news in the \"%(cat_name)s\" category"
+
+#: templates/detail.html:43
+#, python-format
+msgid "Отписаться от новостей в категории: \"%(cat_name)s\""
+msgstr "Unsubscribe from news in the \"%(cat_name)s\" category"
+
+#: templates/edit.html:10
+msgid "Публикация нового поста"
+msgstr "Publishing a new post"
+
+#: templates/edit.html:12
+#, python-format
+msgid "опубликовано %(count)s из %(limit)s"
+msgstr "published %(count)s of %(limit)s"
+
+#: templates/edit.html:24
+msgid "За текущие сутки Вы исчерпали лимит публикаций!"
+msgstr "For the current day, you have exhausted the limit of publications!"
+
+#: templates/edit.html:34
+msgid "Редактирование поста"
+msgstr "Editing a post"
+
+#: templates/edit_form.html:5
+msgid "Сохранить"
+msgstr "Save"
+
+#: templates/footer.html:3
+msgid "Сайт создан с использованием "
+msgstr "Blog template built for "
+
+#: templates/footer.html:4
+msgid "В начало"
+msgstr "Back to top"
+
+#: templates/navigate.html:11
+msgid "Профиль"
+msgstr "Profile"
+
+#: templates/navigate.html:13
+msgid "Добавить статью"
+msgstr "Add post"
+
+#: templates/navigate.html:21
+msgid "Язык"
+msgstr "Language"
+
+#: templates/navigate.html:32
+msgid "Выбор"
+msgstr "Set"
+
+#: templates/navigate.html:43
+msgid "Выход"
+msgstr "Log Out"
+
+#: templates/navigate.html:45
+msgid "Вход"
+msgstr "Log In"
+
+#: templates/navigate.html:45
+msgid "Регистрация"
+msgstr "Register"
+
+#: templates/navigate.html:53
+msgid "Главная"
+msgstr "Home"
+
+#: templates/posts.html:12
+msgid "Последние публикации на сайте"
+msgstr "Recent publications on the site"
+
+#: templates/right_block.html:9
+msgid "О проекте"
+msgstr "About"
+
+#: templates/right_block.html:16
+msgid "Архив"
+msgstr "Archive"
+
+#: templates/right_block.html:28
+msgid "Ссылки"
+msgstr "Links"
