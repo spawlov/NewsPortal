@@ -86,44 +86,44 @@ class Post(models.Model):
     ARTICLE = 'ART'
     NEWS = 'NWS'
     CHOICE_CAT = [
-        (ARTICLE, 'Статья'),
-        (NEWS, 'Новость'),
+        (ARTICLE, _('Статья')),
+        (NEWS, _('Новость')),
     ]
     type_cat = models.CharField(
         max_length=3,
         choices=CHOICE_CAT,
         default=ARTICLE,
-        verbose_name='Тип контента',
+        verbose_name=_('Тип контента'),
     )
 
     date_pub = models.DateTimeField(
         auto_now_add=True,
-        verbose_name='Дата публикации',
+        verbose_name=_('Дата публикации'),
     )
 
     post_cat = models.ManyToManyField(
         Category,
         through='PostCategory',
-        verbose_name='Категория',
+        verbose_name=_('Категория'),
     )
 
     name = models.CharField(
         max_length=128,
-        verbose_name='Название',
+        verbose_name=_('Название'),
     )
 
     content = models.TextField(
-        verbose_name='Контент',
+        verbose_name=_('Контент'),
     )
 
     content_rate = models.SmallIntegerField(
         default=0,
-        verbose_name='Рейтинг',
+        verbose_name=_('Рейтинг'),
     )
 
     content_image = models.ImageField(
         upload_to='images',
-        verbose_name='Изображение',
+        verbose_name=_('Изображение'),
         default='no_image.jpg',
     )
 

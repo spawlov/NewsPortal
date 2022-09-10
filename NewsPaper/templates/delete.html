@@ -1,42 +1,29 @@
 {% extends 'default.html' %}
 
 {% block title %}Удаление поста - "{{ object.name }}"{% endblock title %}
-
+{% load i18n %}
 {% load news_filters %}
 {% load news_tags %}
 
 {% block content %}
-
-{#<table class="news">#}
-{#    <tr>#}
-{#        <th style="color: red; text-align: center;">#}
-{#            Удалить пост: "{{ object.name|censor }}"?#}
-{#        </th>#}
-{#    </tr>#}
-{#    <tr>#}
-{#        <td style="padding: 20px 5px; color: red; text-align: center; font-weight: bolder">#}
-{#            и все связанные с ним комментарии#}
-{#        </td>#}
-{#    </tr>#}
-{#</table>#}
 <div class="container-fluid">
     <div class="mb-3 pb-3">
         <fieldset class="form-control pb-4">
             <div class="container-fluid text-center">
                 <h4 class="fst-italic">
-                    Удалить пост:
+                    {% trans "Удалить пост:" %}
                     <span class="text-primary">"{{ object.name|censor }}"</span>
                     ?
                     <br>
                     <span class="blog-post-meta fs-5">
-                        также будут удалены все связанные с ним комментарии
+                        {% trans "также будут удалены все связанные с ним комментарии" %}
                     </span>
                 </h4>
             </div>
             <form action="" method="post">
                 <p>{% csrf_token %}</p>
                 <p>
-                    <input class="form-control btn btn-outline-danger" type="submit" value="Удалить">
+                    <input class="form-control btn btn-outline-danger" type="submit" value="{% trans "Удалить" %}">
                 </p>
             </form>
         </fieldset>

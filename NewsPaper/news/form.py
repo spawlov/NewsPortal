@@ -2,6 +2,7 @@ from django import forms
 
 from django.contrib.auth.models import User, Group
 from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as _, gettext_lazy, ngettext_lazy
 
 from allauth.account.forms import SignupForm as BaseSignupForm
 from allauth.socialaccount.forms import SignupForm as SocSignupForm

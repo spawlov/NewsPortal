@@ -1,0 +1,6 @@
+{% load i18n %}
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input class="form-control btn btn-outline-primary" type="submit" value="{% trans "Сохранить" %}">
+</form>

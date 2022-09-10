@@ -7,9 +7,9 @@
 {% if edit.id == None %}
     <div class="container-fluid text-start">
         <h4 class="fst-italic">
-            Публикация нового поста
+            {% trans "Публикация нового поста" %}
             <span class="blog-post-meta fs-5">
-                (опубликовано {{ count }} из {{ limit }})
+                ({% blocktrans with count=count limit=limit %}опубликовано {{ count }} из {{ limit }}{% endblocktrans %})
             </span>
         </h4>
     </div>
@@ -17,15 +17,11 @@
         <div class="mb-3 pb-3">
             <fieldset class="form-control pb-4">
                 {% if post_limit %}
-                    <form action="" method="post">
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        <input class="form-control btn btn-outline-primary" type="submit" value="Сохранить">
-                    </form>
+                    {% include 'edit_form.html' %}
                 {% else %}
                     <div class="container-fluid text-center">
                         <h5 class="pb-1 mb-4 fst-italic link-danger fw-semibold">
-                            За текущие сутки Вы исчерпали лимит публикаций!
+                            {% trans "За текущие сутки Вы исчерпали лимит публикаций!" %}
                         </h5>
                     </div>
                 {% endif %}
@@ -35,18 +31,14 @@
     {% else %}
     <div class="container-fluid text-start">
         <h4 class="fst-italic">
-            Редактирование поста
+            {% trans "Редактирование поста" %}
             <span class="text-primary">"{{ edit.name }}"</span>
         </h4>
     </div>
     <div class="container-fluid">
         <div class="mb-3 pb-3">
             <fieldset class="form-control pb-4">
-                <form action="" method="post">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <input class="form-control btn btn-outline-primary" type="submit" value="Сохранить">
-                </form>
+                {% include 'edit_form.html' %}
             </fieldset>
         </div>
     </div>

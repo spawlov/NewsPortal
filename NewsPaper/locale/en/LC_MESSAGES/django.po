@@ -83,3 +83,24 @@ msgstr "Edit"
 
 msgid "Удалить"
 msgstr "Delete"
+
+msgid "Публикация нового поста"
+msgstr "Publishing a new post"
+
+msgid "За текущие сутки Вы исчерпали лимит публикаций!"
+msgstr "For the current day, you have exhausted the limit of publications!"
+
+msgid "Редактирование поста"
+msgstr "Editing a post"
+
+msgid "опубликовано %(count)s из %(limit)s"
+msgstr "published %(count)s of %(limit)s"
+
+msgid "Сохранить"
+msgstr "Save"
+
+msgid "Удалить пост:"
+msgstr "Delete a post:"
+
+msgid "также будут удалены все связанные с ним комментарии"
+msgstr "all related comments will also be deleted"
