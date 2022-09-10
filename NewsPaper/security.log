@@ -1,0 +1,1 @@
+WARNING::2022-09-08 22:37:25,449::log::Forbidden (CSRF token missing.): /admin/login/

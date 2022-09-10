@@ -6,23 +6,12 @@
 {% block title %}News Paper - Новостной портал{% endblock title %}
 {% block content %}
     {% load cache %}
-    {% cache 300 arch_news year month page_obj.number %}
+    {% cache 1 arch_news year month page_obj.number %}
     <h4 class="pb-1 mb-4 fst-italic">
         Архив публикаций за {{ month|name_month }} {{ year }}
     </h4>
     {% for post in posts %}
-        <article class="blog-post">
-            <a class="text-decoration-none" href="{% url 'news:detail' post.id %}">
-                <h5 class="pb-1 mb-0 fst-italic">{{ post.name|censor }}</h5>
-            </a>
-            <p class="blog-post-meta">
-                {{ post.date_pub|date:'d.m.Y' }},
-                {{ post.author_post }},
-                рейтинг автора: {{ post.author_post.author_rate }}
-            </p>
-{#            <img class="rounded float-end" src="{{ post.content_image.url }}">#}
-            <p>{{ post.content|censor|truncatewords_html:25|safe }}</p>
-        </article>
+        {% include 'post_card.html' %}
     {% endfor %}
     {% endcache %}
     {% if page_obj.has_other_pages %}

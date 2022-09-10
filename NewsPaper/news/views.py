@@ -6,11 +6,12 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.auth.models import User, Group
 from django.core.cache import cache
 from django.core.mail import EmailMultiAlternatives
-from django.http import HttpResponseRedirect
-from django.shortcuts import redirect
+from django.http import HttpResponseRedirect, HttpResponse
+from django.shortcuts import redirect, get_object_or_404, get_list_or_404
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
 from django.views.generic import CreateView, DeleteView, UpdateView, \
     ListView, DetailView
 
@@ -39,8 +40,10 @@ class ArchiveView(ListView):
     def get_queryset(self):
         year = self.kwargs.get('year', None)
         month = self.kwargs.get('month', None)
-        queryset = Post.objects.select_related().order_by('-date_pub').filter(
-            date_pub__year=year, date_pub__month=month
+        queryset = get_list_or_404(
+            Post.objects.select_related().order_by('-date_pub').filter(
+                date_pub__year=year, date_pub__month=month
+            )
         )
         return queryset
 
@@ -60,23 +63,21 @@ class CategoryView(ListView):
 
     def get_queryset(self):
         cat_id = self.kwargs['pk']
-        queryset = Post.objects.select_related().filter(
-            post_cat__exact=cat_id
-        ).order_by('-date_pub')
+        queryset = get_list_or_404(
+            Post.objects.select_related().filter(post_cat=cat_id).order_by('-date_pub')
+        )
         return queryset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         # Получаем имя категории
         cat_id = self.kwargs.get('pk', None)
-        context['cat_name'] = PostCategory.objects.filter(
-            cat=cat_id
-        ).values_list('cat__name', flat=True)[0]
+        context['cat_name'] = get_list_or_404(PostCategory.objects.filter(cat=cat_id))[0]
         # Получаем кэшируемый контекст для категории
         context['posts'] = cache.get_or_set(
             f'category-id-{cat_id}-{context.get("page_obj").number}',
             context['posts'],
-            300
+            1
         )
         # Добавление контекста для подписки
         context['post_category'] = PostCategory.objects.filter(
@@ -94,12 +95,12 @@ class PostDetails(DetailView):
     template_name = 'detail.html'
     context_object_name = 'content'
 
-    def get_object(self, *args, **kwargs):
-        obj = cache.get(f'post-id-{self.kwargs["pk"]}', None)
-        if not obj:
-            obj = super().get_object(queryset=self.queryset)
-            cache.set(f'post-id-{self.kwargs["pk"]}', obj)
-        return obj
+    # def get_object(self, *args, **kwargs):
+    #     obj = cache.get(f'post-id-{self.kwargs["pk"]}', None)
+    #     if not obj:
+    #         obj = super().get_object(queryset=self.queryset)
+    #         cache.set(f'post-id-{self.kwargs["pk"]}', obj)
+    #     return obj
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

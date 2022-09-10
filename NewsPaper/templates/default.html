@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru-ru">
+<html lang="en">
 
   {% load i18n %}
   {% load static %}
@@ -89,32 +89,46 @@
                   <p class="pb-1 mb-0 fst-italic fw-semibold">
                       {{ user }}
                       :
-                      <a class="link-primary text-decoration-none" href="{% url 'news:profile' user.id %}">Профиль</a>
+                      <a class="link-primary text-decoration-none" href="{% url 'news:profile' user.id %}">{% trans "Профиль" %}</a>
                       :
-                      <a class="link-primary text-decoration-none" href="{% url 'news:create' %}">Добавить статью</a>
+                      <a class="link-primary text-decoration-none" href="{% url 'news:create' %}">{% trans "Добавить статью" %}</a>
                   </p>
               {% endif %}
           </div>
           <div class="col-4 text-center">
-            {% for message in messages %}
-              <div class="alert {% if message.tags %}alert-{{ message.tags }}{% else %}alert-secondary{% endif %} alert-dismissible rounded-0 fade show" role="alert">
-                  <span class="small">{{ message }}</span>
-              </div>
-            {% endfor %}
+              <form clas="row g-3" action="{% url 'set_language' %}" method="post">
+                  {% csrf_token %}
+                  <input type="hidden" name="next" value="{{ redirect_to }}">
+                  <label id="lang_sel" class="form-control-sm">{% trans "Язык" %}</label>
+                  <select class="form-select-sm" name="language" id="lang_sel">
+                      {% get_current_language as LANGUAGE_CODE %}
+                      {% get_available_languages as LANGUAGES %}
+                      {% get_language_info_list for LANGUAGES as languages %}
+                      {% for language in languages %}
+                          <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected {% endif %}>
+                            {{ language.name_local }}
+                          </option>
+                      {% endfor %}
+                      </select>
+                  <input class="form-control-sm btn btn-sm btn-primary" type="submit" value="{% trans "Выбор" %}">
+              </form>
           </div>
           <div class="col-4 d-flex justify-content-end align-items-center">
             <a class="link-secondary" href="{% url 'news:search' %}" aria-label="Search">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24"><title>Search</title><circle cx="10.5" cy="10.5" r="7.5"/><path d="M21 21l-5.2-5.2"/></svg>
+              <span class="btn btn-sm btn-info">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24"><title>Search</title><circle cx="10.5" cy="10.5" r="7.5"/><path d="M21 21l-5.2-5.2"/></svg>
+              </span>
             </a>
+            &nbsp;
               {% if user.id %}
-                <a class="btn btn-sm btn-danger" href="/accounts/logout/">Выход</a>
+                <a class="btn btn-sm btn-danger" href="/accounts/logout/">{% trans "Выход" %}</a>
               {% else %}
-                <a class="btn btn-sm btn-success" href="/accounts/login/">Вход | Регистрация</a>
+                <a class="btn btn-sm btn-success" href="/accounts/login/">{% trans "Вход" %} | {% trans "Регистрация" %}</a>
               {% endif %}
           </div>
         </div>
       </header>
-      {% cache None navbar %}
+      {% cache 1 navbar %}
       <nav class="navbar bg-light">
         <div class="container-fluid">
           <a class="navbar-brand fs-6" href="{% url 'news:index' %}">Главная</a>
@@ -139,18 +153,18 @@
                 {{ news.content }}
             {% endblock content %}
         </div>
-        {% cache 900 rightcol %}
+        {% cache 1 rightcol %}
         <div class="col-md-4">
           <div class="position-sticky" style="top: 2rem;">
             <div class="p-4 mb-3 bg-light rounded shadow-lg">
-              <h4 class="fst-italic">О проекте</h4>
+              <h4 class="fst-italic">{% trans "О проекте" %}</h4>
               <p class="mb-0">
-                  Здесь написать кратное описание проекта...
+                  Здесь написать краткое описание проекта...
               </p>
             </div>
 
             <div class="p-4 mb-3 container-fluid shadow-lg">
-              <h4 class="fst-italic">Архив</h4>
+              <h4 class="fst-italic">{% trans "Архив" %}</h4>
               <ol class="list-unstyled mb-0">
                   {% for item in archives %}
                       <li>
@@ -177,8 +191,8 @@
       </div>
     </main>
     <footer class="blog-footer">
-      <p>Blog template built for <a target="_blank" href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
-      <p><a href="#">Back to top</a></p>
+      <p>{% trans "Blog template built for " %}<a target="_blank" href="https://getbootstrap.com/">Bootstrap</a> by <a target="_blank" href="https://twitter.com/mdo">@mdo</a>.</p>
+      <p><a href="#">{% trans "Back to top" %}</a></p>
     </footer>
   </body>
 </html>

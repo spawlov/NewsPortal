@@ -7,24 +7,13 @@
 
 {% block content %}
     {% load cache %}
-    {% cache 300 last_news page_obj.number %}
-    <h4 class="pb-1 mb-4 fst-italic">
-        {% block page_header %}Последние публикации на сайте{% endblock %}
-    </h4>
-    {% for post in posts %}
-        <article class="blog-post">
-            <a class="text-decoration-none" href="{% url 'news:detail' post.id %}">
-                <h5 class="pb-1 mb-0 fst-italic">{{ post.name|censor }}</h5>
-            </a>
-            <p class="blog-post-meta">
-                {{ post.date_pub|date:'d.m.Y' }},
-                {{ post.author_post }},
-                рейтинг автора: {{ post.author_post.author_rate }}
-            </p>
-{#            <img class="rounded float-end" src="{{ post.content_image.url }}">#}
-            <p>{{ post.content|censor|truncatewords_html:25|safe }}</p>
-        </article>
-    {% endfor %}
+    {% cache 1 last_news page_obj.number %}
+        <h4 class="pb-1 mb-4 fst-italic">
+            {% block page_header %}Последние публикации на сайте{% endblock %}
+        </h4>
+        {% for post in posts %}
+            {% include 'post_card.html' %}
+        {% endfor %}
     {% endcache %}
     {% if page_obj.has_other_pages %}
         {% include 'paginator.html' %}

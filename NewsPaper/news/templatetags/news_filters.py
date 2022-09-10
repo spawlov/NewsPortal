@@ -2,6 +2,7 @@ import json
 
 from django import template
 from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
 
 register = template.Library()
 
@@ -31,4 +32,4 @@ def liter(in_word):
 def name_month(val):
     val_obj = timezone.datetime.strptime(str(val), "%m")
     val_name = val_obj.strftime("%B")
-    return val_name
+    return _(val_name)
