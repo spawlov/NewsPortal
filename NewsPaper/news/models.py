@@ -12,11 +12,11 @@ class Author(models.Model):
     author_user = models.OneToOneField(
         User,
         on_delete=models.CASCADE,
-        verbose_name='Имя',
+        verbose_name=_('Имя'),
     )
     author_rate = models.SmallIntegerField(
         default=0,
-        verbose_name='Рейтинг',
+        verbose_name=_('Рейтинг'),
     )
 
     def update_rate(self):
@@ -46,21 +46,21 @@ class Author(models.Model):
         return self.author_user.username
 
     class Meta:
-        verbose_name = 'Автор'
-        verbose_name_plural = 'Авторы'
+        verbose_name = _('Автор')
+        verbose_name_plural = _('Авторы')
 
 
 class Category(models.Model):
     name = models.CharField(
         max_length=64,
         unique=True,
-        verbose_name='Имя категории',
+        verbose_name=_('Имя категории'),
     )
     subscribers = models.ManyToManyField(
         User,
         through='CatSubscribers',
         blank=True,
-        verbose_name='Подписчик',
+        verbose_name=_('Подписчик'),
     )
 
     def save(self, *args, **kwargs):
@@ -72,15 +72,15 @@ class Category(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = 'Категория'
-        verbose_name_plural = 'Категории'
+        verbose_name = _('Категория')
+        verbose_name_plural = _('Категории')
 
 
 class Post(models.Model):
     author_post = models.ForeignKey(
         Author,
         on_delete=models.CASCADE,
-        verbose_name='Автор',
+        verbose_name=_('Автор'),
     )
 
     ARTICLE = 'ART'
@@ -149,51 +149,51 @@ class Post(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = 'Пост'
-        verbose_name_plural = 'Посты'
+        verbose_name = _('Пост')
+        verbose_name_plural = _('Посты')
 
 
 class PostCategory(models.Model):
     post = models.ForeignKey(
         Post,
         on_delete=models.CASCADE,
-        verbose_name='Пост',
+        verbose_name=_('Пост'),
     )
     cat = models.ForeignKey(
         Category,
         on_delete=models.CASCADE,
-        verbose_name='Категория',
+        verbose_name=_('Категория'),
     )
 
     def __str__(self):
         return self.cat.name
 
     class Meta:
-        verbose_name = 'Категория'
-        verbose_name_plural = 'Категории'
+        verbose_name = _('Категория')
+        verbose_name_plural = _('Категории')
 
 
 class Comment(models.Model):
     post = models.ForeignKey(
         Post,
         on_delete=models.CASCADE,
-        verbose_name='Пост',
+        verbose_name=_('Пост'),
     )
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        verbose_name='Автор',
+        verbose_name=_('Автор'),
     )
     comment = models.TextField(
-        verbose_name='Текст комментария',
+        verbose_name=_('Текст комментария'),
     )
     date_comment = models.DateTimeField(
         auto_now_add=True,
-        verbose_name='Дата комментария',
+        verbose_name=_('Дата комментария'),
     )
     comment_rate = models.SmallIntegerField(
         default=0,
-        verbose_name='Рейтинг',
+        verbose_name=_('Рейтинг'),
     )
 
     @property
@@ -215,8 +215,8 @@ class Comment(models.Model):
         return self.comments
 
     class Meta:
-        verbose_name = 'Комментарий'
-        verbose_name_plural = 'Комментарии'
+        verbose_name = _('Комментарий')
+        verbose_name_plural = _('Комментарии')
 
 
 class CatSubscribers(models.Model):
@@ -225,21 +225,21 @@ class CatSubscribers(models.Model):
         blank=True,
         null=True,
         on_delete=models.CASCADE,
-        verbose_name='Подписчик',
+        verbose_name=_('Подписчик'),
     )
     category = models.ForeignKey(
         Category,
         blank=True,
         null=True,
         on_delete=models.CASCADE,
-        verbose_name='Категория',
+        verbose_name=_('Категория'),
     )
 
     def __str__(self):
         return f'' \
                f'{self.subscriber.username} ({self.subscriber.email}), ' \
-               f'категория: {self.category}'
+               f'{_("категория")}: {self.category}'
 
     class Meta:
-        verbose_name = 'Подписчик'
-        verbose_name_plural = 'Подписчики'
+        verbose_name = _('Подписчик')
+        verbose_name_plural = _('Подписчики')
