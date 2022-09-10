@@ -48,7 +48,7 @@
         {% endfor %}
     </article>
     <div class="container text-end">
-        <span class="fw-bolder">Оцените статью: &nbsp;</span>
+        <span class="fw-bolder">{% trans "Оцените статью:" %} &nbsp;</span>
         <div class="btn-group btn-group-sm" role="group">
             <button type="button" class="btn btn-secondary">
                 <a class="text-decoration-none text-light" href="/dislike_post/{{ content.id }}/">-</a>
@@ -61,18 +61,18 @@
     </div>
     <nav class="navbar bg-light">
         <div class="container-fluid fw-semibold">
-            Комментарии ({{ comments.count }})
+            {% trans "Комментарии" %} ({{ comments.count }})
         </div>
     </nav>
     {% if not comments %}
         <div class="alert alert-info fw-normal" role="alert">
-            К этому посту пока нет комментариев...
+            {% trans "К этому посту пока нет комментариев..." %}
         </div>
     {% else %}
         {% for comment in comments %}
             <div class="alert alert-success fw-normal" role="alert">
                 <span class="fw-semibold">
-                    {{ comment.date_comment }}, {{ comment.user }} пишет:
+                    {{ comment.date_comment }}, {{ comment.user }} {% trans "пишет:" %}
                 </span>
                 {{ comment.comment|censor }}
                 <div class="container text-end">
