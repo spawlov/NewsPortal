@@ -50,7 +50,7 @@
   {% cache 1 navbar %}
   <nav class="navbar bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand fs-6" href="{% url 'news:index' %}">Главная</a>
+      <a class="navbar-brand fs-6" href="{% url 'news:index' %}">{% trans "Главная" %}</a>
       {% for item in category %}
         <a class="navbar-brand fs-6" href="{% url 'news:category' item.id %}">{{ item.name }}</a>
       {% endfor %}

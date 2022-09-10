@@ -18,6 +18,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "Главная"
+msgstr "Home"
+
+msgid "Учебный проект на курсе \"Fullstack разработчик на Python\""
+msgstr "Training project on the course \"Fullstack developer in Python\""
+
 msgid "Язык"
 msgstr "Language"
 

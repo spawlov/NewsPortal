@@ -1,4 +1,6 @@
 from django.contrib import admin
+from django.utils.translation import gettext_lazy as _
+from modeltranslation.admin import TranslationAdmin
 
 from .form import PostingForm
 from .models import Post, PostCategory, Comment, Category, CatSubscribers
@@ -20,10 +22,10 @@ class PostAdmin(admin.ModelAdmin):
     search_fields = ['name']
     readonly_fields = ['date_pub', 'content_rate', ]
     fieldsets = [
-        ('Автор', {'fields': ['author_post', ]}),
-        ('Контент', {'fields': ['type_cat', ]}),
-        ('Содержание', {'fields': ['name', 'content_image', 'content', ]}),
-        ('Информация о посте', {'fields': ['date_pub', 'content_rate', ]}),
+        (_('Автор'), {'fields': ['author_post', ]}),
+        (_('Контент'), {'fields': ['type_cat', ]}),
+        (_('Содержание'), {'fields': ['name', 'content_image', 'content', ]}),
+        (_('Информация о посте'), {'fields': ['date_pub', 'content_rate', ]}),
     ]
     inlines = [PostCategoryInLine]
 
@@ -45,7 +47,15 @@ class CommentsAdmin(admin.ModelAdmin):
     # ]
 
 
+class CategoryAdmin(TranslationAdmin):
+    model = Category
+
+    list_display = (
+        'name', 'name_en_us', 'name_ru',
+    )
+
+
 admin.site.register(Post, PostAdmin)
-admin.site.register(Category)
+admin.site.register(Category, CategoryAdmin)
 admin.site.register(Comment, CommentsAdmin)
 admin.site.register(CatSubscribers)
