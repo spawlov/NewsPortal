@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-11 03:07+0700\n"
+"POT-Creation-Date: 2022-09-11 03:26+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,10 +25,6 @@ msgstr "Author"
 #: news/admin.py:26
 msgid "Тип"
 msgstr "Type"
-
-#: news/models.py:116
-msgid "Контент"
-msgstr "Content"
 
 #: news/admin.py:27
 msgid "Содержание"
@@ -90,6 +86,10 @@ msgstr "Date of publication"
 #: news/models.py:112
 msgid "Название"
 msgstr "Title"
+
+#: news/models.py:116
+msgid "Контент"
+msgstr "Content"
 
 #: news/models.py:126
 msgid "Изображение"
@@ -258,3 +258,19 @@ msgstr "Archive"
 #: templates/right_block.html:28
 msgid "Ссылки"
 msgstr "Links"
+
+#: templates/search.html:6 templates/search.html:11
+msgid "Поиск по сайту"
+msgstr "Site Search"
+
+#: templates/search.html:50
+msgid "Поиск"
+msgstr "Search"
+
+#: templates/search.html:61
+msgid "Результаты поиска"
+msgstr "Search results"
+
+#: templates/search.html:81
+msgid "По данному запросу ничего не найдено"
+msgstr "Nothing was found for this query"
