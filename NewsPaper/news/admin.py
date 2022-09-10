@@ -49,9 +49,10 @@ class CommentsAdmin(admin.ModelAdmin):
 
 class CategoryAdmin(TranslationAdmin):
     model = Category
+    list_display = ['name', 'name_ru', 'name_en']
 
 
 admin.site.register(Post, PostAdmin)
-admin.site.register(Category)
+admin.site.register(Category, CategoryAdmin)
 admin.site.register(Comment, CommentsAdmin)
 admin.site.register(CatSubscribers)
