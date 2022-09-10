@@ -47,6 +47,10 @@ class CommentsAdmin(admin.ModelAdmin):
     # ]
 
 
+class CategoryAdmin(TranslationAdmin):
+    model = Category
+
+
 admin.site.register(Post, PostAdmin)
 admin.site.register(Category)
 admin.site.register(Comment, CommentsAdmin)
