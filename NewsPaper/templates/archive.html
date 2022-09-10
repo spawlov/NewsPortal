@@ -8,7 +8,7 @@
     {% load cache %}
     {% cache 1 arch_news year month page_obj.number %}
     <h4 class="pb-1 mb-4 fst-italic">
-        Архив публикаций за {{ month|name_month }} {{ year }}
+        {% trans "Архив публикаций за" %} {{ month|name_month }} {{ year }}
     </h4>
     {% for post in posts %}
         {% include 'post_card.html' %}

@@ -16,7 +16,7 @@
             <small class="text-muted">
                 {{ post.date_pub|date:'d.m.Y' }},
                 {{ post.author_post }},
-                рейтинг автора: {{ post.author_post.author_rate }}
+                {% trans "рейтинг автора:" %} {{ post.author_post.author_rate }}
             </small>
         </p>
       </div>

@@ -20,23 +20,66 @@ msgstr ""
 
 msgid "Язык"
 msgstr "Language"
+
 msgid "Выбор"
 msgstr "Set"
+
 msgid "Сайт создан с использованием "
 msgstr "Blog template built for "
+
 msgid "В начало"
 msgstr "Back to top"
+
 msgid "Выход"
 msgstr "Log Out"
+
 msgid "Вход"
 msgstr "Log In"
+
 msgid "Регистрация"
 msgstr "Register"
+
 msgid "Профиль"
 msgstr "Profile"
+
 msgid "Добавить статью"
 msgstr "Add post"
+
 msgid "О проекте"
 msgstr "About"
+
 msgid "Архив"
 msgstr "Archive"
+
+msgid "Ссылки"
+msgstr "Links"
+
+msgid "Последние публикации на сайте"
+msgstr "Recent publications on the site"
+
+msgid "рейтинг автора:"
+msgstr "author rate:"
+
+msgid "Архив публикаций за"
+msgstr "Archive of publications for"
+
+msgid "Публикации в категории \"%(cat_name)s\""
+msgstr "Publications in the \"%(cat_name)s\" category"
+
+msgid "Отписаться от новостей в категории"
+msgstr "Unsubscribe from news in the category"
+
+msgid "Отписаться от новостей в категории: \"%(cat_name)s\""
+msgstr "Unsubscribe from news in the \"%(cat_name)s\" category"
+
+msgid "Подписаться на новости в категории"
+msgstr "Subscribe to news in the category"
+
+msgid "Подписаться на новости в категории: \"%(cat_name)s\""
+msgstr "Subscribe to news in the \"%(cat_name)s\" category"
+
+msgid "Редактировать"
+msgstr "Edit"
+
+msgid "Удалить"
+msgstr "Delete"

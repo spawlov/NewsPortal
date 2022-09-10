@@ -6,7 +6,7 @@
 {% block content %}
 
     <h4 class="pb-1 mb-4 fst-italic">
-        Публикации в категории "{{ cat_name }}"
+        {% blocktrans with cat_name as cat_name %}Публикации в категории "{{ cat_name }}"{% endblocktrans %}
 
         {% for cat in post_category %}
             {% if cat.cat.name not in is_subscribed %}
@@ -14,7 +14,7 @@
                     <div class="btn-group btn-group-sm" role="group">
 {#                        <button type="button" class="btn btn-primary disabled">{{ cat.cat.name }}</button>#}
                         <button type="button" class="btn btn-success">
-                            <a class="text-decoration-none text-light" href="/subscribe_cat/{{ cat.cat_id }}/">Подписаться на новости в категории</a>
+                            <a class="text-decoration-none text-light" href="/subscribe_cat/{{ cat.cat_id }}/">{% trans "Подписаться на новости в категории" %}</a>
                         </button>
                     </div>
                 </div>
@@ -23,7 +23,7 @@
                     <div class="btn-group btn-group-sm" role="group">
 {#                        <button type="button" class="btn btn-primary disabled">{{ cat.cat.name }}</button>#}
                         <button type="button" class="btn btn-danger">
-                            <a class="text-decoration-none text-light" href="/unsubscribe_cat/{{ cat.cat_id }}/">Отписаться от новостей в категории</a>
+                            <a class="text-decoration-none text-light" href="/unsubscribe_cat/{{ cat.cat_id }}/">{% trans "Отписаться от новостей в категории" %}</a>
                         </button>
                     </div>
                 </div>

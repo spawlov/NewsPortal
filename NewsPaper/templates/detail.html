@@ -11,17 +11,17 @@
                 <div class="container text-end">
                         <div class="btn-group btn-group-sm" role="group">
                             <button type="button" class="btn btn-success">
-                                <a class="text-decoration-none text-light" href="{% url 'news:edit' content.pk %}">Редактировать</a>
+                                <a class="text-decoration-none text-light" href="{% url 'news:edit' content.pk %}">{% trans "Редактировать" %}</a>
                             </button>
                             <button type="button" class="btn btn-danger">
-                                <a class="text-decoration-none text-light" href="{% url 'news:delete' content.pk %}">Удалить</a>
+                                <a class="text-decoration-none text-light" href="{% url 'news:delete' content.pk %}">{% trans "Удалить" %}</a>
                             </button>
                         </div>
                     </div>
             {% endif %}
         </h4>
         <p class="blog-post-meta">
-            {{ content.date_pub }}, {{ content.author_post }}, рейтинг автора: {{ content.author_post.author_rate }}
+            {{ content.date_pub }}, {{ content.author_post }}, {% trans "рейтинг автора:" %} {{ content.author_post.author_rate }}
         </p>
         <img class="img-fluid  img-thumbnail shadow-lg" src="{{ content.content_image.url }}" alt="{{ content.name|censor }}">
         <p>{{ content.content|censor|safe }}</p>
@@ -31,7 +31,7 @@
                     <div class="btn-group btn-group-sm" role="group">
                         <button type="button" class="btn btn-primary disabled">{{ cat.cat.name }}</button>
                         <button type="button" class="btn btn-success">
-                            <a class="text-decoration-none text-light" href="/subscribe_cat/{{ cat.cat_id }}/">Подписаться на новости в категории: "{{ cat.cat.name }}"</a>
+                            <a class="text-decoration-none text-light" href="/subscribe_cat/{{ cat.cat_id }}/">{% blocktrans with cat.cat.name as cat_name %}Подписаться на новости в категории: "{{ cat_name }}"{% endblocktrans %}</a>
                         </button>
                     </div>
                 </div>
@@ -40,7 +40,7 @@
                     <div class="btn-group btn-group-sm" role="group">
                         <button type="button" class="btn btn-primary disabled">{{ cat.cat.name }}</button>
                         <button type="button" class="btn btn-danger">
-                            <a class="text-decoration-none text-light" href="/unsubscribe_cat/{{ cat.cat_id }}/">Отписаться от новостей в категории: "{{ cat.cat.name }}"</a>
+                            <a class="text-decoration-none text-light" href="/unsubscribe_cat/{{ cat.cat_id }}/">{% blocktrans with cat.cat.name as cat_name %}Отписаться от новостей в категории: "{{ cat_name }}"{% endblocktrans %}</a>
                         </button>
                     </div>
                 </div>
