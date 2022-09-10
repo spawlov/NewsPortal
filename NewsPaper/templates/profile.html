@@ -1,12 +1,12 @@
 {% extends 'default.html' %}
-
-{% block title %}Профиль пользователя {{ user }}{% endblock title %}
 {% load i18n %}
+{% block title %}{% trans "Профиль пользователя" %} {{ user }}{% endblock title %}
+
 {% block content %}
 
 <div class="container-fluid text-start">
     <h4 class="fst-italic">
-        Профиль пользователя
+        {% trans "Профиль пользователя" %}
         <span class="text-primary">{{ user }}</span>
     </h4>
 </div>
@@ -16,7 +16,7 @@
             <form action="" method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <input class="form-control btn btn-outline-primary" type="submit" value="Сохранить">
+                <input class="form-control btn btn-outline-primary" type="submit" value="{% trans "Сохранить" %}">
               </form>
         </fieldset>
     </div>
@@ -25,7 +25,7 @@
     <div class="container-fluid">
         <div class="mb-3 pb-3">
             <fieldset class="form-control mb-3">
-                <a class="form-control btn btn-outline-primary" href="/req_to_author/">Стать автором</a>
+                <a class="form-control btn btn-outline-primary" href="/req_to_author/">{% trans "Стать автором" %}</a>
             </fieldset>
         </div>
     </div>

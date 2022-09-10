@@ -3,12 +3,12 @@
 {% load news_filters %}
 {% load news_tags %}
 
-{% block title %}Поиск по сайту{% endblock title %}
+{% block title %}{% trans "Поиск по сайту" %}{% endblock title %}
 
 {% block content %}
 <div class="container-fluid text-start">
     <h4 class="pb-1 mb-4 fst-italic">
-        Поиск по сайту
+        {% trans "Поиск по сайту" %}
     </h4>
 </div>
 <div class="container-fluid">
@@ -47,7 +47,7 @@
                     class="form-control border-primary">
             </p>
             <p>
-                <input class="form-control btn btn-outline-primary btn-sm" type="submit" value="Поиск">
+                <input class="form-control btn btn-outline-primary btn-sm" type="submit" value="{% trans "Поиск" %}">
             </p>
 
             </form>
@@ -58,7 +58,7 @@
     {% if postfilter.form.name__icontains.value or postfilter.form.post_cat.value or postfilter.form.date_pub__gt.value %}
         {% if search %}
             <h4 class="pb-1 mb-4 fst-italic">
-                Результаты поиска
+                {% trans "Результаты поиска" %}
             </h4>
             {% for item in search %}
                 <article class="blog-post">
@@ -78,7 +78,7 @@
             {% endif %}
 
          {% else %}
-                <h5 class="pb-1 mb-0 fst-italic">По данному запросу ничего не найдено</h5>
+                <h5 class="pb-1 mb-0 fst-italic">{% trans "По данному запросу ничего не найдено" %}</h5>
         {% endif %}
     {% endif %}
 {% endblock content %}

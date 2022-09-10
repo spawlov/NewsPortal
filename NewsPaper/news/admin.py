@@ -23,7 +23,7 @@ class PostAdmin(admin.ModelAdmin):
     readonly_fields = ['date_pub', 'content_rate', ]
     fieldsets = [
         (_('Автор'), {'fields': ['author_post', ]}),
-        (_('Контент'), {'fields': ['type_cat', ]}),
+        (_('Тип'), {'fields': ['type_cat', ]}),
         (_('Содержание'), {'fields': ['name', 'content_image', 'content', ]}),
         (_('Информация о посте'), {'fields': ['date_pub', 'content_rate', ]}),
     ]
