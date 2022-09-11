@@ -263,6 +263,10 @@ msgstr "Become an author"
 msgid "Локализация"
 msgstr "Localization"
 
+#: templates/right_block.html:17
+msgid "Чс.пояс"
+msgstr "TimeZone"
+
 #: templates/right_block.html:16
 msgid "Архив"
 msgstr "Archive"

@@ -14,7 +14,7 @@
           <form class="row g-3" action="/set_tz/" method="post">
               {% csrf_token %}
               <div class="input-group">
-                  <label {% if current_time.hour >= 19 or  current_time.hour <= 7 %}class="form-control btn-group-vertical border-primary bg-dark text-bg-dark"{% else %}class="form-control btn-group-vertical border-primary"{% endif %}>TimeZone</label>
+                  <label {% if current_time.hour >= 19 or  current_time.hour <= 7 %}class="form-control btn-group-vertical border-primary bg-dark text-bg-dark"{% else %}class="form-control btn-group-vertical border-primary"{% endif %}>{% trans "Чс.пояс" %}</label>
                   <select name="timezone" {% if current_time.hour >= 19 or  current_time.hour <= 7 %}class="form-select border-primary bg-dark text-bg-dark"{% else %}class="form-select border-primary"{% endif %} id="inputGroupSelect04" aria-label="Example select with button addon">
                       {% for tz in timezones %}
                           <option value="{{ tz }}" {% if tz == TIME_ZONE %}selected{% endif %}>{{ tz }}</option>
