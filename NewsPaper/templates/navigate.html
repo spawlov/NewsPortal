@@ -16,38 +16,7 @@
           {% endif %}
       </div>
       <div class="col-4 text-center">
-          {% get_current_timezone as TIME_ZONE %}
-          <form class="row g-3" action="/set_tz/" method="post">
-              {% csrf_token %}
-              <div class="input-group">
-                  <label class="form-control btn-group-vertical border-primary">Time zone:</label>
-                  <select name="timezone" class="form-select border-primary" id="inputGroupSelect04" aria-label="Example select with button addon">
-                      {% for tz in timezones %}
-                          <option value="{{ tz }}" {% if tz == TIME_ZONE %}selected{% endif %}>{{ tz }}</option>
-                      {% endfor %}
-                  </select>
-                  <button class="btn btn-primary" type="submit">{% trans "Выбор" %}</button>
-              </div>
-          </form>
-
-          <form class="row g-3" action="{% url 'set_language' %}" method="post">
-              {% get_current_language as LANGUAGE_CODE %}
-              {% get_available_languages as LANGUAGES %}
-              {% get_language_info_list for LANGUAGES as languages %}
-              {% csrf_token %}
-              <input type="hidden" name="next" value="{{ redirect_to }}">
-              <div class="input-group">
-                  <label id="lang_sel" class="form-control btn-group-vertical border-primary">{% trans "Язык" %}</label>
-                  <select name="language" class="form-select border-primary" id="inputGroupSelect04" aria-label="Example select with button addon">
-                      {% for language in languages %}
-                        <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected {% endif %}>
-                          {{ language.name_local }}
-                        </option>
-                      {% endfor %}
-                  </select>
-                  <button class="btn btn-primary" type="submit">{% trans "Выбор" %}</button>
-              </div>
-          </form>
+        {{ current_time }}
       </div>
       <div class="col-4 d-flex justify-content-end align-items-center">
         <a class="link-secondary" href="{% url 'news:search' %}" aria-label="Search">

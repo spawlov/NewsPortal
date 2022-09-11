@@ -260,8 +260,8 @@ msgid "Стать автором"
 msgstr "Become an author"
 
 #: templates/right_block.html:9
-msgid "О проекте"
-msgstr "About"
+msgid "Локализация"
+msgstr "Localization"
 
 #: templates/right_block.html:16
 msgid "Архив"

@@ -1,4 +1,5 @@
 {% load i18n %}
+{% load tz %}
 {% load cache %}
 {% load news_filters %}
 {% load news_tags %}
@@ -6,10 +7,44 @@
 <div class="col-md-4">
   <div class="position-sticky" style="top: 2rem;">
     <div class="p-4 mb-3 rounded shadow-lg">
-      <h4 class="fst-italic">{% trans "О проекте" %}</h4>
-      <p class="mb-0">
-          Здесь написать краткое описание проекта...
+      <h4 class="fst-italic">{% trans "Локализация" %}</h4>
+
+      <p>
+          {% get_current_timezone as TIME_ZONE %}
+          <form class="row g-3" action="/set_tz/" method="post">
+              {% csrf_token %}
+              <div class="input-group">
+                  <label {% if current_time.hour >= 19 or  current_time.hour <= 7 %}class="form-control btn-group-vertical border-primary bg-dark text-bg-dark"{% else %}class="form-control btn-group-vertical border-primary"{% endif %}>TimeZone</label>
+                  <select name="timezone" {% if current_time.hour >= 19 or  current_time.hour <= 7 %}class="form-select border-primary bg-dark text-bg-dark"{% else %}class="form-select border-primary"{% endif %} id="inputGroupSelect04" aria-label="Example select with button addon">
+                      {% for tz in timezones %}
+                          <option value="{{ tz }}" {% if tz == TIME_ZONE %}selected{% endif %}>{{ tz }}</option>
+                      {% endfor %}
+                  </select>
+                  <button class="btn btn-primary" type="submit">{% trans "Выбор" %}</button>
+              </div>
+    </form>
       </p>
+      <p>
+      <form class="row g-3" action="{% url 'set_language' %}" method="post">
+          {% get_current_language as LANGUAGE_CODE %}
+          {% get_available_languages as LANGUAGES %}
+          {% get_language_info_list for LANGUAGES as languages %}
+          {% csrf_token %}
+          <input type="hidden" name="next" value="{{ redirect_to }}">
+          <div class="input-group">
+              <label id="lang_sel" {% if current_time.hour >= 19 or  current_time.hour <= 7 %}class="form-control btn-group-vertical border-primary bg-dark text-bg-dark"{% else %}class="form-control btn-group-vertical border-primary"{% endif %}>{% trans "Язык" %}</label>
+              <select name="language" {% if current_time.hour >= 19 or  current_time.hour <= 7 %}class="form-select border-primary bg-dark text-bg-dark"{% else %}class="form-select border-primary"{% endif %} id="inputGroupSelect04" aria-label="Example select with button addon">
+                  {% for language in languages %}
+                    <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected {% endif %}>
+                      {{ language.name_local }}
+                    </option>
+                  {% endfor %}
+              </select>
+              <button class="btn btn-primary" type="submit">{% trans "Выбор" %}</button>
+          </div>
+      </form>
+      </p>
+
     </div>
 
     <div class="p-4 mb-3 container-fluid shadow-lg">
