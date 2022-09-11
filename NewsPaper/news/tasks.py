@@ -32,7 +32,7 @@ def notify_subscribers_for_new_post(id, title, content):
             'cat__subscribers__username',
             'cat__subscribers__first_name',
             'cat__subscribers__email',
-            'cat__name',
+            'cat__name_ru',
         )
     )
 
@@ -114,7 +114,7 @@ def weekly_notify():
                     title_list = list(Post.objects.filter(
                         post_cat=cat,
                         date_pub__gte=last_week,
-                    ).values_list('pk', 'name'))
+                    ).values_list('pk', 'name_ru'))
                     if not receiver.first_name:
                         firstname = receiver.username
                     else:
@@ -123,7 +123,7 @@ def weekly_notify():
                         'email/weekly_notify.html',
                         {
                             'name': firstname,
-                            'category': category.name,
+                            'category': category.name_ru,
                             'titles': title_list,
                             'link': link,
                             'site_name': site.name,
