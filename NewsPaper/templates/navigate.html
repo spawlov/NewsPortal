@@ -5,12 +5,12 @@
     <div class="row flex-nowrap justify-content-between align-items-center">
       <div class="col-4 pt-1">
           {% if user.id %}
-              <p class="pb-1 mb-0 fst-italic fw-semibold">
+              <p class="pb-0 mb-0">
                   {{ user }}
                   :
-                  <a class="link-primary text-decoration-none" href="{% url 'news:profile' user.id %}">{% trans "Профиль" %}</a>
+                  <a title="{% trans "Профиль" %}" class="link-primary text-decoration-none" href="{% url 'news:profile' user.id %}">{% trans "Профиль" %}</a>
                   :
-                  <a class="link-primary text-decoration-none" href="{% url 'news:create' %}">{% trans "Добавить статью" %}</a>
+                  <a title="{% trans "Добавить статью" %}" class="link-primary text-decoration-none" href="{% url 'news:create' %}">{% trans "Добавить статью" %}</a>
               </p>
           {% endif %}
       </div>
@@ -22,8 +22,8 @@
               {% csrf_token %}
               <input type="hidden" name="next" value="{{ redirect_to }}">
               <div class="input-group">
-                  <label id="lang_sel" class="form-control btn-group-vertical text-end">{% trans "Язык" %}</label>
-                  <select name="language" class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+                  <label id="lang_sel" class="form-control btn-group-vertical border-primary">{% trans "Язык" %}</label>
+                  <select name="language" class="form-select border-primary" id="inputGroupSelect04" aria-label="Example select with button addon">
                       {% for language in languages %}
                         <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected {% endif %}>
                           {{ language.name_local }}

@@ -212,8 +212,8 @@ msgid "В начало"
 msgstr "Back to top"
 
 #: templates/header.html:5
-msgid "Учебный проект на курсе \\"
-msgstr ""
+msgid "Учебный проект на курсе \"Fullstack разработчик на Python\""
+msgstr "Training project on the course \"Fullstack developer in Python\""
 
 #: templates/navigate.html:11
 msgid "Профиль"
