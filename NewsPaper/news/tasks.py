@@ -164,15 +164,15 @@ def daily_parsing():
     response = []
     for cat_name, parse_url in urls_to_parse.items():
         resp, title, content, image_name, date_pub = article_parser(parse_url)
-        if resp == 200:
+        exists = Post.objects.filter(name_ru__icontains=title).exists()
+        if all([resp == 200, not exists]):
             cat = Category.objects.get(name_ru=cat_name)
-            image = f'images/{image_name}'
             post, created = Post.objects.get_or_create(
                 author_post=author,
                 type_cat='ART',
                 name_ru=title,
                 content_ru=content,
-                content_image=image,
+                content_image=image_name,
             )
             if created:
                 post.post_cat.add(cat)

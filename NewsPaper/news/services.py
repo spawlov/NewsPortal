@@ -28,6 +28,7 @@ def article_parser(parsing_url: str) -> tuple:
         news_to_parse = requests.get(link_last, headers=headers)
         news_page = BeautifulSoup(news_to_parse.text, 'lxml')
         title = news_page.find('div', class_='post-title').find('h1').text
+        title = title.strip()
         date_pub = news_page.find('div', class_='meta-item').find(
             'span', class_='echo_date'
         ).get('data-published')
@@ -36,21 +37,21 @@ def article_parser(parsing_url: str) -> tuple:
         ).get('href')
 
         image_name = image.split('/')[-1]
+        full_image_name = f'images/{timezone.now().strftime("%Y/%m/%d")}/{image_name}'
 
         r = requests.get(image, stream=True)
         if r.status_code == 200:
-            # if not os.path.exists(f'images/{timezone.now().strftime("%Y/%m/%d")}'):
-            #     os.makedirs(f'images/{timezone.now().strftime("%Y/%m/%d")}')
-            with open(
-                    f'images/{image_name}', 'wb'
-            ) as f:
+            if not os.path.exists(f'images/{timezone.now().strftime("%Y/%m/%d")}'):
+                os.makedirs(f'images/{timezone.now().strftime("%Y/%m/%d")}')
+
+            with open(full_image_name, 'wb') as f:
                 r.raw.decode_content = True
                 shutil.copyfileobj(r.raw, f)
 
         post_p = []
 
         body_lead = news_page.find('div', class_='post-lead').find('p').text
-        post_p.append(body_lead)
+        post_p.append(body_lead.strip())
 
         body = news_page.find('div', class_='body')
         pre_p = body.find_all('p')
@@ -62,6 +63,6 @@ def article_parser(parsing_url: str) -> tuple:
         for par in post_p:
             content += f'<p>{par}</p>'
 
-        return resp, title, content, image_name, date_pub
+        return resp, title, content, full_image_name, date_pub
     else:
         return resp, None, None, None, None
