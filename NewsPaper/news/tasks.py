@@ -170,8 +170,8 @@ def daily_parsing():
             post, created = Post.objects.get_or_create(
                 author_post=author,
                 type_cat='ART',
-                name=title,
-                content=content,
+                name_ru=title,
+                content_ru=content,
                 content_image=image,
             )
             if created:
