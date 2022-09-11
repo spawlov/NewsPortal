@@ -2,6 +2,7 @@
 <html lang="en">
 
   {% load i18n %}
+  {% load tz %}
   {% load static %}
   {% load news_filters %}
   {% load news_tags %}
@@ -79,7 +80,7 @@
     <link href="{% static 'css/blog.rtl.css' %}" rel="stylesheet">
     <link href="{% static 'css/styles.css' %}" rel="stylesheet">
   </head>
-  <body>
+  <body {% if current_time.hour >= 19 or  current_time.hour <= 7 %}class="bg-dark text-bg-dark"{% endif %}>
     
     {% include 'navigate.html' %}
 
@@ -87,6 +88,9 @@
       {% include 'header.html' %}
       <div class="row g-5">
         <div class="col-md-8">
+
+            <p>{{ current_time }}</p>
+
             {% block content %}
                 {{ news.content }}
             {% endblock content %}
