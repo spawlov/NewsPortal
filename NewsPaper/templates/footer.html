@@ -1,5 +1,5 @@
 {% load i18n %}
-<footer class="blog-footer">
+<footer {% if current_time.hour >= 19 or  current_time.hour <= 7 %}class="blog-footer bg-dark text-bg-dark"{% else %}class="blog-footer"{% endif %}>
   <p>{% trans "Сайт создан с использованием " %}<a target="_blank" href="https://getbootstrap.com/">Bootstrap</a> by <a target="_blank" href="https://twitter.com/mdo">@mdo</a>.</p>
   <p><a href="#">{% trans "В начало" %}</a></p>
 </footer>

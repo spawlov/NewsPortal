@@ -79,7 +79,7 @@
     <link href="{% static 'css/blog.rtl.css' %}" rel="stylesheet">
     <link href="{% static 'css/styles.css' %}" rel="stylesheet">
   </head>
-  <body>
+  <body {% if current_time.hour >= 19 or  current_time.hour <= 7 %}class="bg-dark text-bg-dark"{% endif %}>
     {% include 'navigate.html' %}
     <main class="container">
       {% include 'header.html' %}

@@ -59,18 +59,18 @@
             </button>
         </div>
     </div>
-    <nav class="navbar bg-light">
+    <nav {% if current_time.hour >= 19 or  current_time.hour <= 7 %}class="navbar bg-dark text-bg-dark"{% else %}class="navbar bg-light"{% endif %}>
         <div class="container-fluid fw-semibold">
             {% trans "Комментарии" %} ({{ comments.count }})
         </div>
     </nav>
     {% if not comments %}
-        <div class="alert alert-info fw-normal" role="alert">
+        <div {% if current_time.hour >= 19 or  current_time.hour <= 7 %}class="alert alert-info fw-normal bg-dark text-bg-dark"{% else %}class="alert alert-info fw-normal"{% endif %} role="alert">
             {% trans "К этому посту пока нет комментариев..." %}
         </div>
     {% else %}
         {% for comment in comments %}
-            <div class="alert alert-success fw-normal" role="alert">
+            <div {% if current_time.hour >= 19 or  current_time.hour <= 7 %}class="alert alert-info fw-normal bg-dark text-bg-dark"{% else %}class="alert alert-info fw-normal"{% endif %} role="alert">
                 <span class="fw-semibold">
                     {{ comment.date_comment }}, {{ comment.user }} {% trans "пишет:" %}
                 </span>
