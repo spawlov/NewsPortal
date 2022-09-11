@@ -165,7 +165,7 @@ def daily_parsing():
     for cat_name, parse_url in urls_to_parse.items():
         resp, title, content, image_name, date_pub = article_parser(parse_url)
         if resp == 200:
-            cat = Category.objects.get(name=cat_name)
+            cat = Category.objects.get(name_ru=cat_name)
             image = f'images/{image_name}'
             post, created = Post.objects.get_or_create(
                 author_post=author,
