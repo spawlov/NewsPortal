@@ -18,8 +18,10 @@ class PostingForm(forms.ModelForm):
         model = Post
         fields = [
             'type_cat',
-            'name',
-            'content',
+            'name_ru',
+            'content_ru',
+            'name_en',
+            'content_en',
             'content_image',
             'post_cat',
         ]
@@ -27,10 +29,16 @@ class PostingForm(forms.ModelForm):
             'type_cat': forms.Select(
                 attrs={'class': 'form-select border-primary'}
             ),
-            'name': forms.TextInput(
+            'name_ru': forms.TextInput(
                 attrs={'class': 'form-control border-primary'}
             ),
-            'content': forms.Textarea(
+            'content_ru': forms.Textarea(
+                attrs={'class': 'form-control border-primary'}
+            ),
+            'name_en': forms.TextInput(
+                attrs={'class': 'form-control border-primary'}
+            ),
+            'content_en': forms.Textarea(
                 attrs={'class': 'form-control border-primary'}
             ),
             'content_image': forms.FileInput(
@@ -51,10 +59,10 @@ class PostingForm(forms.ModelForm):
                 'content': 'Содержание не может быть менее 500 символов'
             })
 
-        if name == content:
-            raise ValidationError(
-                'Содержание не должно быть идентично названию'
-            )
+        # if name == content:
+        #     raise ValidationError(
+        #         'Содержание не должно быть идентично названию'
+        #     )
 
         return cleaned_data
 

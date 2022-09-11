@@ -12,7 +12,8 @@ class PostCategoryInLine(admin.TabularInline):
     extra = 1
 
 
-class PostAdmin(admin.ModelAdmin):
+class PostAdmin(TranslationAdmin):
+    model = Post
     form = PostingForm
     list_display = (
         'name', 'author_post', 'date_pub', 'content_rate',
