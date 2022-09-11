@@ -11,7 +11,6 @@ from django.shortcuts import redirect, get_object_or_404, get_list_or_404
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from django.utils import timezone
-from django.utils.translation import gettext_lazy as _
 from django.views.generic import CreateView, DeleteView, UpdateView, \
     ListView, DetailView
 
@@ -284,4 +283,10 @@ def dislike_article(request, pk):
     author = Author.objects.get(pk=author_id)
     disliked_post.dislike()
     author.update_rate()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+def set_timezone(request):
+    if request.POST:
+        request.session['django_timezone'] = request.POST['timezone']
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

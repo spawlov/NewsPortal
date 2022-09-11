@@ -476,3 +476,557 @@ Traceback (most recent call last):
     return Database.Cursor.execute(self, query, params)
 django.db.utils.OperationalError: no such column: news_category.name_en
 ERROR::2022-09-11 02:48:05,265::"GET /admin/news/category/ HTTP/1.1" 500 194405::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-11 17:11:20,502::Internal Server Error: /::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'django.template.exceptions.TemplateSyntaxError'>, TemplateSyntaxError("Invalid block tag on line 18: 'get_current_timezone'. Did you forget to register or load this tag?"), <traceback object at 0x7f5524256640>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 505, in parse
+    compile_func = self.tags[command]
+KeyError: 'get_current_timezone'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/backends/django.py", line 62, in render
+    return self.template.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/test/utils.py", line 111, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/test/utils.py", line 111, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/loader_tags.py", line 197, in render
+    template = context.template.engine.select_template(template_name)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/engine.py", line 206, in select_template
+    return self.get_template(template_name)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 200, in compile_nodelist
+    return parser.parse()
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 507, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 568, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 18: 'get_current_timezone'. Did you forget to register or load this tag?
+ERROR::2022-09-11 17:11:20,649::"GET / HTTP/1.1" 500 284899::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-11 18:16:58,083::Internal Server Error: /::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'django.urls.exceptions.NoReverseMatch'>, NoReverseMatch("Reverse for 'set_tz' not found. 'set_tz' is not a valid view function or pattern name."), <traceback object at 0x7fbfe66b3980>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/backends/django.py", line 62, in render
+    return self.template.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/test/utils.py", line 111, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/test/utils.py", line 111, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/loader_tags.py", line 208, in render
+    return template.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 177, in render
+    return self._render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/test/utils.py", line 111, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/defaulttags.py", line 472, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/urls/resolvers.py", line 803, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'set_tz' not found. 'set_tz' is not a valid view function or pattern name.
+ERROR::2022-09-11 18:16:58,401::"GET / HTTP/1.1" 500 258795::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-11 18:18:26,784::Internal Server Error: /::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'django.urls.exceptions.NoReverseMatch'>, NoReverseMatch("Reverse for 'set_tz' not found. 'set_tz' is not a valid view function or pattern name."), <traceback object at 0x7fbfe6485d40>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/backends/django.py", line 62, in render
+    return self.template.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/test/utils.py", line 111, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/test/utils.py", line 111, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/loader_tags.py", line 208, in render
+    return template.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 177, in render
+    return self._render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/test/utils.py", line 111, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/defaulttags.py", line 472, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/urls/resolvers.py", line 803, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'set_tz' not found. 'set_tz' is not a valid view function or pattern name.
+ERROR::2022-09-11 18:18:26,965::"GET / HTTP/1.1" 500 257889::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-11 18:38:02,770::Internal Server Error: /::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'django.template.exceptions.TemplateSyntaxError'>, TemplateSyntaxError("Invalid filter: 'timezone'"), <traceback object at 0x7f7db170dbc0>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/backends/django.py", line 62, in render
+    return self.template.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/test/utils.py", line 111, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/loader_tags.py", line 132, in render
+    compiled_parent = self.get_parent(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/loader_tags.py", line 129, in get_parent
+    return self.find_template(parent, context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/loader_tags.py", line 107, in find_template
+    template, origin = context.template.engine.find_template(
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 200, in compile_nodelist
+    return parser.parse()
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 484, in parse
+    raise self.error(token, e)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 482, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 600, in compile_filter
+    return FilterExpression(token, self)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 698, in __init__
+    filter_func = parser.find_filter(filter_name)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 606, in find_filter
+    raise TemplateSyntaxError("Invalid filter: '%s'" % filter_name)
+django.template.exceptions.TemplateSyntaxError: Invalid filter: 'timezone'
+ERROR::2022-09-11 18:38:02,887::"GET / HTTP/1.1" 500 240002::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-11 18:38:39,161::Internal Server Error: /::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'django.template.base.VariableDoesNotExist'>, VariableDoesNotExist('Failed lookup for key [%s] in %r', ('TIME_ZONE', [{'True': True, 'False': False, 'None': None}, {}, {}, {'paginator': <django.core.paginator.Paginator object at 0x7f7db15ccf70>, 'page_obj': <Page 1 of 8>, 'is_paginated': True, 'object_list': <MultilingualQuerySet [<Post: На корейском токамаке опробовали новый способ создания плазмы рекордной температуры>, <Post: Почему во Вселенной нет антивещества? Ответ может дать космологический коллайдер>, <Post: Из-за замены одной аминокислоты в нашем мозге больше нейронов, чем было у неандертальцев>, <Post: Совместная работа наземных и космических обсерваторий помогла открыть планету в обитаемой зоне очень холодной звезды>, <Post: Дедовщина не усиливает общность в группе, как считалось ранее>, <Post: Генетики определили место и время одомашнивания ослов>, <Post: Астрономы открыли планеты, наполовину состоящие из воды>, <Post: Зависимость подростков от соцсетей связали с социальным статусом семьи>, <Post: Морские хищники используют антициклонические течения для поиска пищи в океане>, <Post: Сахарозаменители могут повышать риск инфарктов и инсультов>]>, 'posts': <MultilingualQuerySet [<Post: На корейском токамаке опробовали новый способ создания плазмы рекордной температуры>, <Post: Почему во Вселенной нет антивещества? Ответ может дать космологический коллайдер>, <Post: Из-за замены одной аминокислоты в нашем мозге больше нейронов, чем было у неандертальцев>, <Post: Совместная работа наземных и космических обсерваторий помогла открыть планету в обитаемой зоне очень холодной звезды>, <Post: Дедовщина не усиливает общность в группе, как считалось ранее>, <Post: Генетики определили место и время одомашнивания ослов>, <Post: Астрономы открыли планеты, наполовину состоящие из воды>, <Post: Зависимость подростков от соцсетей связали с социальным статусом семьи>, <Post: Морские хищники используют антициклонические течения для поиска пищи в океане>, <Post: Сахарозаменители могут повышать риск инфарктов и инсультов>]>, 'view': <news.views.IndexView object at 0x7f7db15ccf10>}])), <traceback object at 0x7f7db152ae00>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 880, in _resolve_lookup
+    current = current[bit]
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/context.py", line 83, in __getitem__
+    raise KeyError(key)
+KeyError: 'TIME_ZONE'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 886, in _resolve_lookup
+    if isinstance(current, BaseContext) and getattr(
+AttributeError: type object 'RequestContext' has no attribute 'TIME_ZONE'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 896, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'TIME_ZONE'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/backends/django.py", line 62, in render
+    return self.template.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/test/utils.py", line 111, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/test/utils.py", line 111, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1064, in render
+    output = self.filter_expression.resolve(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 736, in resolve
+    arg_vals.append(arg.resolve(context))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 847, in resolve
+    value = self._resolve_lookup(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 903, in _resolve_lookup
+    raise VariableDoesNotExist(
+django.template.base.VariableDoesNotExist: Failed lookup for key [TIME_ZONE] in [{'True': True, 'False': False, 'None': None}, {}, {}, {'paginator': <django.core.paginator.Paginator object at 0x7f7db15ccf70>, 'page_obj': <Page 1 of 8>, 'is_paginated': True, 'object_list': <MultilingualQuerySet [<Post: На корейском токамаке опробовали новый способ создания плазмы рекордной температуры>, <Post: Почему во Вселенной нет антивещества? Ответ может дать космологический коллайдер>, <Post: Из-за замены одной аминокислоты в нашем мозге больше нейронов, чем было у неандертальцев>, <Post: Совместная работа наземных и космических обсерваторий помогла открыть планету в обитаемой зоне очень холодной звезды>, <Post: Дедовщина не усиливает общность в группе, как считалось ранее>, <Post: Генетики определили место и время одомашнивания ослов>, <Post: Астрономы открыли планеты, наполовину состоящие из воды>, <Post: Зависимость подростков от соцсетей связали с социальным статусом семьи>, <Post: Морские хищники используют антициклонические течения для поиска пищи в океане>, <Post: Сахарозаменители могут повышать риск инфарктов и инсультов>]>, 'posts': <MultilingualQuerySet [<Post: На корейском токамаке опробовали новый способ создания плазмы рекордной температуры>, <Post: Почему во Вселенной нет антивещества? Ответ может дать космологический коллайдер>, <Post: Из-за замены одной аминокислоты в нашем мозге больше нейронов, чем было у неандертальцев>, <Post: Совместная работа наземных и космических обсерваторий помогла открыть планету в обитаемой зоне очень холодной звезды>, <Post: Дедовщина не усиливает общность в группе, как считалось ранее>, <Post: Генетики определили место и время одомашнивания ослов>, <Post: Астрономы открыли планеты, наполовину состоящие из воды>, <Post: Зависимость подростков от соцсетей связали с социальным статусом семьи>, <Post: Морские хищники используют антициклонические течения для поиска пищи в океане>, <Post: Сахарозаменители могут повышать риск инфарктов и инсультов>]>, 'view': <news.views.IndexView object at 0x7f7db15ccf10>}]
+ERROR::2022-09-11 18:38:39,390::"GET / HTTP/1.1" 500 282039::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-11 19:26:32,281::Internal Server Error: /::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'django.template.exceptions.TemplateSyntaxError'>, TemplateSyntaxError("Invalid block tag on line 91: 'locatime'. Did you forget to register or load this tag?"), <traceback object at 0x7f7cd0746540>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 505, in parse
+    compile_func = self.tags[command]
+KeyError: 'locatime'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/backends/django.py", line 62, in render
+    return self.template.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/test/utils.py", line 111, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/loader_tags.py", line 132, in render
+    compiled_parent = self.get_parent(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/loader_tags.py", line 129, in get_parent
+    return self.find_template(parent, context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/loader_tags.py", line 107, in find_template
+    template, origin = context.template.engine.find_template(
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 200, in compile_nodelist
+    return parser.parse()
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 507, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 568, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 91: 'locatime'. Did you forget to register or load this tag?
+ERROR::2022-09-11 19:26:32,395::"GET / HTTP/1.1" 500 232946::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-11 19:29:43,524::Internal Server Error: /::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'django.template.exceptions.TemplateSyntaxError'>, TemplateSyntaxError("Could not parse the remainder: '(TIME_ZONE)' from 'current_time.hour.tzname(TIME_ZONE)'"), <traceback object at 0x7f7cd045b780>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/backends/django.py", line 62, in render
+    return self.template.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/test/utils.py", line 111, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/loader_tags.py", line 132, in render
+    compiled_parent = self.get_parent(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/loader_tags.py", line 129, in get_parent
+    return self.find_template(parent, context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/loader_tags.py", line 107, in find_template
+    template, origin = context.template.engine.find_template(
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 200, in compile_nodelist
+    return parser.parse()
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 484, in parse
+    raise self.error(token, e)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 482, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 600, in compile_filter
+    return FilterExpression(token, self)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 703, in __init__
+    raise TemplateSyntaxError(
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '(TIME_ZONE)' from 'current_time.hour.tzname(TIME_ZONE)'
+ERROR::2022-09-11 19:29:43,650::"GET / HTTP/1.1" 500 236771::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-11 19:36:55,090::Internal Server Error: /::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'TypeError'>, TypeError('datetime.tzname() takes no arguments (1 given)'), <traceback object at 0x7f82eb0af700>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/backends/django.py", line 62, in render
+    return self.template.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 173, in render
+    with context.bind_template(self):
+  File "/usr/lib/python3.9/contextlib.py", line 119, in __enter__
+    return next(self.gen)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/debug_toolbar/panels/templates/panel.py", line 45, in _request_context_bind_template
+    context = processor(self.request)
+  File "/home/sergey/SkillFactory/NewsPortal/NewsPaper/news/context_processors.py", line 23, in navigate_context
+    'current_time': timezone.now().tzname(zoneinfo.ZoneInfo(tzname)),
+TypeError: datetime.tzname() takes no arguments (1 given)
+ERROR::2022-09-11 19:36:55,459::"GET / HTTP/1.1" 500 131931::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-11 19:37:01,588::Internal Server Error: /::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'TypeError'>, TypeError('datetime.tzname() takes no arguments (1 given)'), <traceback object at 0x7f82eae2da80>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/backends/django.py", line 62, in render
+    return self.template.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 173, in render
+    with context.bind_template(self):
+  File "/usr/lib/python3.9/contextlib.py", line 119, in __enter__
+    return next(self.gen)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/debug_toolbar/panels/templates/panel.py", line 45, in _request_context_bind_template
+    context = processor(self.request)
+  File "/home/sergey/SkillFactory/NewsPortal/NewsPaper/news/context_processors.py", line 23, in navigate_context
+    'current_time': timezone.now().tzname(zoneinfo.ZoneInfo(tzname)),
+TypeError: datetime.tzname() takes no arguments (1 given)
+ERROR::2022-09-11 19:37:01,676::"GET / HTTP/1.1" 500 131929::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-11 19:45:21,597::Internal Server Error: /::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'django.template.base.VariableDoesNotExist'>, VariableDoesNotExist('Failed lookup for key [%s] in %r', ('TIME_ZONE', [{'True': True, 'False': False, 'None': None}, {}, {}, {'paginator': <django.core.paginator.Paginator object at 0x7fd546fece50>, 'page_obj': <Page 1 of 8>, 'is_paginated': True, 'object_list': <MultilingualQuerySet [<Post: На корейском токамаке опробовали новый способ создания плазмы рекордной температуры>, <Post: Почему во Вселенной нет антивещества? Ответ может дать космологический коллайдер>, <Post: Из-за замены одной аминокислоты в нашем мозге больше нейронов, чем было у неандертальцев>, <Post: Совместная работа наземных и космических обсерваторий помогла открыть планету в обитаемой зоне очень холодной звезды>, <Post: Дедовщина не усиливает общность в группе, как считалось ранее>, <Post: Генетики определили место и время одомашнивания ослов>, <Post: Астрономы открыли планеты, наполовину состоящие из воды>, <Post: Зависимость подростков от соцсетей связали с социальным статусом семьи>, <Post: Морские хищники используют антициклонические течения для поиска пищи в океане>, <Post: Сахарозаменители могут повышать риск инфарктов и инсультов>]>, 'posts': <MultilingualQuerySet [<Post: На корейском токамаке опробовали новый способ создания плазмы рекордной температуры>, <Post: Почему во Вселенной нет антивещества? Ответ может дать космологический коллайдер>, <Post: Из-за замены одной аминокислоты в нашем мозге больше нейронов, чем было у неандертальцев>, <Post: Совместная работа наземных и космических обсерваторий помогла открыть планету в обитаемой зоне очень холодной звезды>, <Post: Дедовщина не усиливает общность в группе, как считалось ранее>, <Post: Генетики определили место и время одомашнивания ослов>, <Post: Астрономы открыли планеты, наполовину состоящие из воды>, <Post: Зависимость подростков от соцсетей связали с социальным статусом семьи>, <Post: Морские хищники используют антициклонические течения для поиска пищи в океане>, <Post: Сахарозаменители могут повышать риск инфарктов и инсультов>]>, 'view': <news.views.IndexView object at 0x7fd546fe6640>}])), <traceback object at 0x7fd546f8e540>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 880, in _resolve_lookup
+    current = current[bit]
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/context.py", line 83, in __getitem__
+    raise KeyError(key)
+KeyError: 'TIME_ZONE'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 886, in _resolve_lookup
+    if isinstance(current, BaseContext) and getattr(
+AttributeError: type object 'RequestContext' has no attribute 'TIME_ZONE'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 896, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'TIME_ZONE'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/backends/django.py", line 62, in render
+    return self.template.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/test/utils.py", line 111, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/test/utils.py", line 111, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 1064, in render
+    output = self.filter_expression.resolve(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 736, in resolve
+    arg_vals.append(arg.resolve(context))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 847, in resolve
+    value = self._resolve_lookup(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 903, in _resolve_lookup
+    raise VariableDoesNotExist(
+django.template.base.VariableDoesNotExist: Failed lookup for key [TIME_ZONE] in [{'True': True, 'False': False, 'None': None}, {}, {}, {'paginator': <django.core.paginator.Paginator object at 0x7fd546fece50>, 'page_obj': <Page 1 of 8>, 'is_paginated': True, 'object_list': <MultilingualQuerySet [<Post: На корейском токамаке опробовали новый способ создания плазмы рекордной температуры>, <Post: Почему во Вселенной нет антивещества? Ответ может дать космологический коллайдер>, <Post: Из-за замены одной аминокислоты в нашем мозге больше нейронов, чем было у неандертальцев>, <Post: Совместная работа наземных и космических обсерваторий помогла открыть планету в обитаемой зоне очень холодной звезды>, <Post: Дедовщина не усиливает общность в группе, как считалось ранее>, <Post: Генетики определили место и время одомашнивания ослов>, <Post: Астрономы открыли планеты, наполовину состоящие из воды>, <Post: Зависимость подростков от соцсетей связали с социальным статусом семьи>, <Post: Морские хищники используют антициклонические течения для поиска пищи в океане>, <Post: Сахарозаменители могут повышать риск инфарктов и инсультов>]>, 'posts': <MultilingualQuerySet [<Post: На корейском токамаке опробовали новый способ создания плазмы рекордной температуры>, <Post: Почему во Вселенной нет антивещества? Ответ может дать космологический коллайдер>, <Post: Из-за замены одной аминокислоты в нашем мозге больше нейронов, чем было у неандертальцев>, <Post: Совместная работа наземных и космических обсерваторий помогла открыть планету в обитаемой зоне очень холодной звезды>, <Post: Дедовщина не усиливает общность в группе, как считалось ранее>, <Post: Генетики определили место и время одомашнивания ослов>, <Post: Астрономы открыли планеты, наполовину состоящие из воды>, <Post: Зависимость подростков от соцсетей связали с социальным статусом семьи>, <Post: Морские хищники используют антициклонические течения для поиска пищи в океане>, <Post: Сахарозаменители могут повышать риск инфарктов и инсультов>]>, 'view': <news.views.IndexView object at 0x7fd546fe6640>}]
+ERROR::2022-09-11 19:45:21,859::"GET / HTTP/1.1" 500 282267::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-11 19:52:37,096::Internal Server Error: /215/::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'TypeError'>, TypeError("tzinfo argument must be None or of a tzinfo subclass, not type 'str'"), <traceback object at 0x7f40a0243900>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/backends/django.py", line 62, in render
+    return self.template.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 173, in render
+    with context.bind_template(self):
+  File "/usr/lib/python3.9/contextlib.py", line 119, in __enter__
+    return next(self.gen)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/debug_toolbar/panels/templates/panel.py", line 45, in _request_context_bind_template
+    context = processor(self.request)
+  File "/home/sergey/SkillFactory/NewsPortal/NewsPaper/news/context_processors.py", line 23, in navigate_context
+    'current_time': datetime.now(tz=request.session.get('django_timezone')),
+TypeError: tzinfo argument must be None or of a tzinfo subclass, not type 'str'
+ERROR::2022-09-11 19:52:37,538::"GET /215/ HTTP/1.1" 500 121530::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-11 19:53:47,041::Internal Server Error: /215/::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'TypeError'>, TypeError("tzinfo argument must be None or of a tzinfo subclass, not type 'str'"), <traceback object at 0x7facaa45f2c0>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/backends/django.py", line 62, in render
+    return self.template.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 173, in render
+    with context.bind_template(self):
+  File "/usr/lib/python3.9/contextlib.py", line 119, in __enter__
+    return next(self.gen)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/debug_toolbar/panels/templates/panel.py", line 45, in _request_context_bind_template
+    context = processor(self.request)
+  File "/home/sergey/SkillFactory/NewsPortal/NewsPaper/news/context_processors.py", line 23, in navigate_context
+    'current_time': datetime.now(request.session.get('django_timezone')),
+TypeError: tzinfo argument must be None or of a tzinfo subclass, not type 'str'
+ERROR::2022-09-11 19:53:47,548::"GET /215/ HTTP/1.1" 500 121523::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-11 20:09:09,304::Internal Server Error: /215/::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'TypeError'>, TypeError("tzinfo argument must be None or of a tzinfo subclass, not type 'str'"), <traceback object at 0x7fc6c0799500>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/backends/django.py", line 62, in render
+    return self.template.render(context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/base.py", line 173, in render
+    with context.bind_template(self):
+  File "/usr/lib/python3.9/contextlib.py", line 119, in __enter__
+    return next(self.gen)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/debug_toolbar/panels/templates/panel.py", line 45, in _request_context_bind_template
+    context = processor(self.request)
+  File "/home/sergey/SkillFactory/NewsPortal/NewsPaper/news/context_processors.py", line 23, in navigate_context
+    'current_time': timezone.now().astimezone(request.session.get('django_timezone')),
+TypeError: tzinfo argument must be None or of a tzinfo subclass, not type 'str'
+ERROR::2022-09-11 20:09:09,818::"GET /215/ HTTP/1.1" 500 121550::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
