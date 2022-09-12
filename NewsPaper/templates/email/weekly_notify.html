@@ -8,7 +8,7 @@
     {% load news_filters %}
     {% block content %}
         <p>Здравствуйте, {{ firstname }}</p>
-        <p>За эту неделю на сайте "{{ site_name }}" появились следующие статьи:</p>
+        <p>За эту неделю на сайте "{{ site_name }}", в категории "{{ category }}", появились следующие статьи:</p>
         {% for id, title in titles %}
             <p>
                 <a href="{{ link }}{{ id }}/">{{ title|censor }}</a>

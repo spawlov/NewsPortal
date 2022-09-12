@@ -132,7 +132,7 @@ def weekly_notify():
                     message = mail.EmailMultiAlternatives(
                         subject=f'{firstname}, '
                                 f'недельный дайджест статей в категории '
-                                f'"{category.name}"',
+                                f'"{category.name_ru}"',
                         from_email=settings.EMAIL,
                         to=[receiver.email],
                         connection=connection,
