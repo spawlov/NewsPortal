@@ -11,7 +11,7 @@
         <a class="text-decoration-none" href="{% url 'news:detail' post.id %}">
             <h5 class="card-title fst-italic">{{ post.name|censor }}</h5>
         </a>
-        <p class="card-text">{{ post.content|censor|truncatewords_html:20|safe }}</p>
+        <p class="card-text">{{ post.content|censor|truncatewords_html:25|safe }}</p>
         <p class="card-text">
             <small class="text-muted">
                 {{ post.date_pub|date:'d.m.Y' }},

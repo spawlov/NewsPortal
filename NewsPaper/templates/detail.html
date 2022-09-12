@@ -24,7 +24,7 @@
             {{ content.date_pub }}, {{ content.author_post }}, {% trans "рейтинг автора:" %} {{ content.author_post.author_rate }}
         </p>
         <div class="container-fluid text-center">
-            <img class="img-fluid shadow-lg" src="{{ content.content_image.url }}" alt="{{ content.name|censor }}">
+            <img class="rounded img-fluid shadow-lg" src="{{ content.content_image.url }}" alt="{{ content.name|censor }}">
         </div>
         <div class="container-fluid mt-4 px-4">{{ content.content|censor|safe }}</div>
         {% for cat in post_category %}
@@ -67,12 +67,12 @@
         </div>
     </nav>
     {% if not comments %}
-        <div {% if current_time.hour >= 19 or  current_time.hour <= 7 %}class="alert alert-info fw-normal bg-dark text-bg-dark"{% else %}class="alert alert-info fw-normal"{% endif %} role="alert">
+        <div {% if current_time.hour >= 19 or  current_time.hour <= 7 %}class="alert mx-5 alert-info fw-normal bg-dark text-bg-dark"{% else %}class="alert mx-5 alert-info fw-normal"{% endif %} role="alert">
             {% trans "К этому посту пока нет комментариев..." %}
         </div>
     {% else %}
         {% for comment in comments %}
-            <div {% if current_time.hour >= 19 or  current_time.hour <= 7 %}class="alert alert-info fw-normal bg-dark text-bg-dark"{% else %}class="alert alert-info fw-normal"{% endif %} role="alert">
+            <div {% if current_time.hour >= 19 or  current_time.hour <= 7 %}class="alert mx-5 alert-info fw-normal bg-dark text-bg-dark"{% else %}class="alert mx-5 alert-info fw-normal"{% endif %} role="alert">
                 <span class="fw-semibold">
                     {{ comment.date_comment }}, {{ comment.user }} {% trans "пишет:" %}
                 </span>
