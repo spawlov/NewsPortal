@@ -1,3 +1,12 @@
 WARNING::2022-09-08 22:37:25,449::log::Forbidden (CSRF token missing.): /admin/login/
 WARNING::2022-09-11 15:51:50,902::log::Forbidden (CSRF token from POST incorrect.): /i18n/setlang/
 WARNING::2022-09-11 15:51:56,173::log::Forbidden (CSRF token from POST incorrect.): /i18n/setlang/
+WARNING::2022-09-12 18:28:12,897::log::Forbidden (CSRF token from POST incorrect.): /i18n/setlang/
+WARNING::2022-09-12 18:28:18,374::log::Forbidden (CSRF token from POST incorrect.): /i18n/setlang/
+WARNING::2022-09-12 18:28:26,482::log::Forbidden (CSRF token from POST incorrect.): /i18n/setlang/
+WARNING::2022-09-12 18:28:39,553::log::Forbidden (CSRF token from POST incorrect.): /i18n/setlang/
+WARNING::2022-09-12 18:28:51,275::log::Forbidden (CSRF token from POST incorrect.): /i18n/setlang/
+WARNING::2022-09-12 18:29:08,444::log::Forbidden (CSRF token from POST incorrect.): /i18n/setlang/
+WARNING::2022-09-12 18:29:24,247::log::Forbidden (CSRF token from POST incorrect.): /set_tz/
+WARNING::2022-09-12 18:30:43,203::log::Forbidden (CSRF token from POST incorrect.): /i18n/setlang/
+WARNING::2022-09-12 18:30:46,895::log::Forbidden (CSRF token from POST incorrect.): /i18n/setlang/

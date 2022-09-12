@@ -264,7 +264,7 @@ msgid "Локализация"
 msgstr "Localization"
 
 #: templates/right_block.html:17
-msgid "Чс.пояс"
+msgid "Час.пояс"
 msgstr "TimeZone"
 
 #: templates/right_block.html:16

@@ -3,30 +3,30 @@
 {% load cache %}
 {% load news_filters %}
 {% load news_tags %}
-{% cache 1 rightcol %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_current_timezone as TIME_ZONE %}
+
 <div class="col-md-4">
   <div class="position-sticky" style="top: 2rem;">
-    <div class="p-4 mb-3 rounded shadow-lg">
+    <div class="p-4 mb-2 rounded shadow-lg">
       <h4 class="fst-italic">{% trans "Локализация" %}</h4>
 
       <p>
-          {% get_current_timezone as TIME_ZONE %}
           <form class="row g-3" action="/set_tz/" method="post">
               {% csrf_token %}
               <div class="input-group">
-                  <label {% if current_time.hour >= 19 or  current_time.hour <= 7 %}class="form-control btn-group-vertical border-primary bg-dark text-bg-dark"{% else %}class="form-control btn-group-vertical border-primary"{% endif %}>{% trans "Чс.пояс" %}</label>
+                  <label {% if current_time.hour >= 19 or  current_time.hour <= 7 %}class="form-control btn-group-vertical border-primary bg-dark text-bg-dark"{% else %}class="form-control btn-group-vertical border-primary"{% endif %}>{% trans "Час.пояс" %}</label>
                   <select name="timezone" {% if current_time.hour >= 19 or  current_time.hour <= 7 %}class="form-select border-primary bg-dark text-bg-dark"{% else %}class="form-select border-primary"{% endif %} id="inputGroupSelect04" aria-label="Example select with button addon">
                       {% for tz in timezones %}
                           <option value="{{ tz }}" {% if tz == TIME_ZONE %}selected{% endif %}>{{ tz }}</option>
                       {% endfor %}
                   </select>
-                  <button class="btn btn-primary" type="submit">{% trans "Выбор" %}</button>
+                  <button class="btn btn-outline-primary" type="submit">{% trans "Выбор" %}</button>
               </div>
     </form>
       </p>
       <p>
       <form class="row g-3" action="{% url 'set_language' %}" method="post">
-          {% get_current_language as LANGUAGE_CODE %}
           {% get_available_languages as LANGUAGES %}
           {% get_language_info_list for LANGUAGES as languages %}
           {% csrf_token %}
@@ -40,16 +40,16 @@
                     </option>
                   {% endfor %}
               </select>
-              <button class="btn btn-primary" type="submit">{% trans "Выбор" %}</button>
+              <button class="btn btn-outline-primary" type="submit">{% trans "Выбор" %}</button>
           </div>
       </form>
       </p>
 
     </div>
-
-    <div class="p-4 mb-3 container-fluid shadow-lg">
+    {% cache 600 rightcol TIME_ZONE LANGUAGE_CODE %}
+    <div class="p-4 mb-2 container-fluid shadow-lg">
       <h4 class="fst-italic">{% trans "Архив" %}</h4>
-      <ol class="list-unstyled mb-0">
+      <ol class="list-unstyled mb-0 ms-4">
           {% for item in archives %}
               <li>
                   <a class="text-decoration-none" href="{% url 'news:archive' item.year item.month %}">{{ item.month|name_month }} {{ item.year }}</a>
@@ -59,9 +59,9 @@
       </ol>
     </div>
 
-    <div class="p-4 mb-3 container-fluid shadow-lg">
+    <div class="p-4 mb-2 container-fluid shadow-lg">
       <h4 class="fst-italic">{% trans "Ссылки" %}</h4>
-      <ol class="list-unstyled">
+      <ol class="list-unstyled ms-4">
         <li>
             <a class="text-decoration-none" target="_blank" href="https://github.com/spawlov">GitHub</a>
         </li>

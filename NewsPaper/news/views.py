@@ -23,7 +23,7 @@ from .permissions import PermissionAndOwnerRequiredMixin, \
 
 class IndexView(ListView):
     """Вывод всех новостей и статей"""
-    queryset = Post.objects.select_related().all().order_by('-date_pub')
+    queryset = Post.objects.select_related().all().order_by('-pk')
     template_name = 'posts.html'
     context_object_name = 'posts'
     paginate_by = 10

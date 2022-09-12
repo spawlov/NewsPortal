@@ -23,7 +23,7 @@
         <p class="blog-post-meta">
             {{ content.date_pub }}, {{ content.author_post }}, {% trans "рейтинг автора:" %} {{ content.author_post.author_rate }}
         </p>
-        <img class="img-fluid  img-thumbnail shadow-lg" src="{{ content.content_image.url }}" alt="{{ content.name|censor }}">
+        <img class="img-fluid shadow-lg" src="{{ content.content_image.url }}" alt="{{ content.name|censor }}">
         <p>{{ content.content|censor|safe }}</p>
         {% for cat in post_category %}
             {% if cat.cat.name not in is_subscribed %}
