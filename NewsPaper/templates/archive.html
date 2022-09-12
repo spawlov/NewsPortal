@@ -2,11 +2,13 @@
 {% load i18n %}
 {% load news_filters %}
 {% load news_tags %}
+{% load cache %}
 
 {% block title %}News Paper - Новостной портал{% endblock title %}
 {% block content %}
-    {% load cache %}
-    {% cache 1 arch_news year month page_obj.number %}
+    {% get_current_language as LANGUAGE_CODE %}
+    {% get_current_timezone as TIME_ZONE %}
+    {% cache 600 arch_news year month page_obj.number LANGUAGE_CODE TIME_ZONE %}
     <h4 class="pb-1 mb-4 fst-italic">
         {% trans "Архив публикаций за" %} {{ month|name_month }} {{ year }}
     </h4>

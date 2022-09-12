@@ -1,11 +1,8 @@
 from django.contrib.auth.models import User
-from django.core.cache import cache
-from django.core.cache.utils import make_template_fragment_key
 from django.db import models
 from django.db.models import Sum
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
-from django.utils.translation import pgettext_lazy
 
 
 class Author(models.Model):
@@ -17,6 +14,18 @@ class Author(models.Model):
     author_rate = models.SmallIntegerField(
         default=0,
         verbose_name=_('Рейтинг'),
+    )
+    language = models.CharField(
+        max_length=10,
+        null=True,
+        default=None,
+        verbose_name=_('Язык'),
+    )
+    timezone = models.CharField(
+        max_length=32,
+        null=True,
+        default=None,
+        verbose_name=_('Часовой пояс'),
     )
 
     def update_rate(self):
@@ -62,11 +71,6 @@ class Category(models.Model):
         blank=True,
         verbose_name=_('Подписчик'),
     )
-
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
-        key = make_template_fragment_key('navbar')
-        cache.delete(key)
 
     def __str__(self):
         return self.name
@@ -140,10 +144,6 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse('news:detail', args=[str(self.id)])
-
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
-        cache.delete(f'post-id-{self.pk}')
 
     def __str__(self):
         return self.name

@@ -3,13 +3,13 @@
 {% load tz %}
 {% load news_filters %}
 {% load news_tags %}
-{% get_current_language as LANGUAGE_CODE %}
-{% get_current_timezone as TIME_ZONE %}
 {% load cache %}
 {% block title %}News Paper - Новостной портал{% endblock title %}
 
 {% block content %}
-    {% cache 5 last_news page_obj.number TIME_ZONE LANGUAGE_CODE %}
+    {% get_current_language as LANGUAGE_CODE %}
+    {% get_current_timezone as TIME_ZONE %}
+    {% cache 600 last_news page_obj.number TIME_ZONE LANGUAGE_CODE %}
         <h4 class="pb-1 mb-4 fst-italic">
             {% trans "Последние публикации на сайте" %}
         </h4>

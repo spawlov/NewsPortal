@@ -3,7 +3,7 @@ from django.utils.translation import gettext_lazy as _
 from modeltranslation.admin import TranslationAdmin
 
 from .form import PostingForm
-from .models import Post, PostCategory, Comment, Category, CatSubscribers
+from .models import Post, PostCategory, Comment, Category, CatSubscribers, Author
 
 
 class PostCategoryInLine(admin.TabularInline):
@@ -53,6 +53,12 @@ class CategoryAdmin(TranslationAdmin):
     list_display = ['name', 'name_ru', 'name_en']
 
 
+class AuthorAdmin(admin.ModelAdmin):
+    model = Author
+    list_display = ['author_user', 'language', 'timezone', 'author_rate']
+
+
+admin.site.register(Author, AuthorAdmin)
 admin.site.register(Post, PostAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Comment, CommentsAdmin)

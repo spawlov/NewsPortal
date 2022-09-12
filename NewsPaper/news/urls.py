@@ -1,5 +1,4 @@
 from django.urls import path
-from django.views.decorators.cache import cache_page
 
 from .views import IndexView, PostDetails, PostCreate, PostFind, PostEdit, PostDelete, \
     AuthorEdit, request_upgrade_group, subscribe_category, unsubscribe_category, \

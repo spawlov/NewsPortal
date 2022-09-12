@@ -4,10 +4,9 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.auth.models import User, Group
-from django.core.cache import cache
 from django.core.mail import EmailMultiAlternatives
-from django.http import HttpResponseRedirect, HttpResponse
-from django.shortcuts import redirect, get_object_or_404, get_list_or_404
+from django.http import HttpResponseRedirect
+from django.shortcuts import redirect, get_list_or_404
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from django.utils import timezone
@@ -72,12 +71,7 @@ class CategoryView(ListView):
         # Получаем имя категории
         cat_id = self.kwargs.get('pk', None)
         context['cat_name'] = get_list_or_404(PostCategory.objects.filter(cat=cat_id))[0]
-        # Получаем кэшируемый контекст для категории
-        context['posts'] = cache.get_or_set(
-            f'category-id-{cat_id}-{context.get("page_obj").number}',
-            context['posts'],
-            1
-        )
+
         # Добавление контекста для подписки
         context['post_category'] = PostCategory.objects.filter(
             cat=cat_id
@@ -93,13 +87,6 @@ class PostDetails(DetailView):
     queryset = Post.objects.all().select_related()
     template_name = 'detail.html'
     context_object_name = 'content'
-
-    # def get_object(self, *args, **kwargs):
-    #     obj = cache.get(f'post-id-{self.kwargs["pk"]}', None)
-    #     if not obj:
-    #         obj = super().get_object(queryset=self.queryset)
-    #         cache.set(f'post-id-{self.kwargs["pk"]}', obj)
-    #     return obj
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

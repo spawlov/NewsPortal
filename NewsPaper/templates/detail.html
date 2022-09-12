@@ -8,7 +8,7 @@
         <h4 class="pb-1 mb-4 fst-italic">
             {{ content.name|censor }}
             {% if user.id == content.author_post.author_user.id %}
-                <div class="container text-end">
+                <div class="container text-end mt-2">
                         <div class="btn-group btn-group-sm" role="group">
                             <button type="button" class="btn btn-success">
                                 <a class="text-decoration-none text-light" href="{% url 'news:edit' content.pk %}">{% trans "Редактировать" %}</a>
@@ -23,8 +23,10 @@
         <p class="blog-post-meta">
             {{ content.date_pub }}, {{ content.author_post }}, {% trans "рейтинг автора:" %} {{ content.author_post.author_rate }}
         </p>
-        <img class="img-fluid shadow-lg" src="{{ content.content_image.url }}" alt="{{ content.name|censor }}">
-        <p>{{ content.content|censor|safe }}</p>
+        <div class="container-fluid text-center">
+            <img class="img-fluid shadow-lg" src="{{ content.content_image.url }}" alt="{{ content.name|censor }}">
+        </div>
+        <div class="container-fluid mt-4 px-4">{{ content.content|censor|safe }}</div>
         {% for cat in post_category %}
             {% if cat.cat.name not in is_subscribed %}
                 <div class="container text-start">
