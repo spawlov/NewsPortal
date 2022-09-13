@@ -1326,3 +1326,249 @@ Traceback (most recent call last):
     raise self.error(token, msg)
 django.template.exceptions.TemplateSyntaxError: Unclosed tag on line 39: 'for'. Looking for one of: empty, endfor.
 ERROR::2022-09-12 23:27:39,847::"GET / HTTP/1.1" 500 277038::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-13 17:54:52,696::Internal Server Error: /::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'AttributeError'>, AttributeError("'QuerySet' object has no attribute 'timezone'"), <traceback object at 0x7fc419a9be40>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/NewsPaper/news/middlewares.py", line 14, in __call__
+    ai = Author.objects.filter(author_user=request.user.id).timezone
+AttributeError: 'QuerySet' object has no attribute 'timezone'
+ERROR::2022-09-13 17:54:52,855::"GET / HTTP/1.1" 500 86434::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-13 20:14:09,457::Internal Server Error: /save_local/::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'AttributeError'>, AttributeError("'WSGIRequest' object has no attribute 'get'"), <traceback object at 0x7f20b73ed340>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/NewsPaper/news/views.py", line 289, in set_local_for_user
+    print(request.get('user'))
+AttributeError: 'WSGIRequest' object has no attribute 'get'
+ERROR::2022-09-13 20:14:09,906::"POST /save_local/ HTTP/1.1" 500 91875::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-13 21:21:51,096::Internal Server Error: /accounts/logout/::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'AttributeError'>, AttributeError("'QuerySet' object has no attribute 'timezone'"), <traceback object at 0x7f79071e2140>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/NewsPaper/news/middlewares.py", line 18, in __call__
+    tzname = user_locale.timezone
+AttributeError: 'QuerySet' object has no attribute 'timezone'
+ERROR::2022-09-13 21:21:51,257::"GET /accounts/logout/ HTTP/1.1" 500 85952::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-13 21:23:21,123::Internal Server Error: /accounts/logout/::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'ValueError'>, ValueError('too many values to unpack (expected 2)'), <traceback object at 0x7f38c1045280>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/NewsPaper/news/middlewares.py", line 18, in __call__
+    tzname = user_locale.get('timezone', 'UTC')
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/query.py", line 636, in get
+    clone = self._chain() if self.query.combinator else self.filter(*args, **kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/query.py", line 1420, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/query.py", line 1438, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/query.py", line 1445, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/sql/query.py", line 1532, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/sql/query.py", line 1562, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/sql/query.py", line 1404, in build_filter
+    arg, value = filter_expr
+ValueError: too many values to unpack (expected 2)
+ERROR::2022-09-13 21:23:21,348::"GET /accounts/logout/ HTTP/1.1" 500 118813::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-13 21:23:59,561::Internal Server Error: /accounts/logout/::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'ValueError'>, ValueError('too many values to unpack (expected 2)'), <traceback object at 0x7f1d950cebc0>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/NewsPaper/news/middlewares.py", line 18, in __call__
+    tzname = user_locale.get('timezone')
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/query.py", line 636, in get
+    clone = self._chain() if self.query.combinator else self.filter(*args, **kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/query.py", line 1420, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/query.py", line 1438, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/query.py", line 1445, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/sql/query.py", line 1532, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/sql/query.py", line 1562, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/sql/query.py", line 1404, in build_filter
+    arg, value = filter_expr
+ValueError: too many values to unpack (expected 2)
+ERROR::2022-09-13 21:23:59,731::"GET /accounts/logout/ HTTP/1.1" 500 118689::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-13 21:24:52,373::Internal Server Error: /accounts/logout/::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'TypeError'>, TypeError('QuerySet indices must be integers or slices, not str.'), <traceback object at 0x7f33896ecd80>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/NewsPaper/news/middlewares.py", line 18, in __call__
+    tzname = user_locale['timezone']
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/query.py", line 414, in __getitem__
+    raise TypeError(
+TypeError: QuerySet indices must be integers or slices, not str.
+ERROR::2022-09-13 21:24:52,556::"GET /accounts/logout/ HTTP/1.1" 500 89998::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-13 21:25:06,600::Internal Server Error: /::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'TypeError'>, TypeError('QuerySet indices must be integers or slices, not str.'), <traceback object at 0x7f3389fd4680>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/NewsPaper/news/middlewares.py", line 18, in __call__
+    tzname = user_locale['timezone']
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/query.py", line 414, in __getitem__
+    raise TypeError(
+TypeError: QuerySet indices must be integers or slices, not str.
+ERROR::2022-09-13 21:25:06,665::"GET / HTTP/1.1" 500 89538::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-13 21:29:34,292::Internal Server Error: /::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'ValueError'>, ValueError('too many values to unpack (expected 2)'), <traceback object at 0x7f31fe99f180>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/NewsPaper/news/middlewares.py", line 18, in __call__
+    tzname = user_locale.get('timezone')
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/query.py", line 636, in get
+    clone = self._chain() if self.query.combinator else self.filter(*args, **kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/query.py", line 1420, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/query.py", line 1438, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/query.py", line 1445, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/sql/query.py", line 1532, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/sql/query.py", line 1562, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/sql/query.py", line 1404, in build_filter
+    arg, value = filter_expr
+ValueError: too many values to unpack (expected 2)
+ERROR::2022-09-13 21:29:34,461::"GET / HTTP/1.1" 500 118360::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-13 21:30:40,839::Internal Server Error: /::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'ValueError'>, ValueError('too many values to unpack (expected 2)'), <traceback object at 0x7f5d10107040>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/NewsPaper/news/middlewares.py", line 20, in __call__
+    print(user_locale.get('timezone'), user_locale('language'))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/query.py", line 636, in get
+    clone = self._chain() if self.query.combinator else self.filter(*args, **kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/query.py", line 1420, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/query.py", line 1438, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/query.py", line 1445, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/sql/query.py", line 1532, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/sql/query.py", line 1562, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/sql/query.py", line 1404, in build_filter
+    arg, value = filter_expr
+ValueError: too many values to unpack (expected 2)
+ERROR::2022-09-13 21:30:41,036::"GET / HTTP/1.1" 500 118463::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-13 21:32:16,561::Internal Server Error: /::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'TypeError'>, TypeError('QuerySet indices must be integers or slices, not str.'), <traceback object at 0x7f137f5b6ec0>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/NewsPaper/news/middlewares.py", line 20, in __call__
+    print(user_locale['timezone'])
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/query.py", line 414, in __getitem__
+    raise TypeError(
+TypeError: QuerySet indices must be integers or slices, not str.
+ERROR::2022-09-13 21:32:16,845::"GET / HTTP/1.1" 500 89708::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-13 21:32:47,318::Internal Server Error: /::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'AttributeError'>, AttributeError("'Author' object has no attribute 'values'"), <traceback object at 0x7ffbd4cd6f40>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/NewsPaper/news/middlewares.py", line 14, in __call__
+    user_locale = Author.objects.get(
+AttributeError: 'Author' object has no attribute 'values'
+ERROR::2022-09-13 21:32:47,522::"GET / HTTP/1.1" 500 85430::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-13 21:33:25,546::Internal Server Error: /::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'TypeError'>, TypeError("'Author' object is not subscriptable"), <traceback object at 0x7f57ec263ec0>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/NewsPaper/news/middlewares.py", line 18, in __call__
+    print(user_locale['timezone'])
+TypeError: 'Author' object is not subscriptable
+ERROR::2022-09-13 21:33:25,750::"GET / HTTP/1.1" 500 85611::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-13 21:33:27,996::Internal Server Error: /::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'TypeError'>, TypeError("'Author' object is not subscriptable"), <traceback object at 0x7f57ec1a7e00>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/NewsPaper/news/middlewares.py", line 18, in __call__
+    print(user_locale['timezone'])
+TypeError: 'Author' object is not subscriptable
+ERROR::2022-09-13 21:33:28,073::"GET / HTTP/1.1" 500 85611::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-13 21:33:48,474::Internal Server Error: /::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'NameError'>, NameError("name 'user_locale' is not defined"), <traceback object at 0x7fd6b5936080>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/NewsPaper/news/middlewares.py", line 18, in __call__
+    print(user_locale['timezone'])
+NameError: name 'user_locale' is not defined
+ERROR::2022-09-13 21:33:48,709::"GET / HTTP/1.1" 500 85420::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-13 21:35:44,570::Internal Server Error: /::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'news.models.Author.DoesNotExist'>, DoesNotExist('Author matching query does not exist.'), <traceback object at 0x7f25385a5d40>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/NewsPaper/news/middlewares.py", line 14, in __call__
+    user_locale = Author.objects.get(author_user=request.user.id)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/query.py", line 650, in get
+    raise self.model.DoesNotExist(
+news.models.Author.DoesNotExist: Author matching query does not exist.
+ERROR::2022-09-13 21:35:44,766::"GET / HTTP/1.1" 500 94077::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-13 21:37:28,378::Internal Server Error: /::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'AttributeError'>, AttributeError("'QuerySet' object has no attribute 'timezone'"), <traceback object at 0x7f16382bef00>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/NewsPaper/news/middlewares.py", line 18, in __call__
+    print(user_locale.timezone)
+AttributeError: 'QuerySet' object has no attribute 'timezone'
+ERROR::2022-09-13 21:37:28,491::"GET / HTTP/1.1" 500 85566::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-13 21:37:31,443::Internal Server Error: /::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'AttributeError'>, AttributeError("'QuerySet' object has no attribute 'timezone'"), <traceback object at 0x7f163831d4c0>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/NewsPaper/news/middlewares.py", line 18, in __call__
+    print(user_locale.timezone)
+AttributeError: 'QuerySet' object has no attribute 'timezone'
+ERROR::2022-09-13 21:37:31,509::"GET / HTTP/1.1" 500 85566::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-13 21:58:34,190::Internal Server Error: /::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'news.models.Author.DoesNotExist'>, DoesNotExist('Author matching query does not exist.'), <traceback object at 0x7fd50a97dd80>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/NewsPaper/news/middlewares.py", line 18, in __call__
+    user_info = Author.objects.get(author_user=request.user.id)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/query.py", line 650, in get
+    raise self.model.DoesNotExist(
+news.models.Author.DoesNotExist: Author matching query does not exist.
+ERROR::2022-09-13 21:58:34,527::"GET / HTTP/1.1" 500 94161::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-14 00:00:37,745::Internal Server Error: /::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'pytz.exceptions.UnknownTimeZoneError'>, UnknownTimeZoneError(None), <traceback object at 0x7fe774e52880>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/NewsPaper/news/middlewares.py", line 25, in __call__
+    timezone.activate(pytz.timezone(tzname))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/pytz/__init__.py", line 168, in timezone
+    raise UnknownTimeZoneError(None)
+pytz.exceptions.UnknownTimeZoneError: None
+ERROR::2022-09-14 00:00:37,785::"GET / HTTP/1.1" 500 89576::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-14 00:00:46,194::Internal Server Error: /::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'pytz.exceptions.UnknownTimeZoneError'>, UnknownTimeZoneError(None), <traceback object at 0x7fe774eaeb80>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/NewsPaper/news/middlewares.py", line 25, in __call__
+    timezone.activate(pytz.timezone(tzname))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/pytz/__init__.py", line 168, in timezone
+    raise UnknownTimeZoneError(None)
+pytz.exceptions.UnknownTimeZoneError: None
+ERROR::2022-09-14 00:00:46,255::"GET / HTTP/1.1" 500 89576::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-14 00:02:12,968::Internal Server Error: /::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'pytz.exceptions.UnknownTimeZoneError'>, UnknownTimeZoneError(None), <traceback object at 0x7fe774d43e00>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/NewsPaper/news/middlewares.py", line 25, in __call__
+    timezone.activate(pytz.timezone(tzname))
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/pytz/__init__.py", line 168, in timezone
+    raise UnknownTimeZoneError(None)
+pytz.exceptions.UnknownTimeZoneError: None
+ERROR::2022-09-14 00:02:13,005::"GET / HTTP/1.1" 500 89409::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None

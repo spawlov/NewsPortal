@@ -6,6 +6,8 @@ import shutil
 
 from django.utils import timezone
 
+from .models import Post
+
 
 def article_parser(parsing_url: str) -> tuple:
     """Парсинг последней статьи с сайта https://naked-science.ru/"""
@@ -40,7 +42,8 @@ def article_parser(parsing_url: str) -> tuple:
         full_image_name = f'images/{timezone.now().strftime("%Y/%m/%d")}/{image_name}'
 
         r = requests.get(image, stream=True)
-        if r.status_code == 200:
+        exists = Post.objects.filter(name_ru__icontains=title).exists()
+        if all([r.status_code == 200, not exists]):
             if not os.path.exists(f'images/{timezone.now().strftime("%Y/%m/%d")}'):
                 os.makedirs(f'images/{timezone.now().strftime("%Y/%m/%d")}')
 

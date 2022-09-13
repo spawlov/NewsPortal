@@ -81,13 +81,13 @@
   </head>
   <body {% if current_time.hour >= 19 or  current_time.hour <= 7 %}class="bg-dark text-bg-dark"{% endif %}>
     {% include 'navigate.html' %}
-    <main class="container">
+    <main class="container-fluid">
       {% include 'header.html' %}
       <div class="row g-5">
         <div class="col-md-8">
             {% block message %}
                 {% if messages %}
-                <div class="container">
+                <div class="container-fluid">
                     {% for message in messages %}
                     <div class="alert {% if message.tags %}alert-{{ message.tags }}{% else %}alert-secondary{% endif %} alert-dismissible rounded-0 fade show" role="alert">
                         {{ message }}

@@ -147,8 +147,8 @@ LANGUAGES = [
     ('ru', 'Русский'),
 ]
 
-# TIME_ZONE = 'Asia/Barnaul'
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Barnaul'
+# TIME_ZONE = 'UTC'
 
 USE_I18N = True
 

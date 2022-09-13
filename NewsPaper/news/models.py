@@ -17,14 +17,12 @@ class Author(models.Model):
     )
     language = models.CharField(
         max_length=10,
-        null=True,
-        default=None,
+        default='ru',
         verbose_name=_('Язык'),
     )
     timezone = models.CharField(
         max_length=32,
-        null=True,
-        default=None,
+        default='UTC',
         verbose_name=_('Часовой пояс'),
     )
 

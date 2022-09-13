@@ -255,6 +255,7 @@ def unsubscribe_category(request, post_cat):
 
 @login_required
 def like_article(request, pk):
+    """Увеличение рейтинга статьи, обновление рейтинга автора"""
     liked_post = Post.objects.get(pk=pk)
     author_id = liked_post.author_post.id
     author = Author.objects.get(pk=author_id)
@@ -265,6 +266,7 @@ def like_article(request, pk):
 
 @login_required
 def dislike_article(request, pk):
+    """Уменьшение рейтинга статьи, обновление рейтинга автора"""
     disliked_post = Post.objects.get(pk=pk)
     author_id = disliked_post.author_post.id
     author = Author.objects.get(pk=author_id)
@@ -274,6 +276,17 @@ def dislike_article(request, pk):
 
 
 def set_timezone(request):
+    """Установка часового пояса"""
     if request.POST:
         request.session['django_timezone'] = request.POST['timezone']
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+def set_local_for_user(request):
+    """Сохранение локальных настроек для пользователя"""
+    if request.POST:
+        user_local = Author.objects.get(author_user_id=request.user.id)
+        user_local.timezone = request.POST.get("tz")
+        user_local.language = request.POST.get("lg")
+        user_local.save()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

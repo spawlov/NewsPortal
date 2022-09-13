@@ -2,7 +2,8 @@ from django.urls import path
 
 from .views import IndexView, PostDetails, PostCreate, PostFind, PostEdit, PostDelete, \
     AuthorEdit, request_upgrade_group, subscribe_category, unsubscribe_category, \
-    CategoryView, like_article, dislike_article, ArchiveView, set_timezone
+    CategoryView, like_article, dislike_article, ArchiveView, set_timezone, \
+    set_local_for_user
 
 app_name = 'news'
 urlpatterns = [
@@ -29,6 +30,7 @@ urlpatterns = [
     path('subscribe_cat/<int:post_cat>/', subscribe_category),
     path('unsubscribe_cat/<int:post_cat>/', unsubscribe_category),
     path('set_tz/', set_timezone),
+    path('save_local/', set_local_for_user),
 
     path('like_post/<int:pk>/', like_article),
     path('dislike_post/<int:pk>/', dislike_article),
