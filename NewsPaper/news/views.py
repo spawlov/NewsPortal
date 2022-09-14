@@ -1,5 +1,6 @@
 from datetime import timedelta
 
+import django_filters
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import PermissionRequiredMixin
@@ -285,6 +286,7 @@ def set_timezone(request):
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
+@login_required
 def set_local_for_user(request):
     """Сохранение локальных настроек для пользователя"""
     if request.POST:
@@ -296,6 +298,8 @@ def set_local_for_user(request):
 
 
 # Rest API
-class PostViewset(viewsets.ModelViewSet):
+class PostsViewset(viewsets.ModelViewSet):
     queryset = Post.objects.order_by('-pk').all()
     serializer_class = PostSerializer
+    filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
+    filterset_fields = ['name_ru', 'name_en']
