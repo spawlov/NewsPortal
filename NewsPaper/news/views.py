@@ -297,5 +297,5 @@ def set_local_for_user(request):
 
 # Rest API
 class PostViewset(viewsets.ModelViewSet):
-    queryset = Post.objects.all()
+    queryset = Post.objects.order_by('-pk').all()
     serializer_class = PostSerializer
