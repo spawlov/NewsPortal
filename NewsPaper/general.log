@@ -1,2 +1,4 @@
 INFO : 2022-09-03 23:23:57,389 : autoreload : Watching for file changes with StatReloader
 INFO : 2022-09-03 23:24:51,239 : autoreload : /home/sergey/SkillFactory/NewsPortal/NewsPaper/NewsPaper/settings.py changed, reloading.
+INFO::2022-09-14 16:49:38,441::autoreload::Watching for file changes with StatReloader
+INFO::2022-09-14 16:50:55,927::autoreload::/home/sergey/SkillFactory/NewsPortal/NewsPaper/NewsPaper/settings.py changed, reloading.

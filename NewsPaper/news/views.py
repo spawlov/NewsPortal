@@ -13,11 +13,14 @@ from django.utils import timezone
 from django.views.generic import CreateView, DeleteView, UpdateView, \
     ListView, DetailView
 
+from rest_framework import viewsets
+
 from .fiters import PostFilter
 from .form import PostingForm, UserForm
 from .models import Post, Author, Comment, Category, PostCategory
 from .permissions import PermissionAndOwnerRequiredMixin, \
     ProfileOwnerRequiredMixin
+from .serializers import PostSerializer
 
 
 class IndexView(ListView):
@@ -290,3 +293,9 @@ def set_local_for_user(request):
         user_local.language = request.POST.get("lg")
         user_local.save()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+# Rest API
+class PostViewset(viewsets.ModelViewSet):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer

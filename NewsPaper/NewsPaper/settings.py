@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.yandex',
     'allauth.socialaccount.providers.vk',
     'django_apscheduler',
+    'rest_framework',
     ]
 
 SITE_ID = 1
@@ -429,3 +430,13 @@ ADMINS = (
 )
 EMAIL_SUBJECT_PREFIX = '[SuperService] '
 SERVER_EMAIL = DEFAULT_FROM_EMAIL
+
+# Rest API
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 10,
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ]
+}

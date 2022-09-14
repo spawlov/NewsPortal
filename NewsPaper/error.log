@@ -1625,3 +1625,114 @@ Traceback (most recent call last):
     raise self.error(
 django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 10: 'get_current_timezone', expected 'endblock'. Did you forget to register or load this tag?
 ERROR::2022-09-14 00:26:57,531::"GET /archive/2022/9/ HTTP/1.1" 500 204870::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-14 03:27:15,237::Internal Server Error: /api/posts/::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'TypeError'>, TypeError("'int' object is not callable"), <traceback object at 0x7f5e3246bb40>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/mixins.py", line 40, in list
+    page = self.paginate_queryset(queryset)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/generics.py", line 169, in paginate_queryset
+    if self.paginator is None:
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/generics.py", line 162, in paginator
+    self._paginator = self.pagination_class()
+TypeError: 'int' object is not callable
+ERROR::2022-09-14 03:27:15,555::"GET /api/posts/ HTTP/1.1" 500 133217::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-14 16:52:38,046::You're accessing the development server over HTTPS, but it only supports HTTP.::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-14 16:52:38,057::You're accessing the development server over HTTPS, but it only supports HTTP.::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-14 16:52:42,712::You're accessing the development server over HTTPS, but it only supports HTTP.::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-14 16:52:42,718::You're accessing the development server over HTTPS, but it only supports HTTP.::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-14 16:52:44,363::You're accessing the development server over HTTPS, but it only supports HTTP.::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-14 16:52:44,371::You're accessing the development server over HTTPS, but it only supports HTTP.::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-14 16:52:45,042::You're accessing the development server over HTTPS, but it only supports HTTP.::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-14 16:52:45,052::You're accessing the development server over HTTPS, but it only supports HTTP.::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-14 16:52:45,533::You're accessing the development server over HTTPS, but it only supports HTTP.::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-14 16:52:45,536::You're accessing the development server over HTTPS, but it only supports HTTP.::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-14 17:43:19,016::Internal Server Error: /api/posts/::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'django.db.utils.IntegrityError'>, IntegrityError('NOT NULL constraint failed: news_post.author_post_id'), <traceback object at 0x7f3ac966f080>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/sqlite3/base.py", line 357, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: NOT NULL constraint failed: news_post.author_post_id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/mixins.py", line 24, in perform_create
+    serializer.save()
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/serializers.py", line 962, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/modeltranslation/manager.py", line 388, in create
+    return super(MultilingualQuerySet, self).create(**kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/query.py", line 671, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/base.py", line 831, in save
+    self.save_base(
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/base.py", line 882, in save_base
+    updated = self._save_table(
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/base.py", line 1025, in _save_table
+    results = self._do_insert(
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/base.py", line 1066, in _do_insert
+    return manager._insert(
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/query.py", line 1790, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/models/sql/compiler.py", line 1657, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/debug_toolbar/panels/sql/tracking.py", line 230, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/debug_toolbar/panels/sql/tracking.py", line 154, in _record
+    return method(sql, params)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 103, in execute
+    return super().execute(sql, params)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/db/backends/sqlite3/base.py", line 357, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: NOT NULL constraint failed: news_post.author_post_id
+ERROR::2022-09-14 17:43:19,149::"POST /api/posts/ HTTP/1.1" 500 28401::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
