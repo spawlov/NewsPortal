@@ -16,7 +16,7 @@ from django.views.generic import CreateView, DeleteView, UpdateView, \
 
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
-from rest_framework.decorators import action
+from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 
 from .fiters import PostFilter
@@ -301,6 +301,12 @@ def set_local_for_user(request):
 
 
 # Rest API
+class PostPaginator(PageNumberPagination):
+    page_size = 10
+    page_size_query_param = 'page_size'
+    max_page_size = 50
+
+
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.order_by('-pk').all()
     serializer_class = PostSerializer
@@ -309,3 +315,4 @@ class PostViewSet(viewsets.ModelViewSet):
     permission_classes = (
         IsAuthenticatedOrReadOnly, IsAuthorOrReadOnly, IsOwnerOrReadOnly,
     )
+    pagination_class = PostPaginator

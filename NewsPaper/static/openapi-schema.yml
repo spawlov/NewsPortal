@@ -1,25 +1,31 @@
 openapi: 3.0.2
 info:
   title: 'News Paper'
-  version: '0.2'
+  version: '0.3'
 paths:
   /api/v1/post/:
     get:
       operationId: listPosts
-      description: ''
+      description: 'Articles'
       parameters:
-      - name: limit
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
         required: false
         in: query
         description: Number of results to return per page.
         schema:
           type: integer
-      - name: offset
+      - name: id
         required: false
         in: query
-        description: The initial index from which to return the results.
+        description: id
         schema:
-          type: integer
+          type: string
       - name: name_ru
         required: false
         in: query
@@ -30,12 +36,6 @@ paths:
         required: false
         in: query
         description: name_en
-        schema:
-          type: string
-      - name: date_pub
-        required: false
-        in: query
-        description: date_pub
         schema:
           type: string
       responses:
@@ -52,12 +52,12 @@ paths:
                     type: string
                     nullable: true
                     format: uri
-                    example: http://api.example.org/accounts/?offset=400&limit=100
+                    example: http://api.example.org/accounts/?page=4
                   previous:
                     type: string
                     nullable: true
                     format: uri
-                    example: http://api.example.org/accounts/?offset=200&limit=100
+                    example: http://api.example.org/accounts/?page=2
                   results:
                     type: array
                     items:
@@ -101,6 +101,12 @@ paths:
           ."
         schema:
           type: string
+      - name: id
+        required: false
+        in: query
+        description: id
+        schema:
+          type: string
       - name: name_ru
         required: false
         in: query
@@ -111,12 +117,6 @@ paths:
         required: false
         in: query
         description: name_en
-        schema:
-          type: string
-      - name: date_pub
-        required: false
-        in: query
-        description: date_pub
         schema:
           type: string
       responses:
@@ -139,6 +139,12 @@ paths:
           ."
         schema:
           type: string
+      - name: id
+        required: false
+        in: query
+        description: id
+        schema:
+          type: string
       - name: name_ru
         required: false
         in: query
@@ -149,12 +155,6 @@ paths:
         required: false
         in: query
         description: name_en
-        schema:
-          type: string
-      - name: date_pub
-        required: false
-        in: query
-        description: date_pub
         schema:
           type: string
       requestBody:
@@ -188,6 +188,12 @@ paths:
           ."
         schema:
           type: string
+      - name: id
+        required: false
+        in: query
+        description: id
+        schema:
+          type: string
       - name: name_ru
         required: false
         in: query
@@ -198,12 +204,6 @@ paths:
         required: false
         in: query
         description: name_en
-        schema:
-          type: string
-      - name: date_pub
-        required: false
-        in: query
-        description: date_pub
         schema:
           type: string
       requestBody:
@@ -237,6 +237,12 @@ paths:
           ."
         schema:
           type: string
+      - name: id
+        required: false
+        in: query
+        description: id
+        schema:
+          type: string
       - name: name_ru
         required: false
         in: query
@@ -247,12 +253,6 @@ paths:
         required: false
         in: query
         description: name_en
-        schema:
-          type: string
-      - name: date_pub
-        required: false
-        in: query
-        description: date_pub
         schema:
           type: string
       responses:

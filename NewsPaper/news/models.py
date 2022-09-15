@@ -110,7 +110,7 @@ class Post(models.Model):
     )
 
     name = models.CharField(
-        max_length=128,
+        max_length=255,
         verbose_name=_('Название'),
     )
 
