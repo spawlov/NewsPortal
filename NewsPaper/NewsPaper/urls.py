@@ -23,7 +23,7 @@ urlpatterns = [
     path('api/v1/', include(router.urls)),
     # path('api/v1/postlist/', PostViewSet.as_view({'get': 'list'})),
     # path('api/v1/postlist/<int:pk>/', PostViewSet.as_view({'put': 'update'})),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('api/v1/api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

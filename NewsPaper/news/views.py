@@ -305,7 +305,7 @@ class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.order_by('-pk').all()
     serializer_class = PostSerializer
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
-    filterset_fields = ['name_ru', 'name_en', 'date_pub']
+    filterset_fields = ('id', 'name_ru', 'name_en',)
     permission_classes = (
         IsAuthenticatedOrReadOnly, IsAuthorOrReadOnly, IsOwnerOrReadOnly,
     )
