@@ -1,0 +1,2 @@
+WARNING::2022-09-15 15:17:27,247::log::Forbidden (CSRF token from POST incorrect.): /admin/logout/
+WARNING::2022-09-15 15:17:31,769::log::Forbidden (CSRF token from POST incorrect.): /admin/logout/

@@ -3,7 +3,7 @@ info:
   title: 'News Paper'
   version: '0.2'
 paths:
-  /api/posts/:
+  /api/v1/post/:
     get:
       operationId: listPosts
       description: ''
@@ -20,6 +20,24 @@ paths:
         description: The initial index from which to return the results.
         schema:
           type: integer
+      - name: name_ru
+        required: false
+        in: query
+        description: name_ru
+        schema:
+          type: string
+      - name: name_en
+        required: false
+        in: query
+        description: name_en
+        schema:
+          type: string
+      - name: date_pub
+        required: false
+        in: query
+        description: date_pub
+        schema:
+          type: string
       responses:
         '200':
           content:
@@ -71,7 +89,7 @@ paths:
           description: ''
       tags:
       - api
-  /api/posts/{id}/:
+  /api/v1/post/{id}/:
     get:
       operationId: retrievePost
       description: ''
@@ -81,6 +99,24 @@ paths:
         required: true
         description: "A unique integer value identifying this \u041F\u043E\u0441\u0442\
           ."
+        schema:
+          type: string
+      - name: name_ru
+        required: false
+        in: query
+        description: name_ru
+        schema:
+          type: string
+      - name: name_en
+        required: false
+        in: query
+        description: name_en
+        schema:
+          type: string
+      - name: date_pub
+        required: false
+        in: query
+        description: date_pub
         schema:
           type: string
       responses:
@@ -101,6 +137,24 @@ paths:
         required: true
         description: "A unique integer value identifying this \u041F\u043E\u0441\u0442\
           ."
+        schema:
+          type: string
+      - name: name_ru
+        required: false
+        in: query
+        description: name_ru
+        schema:
+          type: string
+      - name: name_en
+        required: false
+        in: query
+        description: name_en
+        schema:
+          type: string
+      - name: date_pub
+        required: false
+        in: query
+        description: date_pub
         schema:
           type: string
       requestBody:
@@ -134,6 +188,24 @@ paths:
           ."
         schema:
           type: string
+      - name: name_ru
+        required: false
+        in: query
+        description: name_ru
+        schema:
+          type: string
+      - name: name_en
+        required: false
+        in: query
+        description: name_en
+        schema:
+          type: string
+      - name: date_pub
+        required: false
+        in: query
+        description: date_pub
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -165,6 +237,24 @@ paths:
           ."
         schema:
           type: string
+      - name: name_ru
+        required: false
+        in: query
+        description: name_ru
+        schema:
+          type: string
+      - name: name_en
+        required: false
+        in: query
+        description: name_en
+        schema:
+          type: string
+      - name: date_pub
+        required: false
+        in: query
+        description: date_pub
+        schema:
+          type: string
       responses:
         '204':
           description: ''
@@ -178,15 +268,44 @@ components:
         id:
           type: integer
           readOnly: true
-        name_ru:
+        type_cat:
+          enum:
+          - ART
+          - NWS
           type: string
-          nullable: true
+        date_pub:
+          type: string
+          format: date-time
+          readOnly: true
+        name:
+          type: string
           maxLength: 128
         name_en:
           type: string
           nullable: true
           maxLength: 128
-        date_pub:
+        name_ru:
           type: string
-          format: date-time
+          nullable: true
+          maxLength: 128
+        content:
+          type: string
+        content_en:
+          type: string
+          nullable: true
+        content_ru:
+          type: string
+          nullable: true
+        content_rate:
+          type: integer
+        content_image:
+          type: string
+          format: binary
+        post_cat:
+          type: array
+          items:
+            type: string
           readOnly: true
+      required:
+      - name
+      - content

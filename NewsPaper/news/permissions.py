@@ -1,5 +1,6 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.core.exceptions import PermissionDenied
+from rest_framework import permissions
 
 
 class PermissionAndOwnerRequiredMixin(PermissionRequiredMixin):
@@ -19,3 +20,17 @@ class ProfileOwnerRequiredMixin(PermissionRequiredMixin):
         if not self.get_object().id == self.request.user.id:
             raise PermissionDenied()
         return self.request.user.has_perms(perms)
+
+
+class IsAuthorOrReadOnly(permissions.BasePermission):
+    def has_permission(self, request, view):
+        if request.method in permissions.SAFE_METHODS:
+            return True
+        return bool(request.user and request.user.groups.filter(name='authors').exists())
+
+
+class IsOwnerOrReadOnly(permissions.BasePermission):
+    def has_object_permission(self, request, view, obj):
+        if request.method in permissions.SAFE_METHODS:
+            return True
+        return obj.author_post.author_user.id == request.user.id

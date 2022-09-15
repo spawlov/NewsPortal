@@ -46,3 +46,449 @@ Traceback (most recent call last):
     queryset = backend().filter_queryset(self.request, queryset, self)
 TypeError: 'str' object is not callable
 ERROR::2022-09-14 20:57:11,647::"GET /api/posts/ HTTP/1.1" 500 127269::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-15 02:35:54,834::Internal Server Error: /api/v1/postslist/::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'django.core.exceptions.ImproperlyConfigured'>, ImproperlyConfigured('Could not resolve URL for hyperlinked relationship using view name "post-detail". You may have failed to include the related model in your API, or incorrectly configured the `lookup_field` attribute on this field.'), <traceback object at 0x7f4d2d0f19c0>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/relations.py", line 401, in to_representation
+    url = self.get_url(value, self.view_name, request, format)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/relations.py", line 339, in get_url
+    return self.reverse(view_name, kwargs=kwargs, request=request, format=format)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/reverse.py", line 47, in reverse
+    url = _reverse(viewname, args, kwargs, request, format, **extra)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/reverse.py", line 60, in _reverse
+    url = django_reverse(viewname, args=args, kwargs=kwargs, **extra)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/urls/resolvers.py", line 803, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'post-detail' not found. 'post-detail' is not a valid view function or pattern name.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/views/generic/base.py", line 103, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/generics.py", line 199, in get
+    return self.list(request, *args, **kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/mixins.py", line 43, in list
+    return self.get_paginated_response(serializer.data)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/relations.py", line 416, in to_representation
+    raise ImproperlyConfigured(msg % self.view_name)
+django.core.exceptions.ImproperlyConfigured: Could not resolve URL for hyperlinked relationship using view name "post-detail". You may have failed to include the related model in your API, or incorrectly configured the `lookup_field` attribute on this field.
+ERROR::2022-09-15 02:35:55,092::"GET /api/v1/postslist/ HTTP/1.1" 500 208551::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-15 02:36:53,342::Internal Server Error: /api/v1/postslist/::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'django.core.exceptions.ImproperlyConfigured'>, ImproperlyConfigured('Could not resolve URL for hyperlinked relationship using view name "post-detail". You may have failed to include the related model in your API, or incorrectly configured the `lookup_field` attribute on this field.'), <traceback object at 0x7ff6e025f300>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/relations.py", line 401, in to_representation
+    url = self.get_url(value, self.view_name, request, format)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/relations.py", line 339, in get_url
+    return self.reverse(view_name, kwargs=kwargs, request=request, format=format)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/reverse.py", line 47, in reverse
+    url = _reverse(viewname, args, kwargs, request, format, **extra)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/reverse.py", line 60, in _reverse
+    url = django_reverse(viewname, args=args, kwargs=kwargs, **extra)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/urls/resolvers.py", line 803, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'post-detail' not found. 'post-detail' is not a valid view function or pattern name.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/views/generic/base.py", line 103, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/generics.py", line 199, in get
+    return self.list(request, *args, **kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/mixins.py", line 43, in list
+    return self.get_paginated_response(serializer.data)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/relations.py", line 416, in to_representation
+    raise ImproperlyConfigured(msg % self.view_name)
+django.core.exceptions.ImproperlyConfigured: Could not resolve URL for hyperlinked relationship using view name "post-detail". You may have failed to include the related model in your API, or incorrectly configured the `lookup_field` attribute on this field.
+ERROR::2022-09-15 02:36:53,613::"GET /api/v1/postslist/ HTTP/1.1" 500 208553::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-15 04:30:15,566::Internal Server Error: /api/v1/post/1/categories/::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'TypeError'>, TypeError("categories() got an unexpected keyword argument 'pk'"), <traceback object at 0x7fbc88911080>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+TypeError: categories() got an unexpected keyword argument 'pk'
+ERROR::2022-09-15 04:30:15,789::"GET /api/v1/post/1/categories/ HTTP/1.1" 500 116265::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-15 04:32:18,159::Internal Server Error: /api/v1/post/1/categories/::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'TypeError'>, TypeError("'Category' object is not iterable"), <traceback object at 0x7f9ad57547c0>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/NewsPaper/news/views.py", line 312, in categories
+    return Response({'cats': [c.name for c in cats]})
+TypeError: 'Category' object is not iterable
+ERROR::2022-09-15 04:32:18,427::"GET /api/v1/post/1/categories/ HTTP/1.1" 500 120534::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-15 14:51:43,369::Internal Server Error: /api/v1/post/100/::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'AttributeError'>, AttributeError("'Request' object has no attribute 'mehod'"), <traceback object at 0x7fdc20a0eec0>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/request.py", line 416, in __getattr__
+    return getattr(self._request, attr)
+AttributeError: 'WSGIRequest' object has no attribute 'mehod'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/views.py", line 497, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/views.py", line 415, in initial
+    self.check_permissions(request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/views.py", line 332, in check_permissions
+    if not permission.has_permission(request, self):
+  File "/home/sergey/SkillFactory/NewsPortal/NewsPaper/news/permissions.py", line 27, in has_permission
+    if request.mehod in permissions.SAFE_METHODS:
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/request.py", line 418, in __getattr__
+    return self.__getattribute__(attr)
+AttributeError: 'Request' object has no attribute 'mehod'
+ERROR::2022-09-15 14:51:43,655::"GET /api/v1/post/100/ HTTP/1.1" 500 136574::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-15 14:53:22,572::Internal Server Error: /api/v1/post/100/::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'AttributeError'>, AttributeError("'Request' object has no attribute 'mehod'"), <traceback object at 0x7f8f963d2f80>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/request.py", line 416, in __getattr__
+    return getattr(self._request, attr)
+AttributeError: 'WSGIRequest' object has no attribute 'mehod'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/views.py", line 497, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/views.py", line 415, in initial
+    self.check_permissions(request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/views.py", line 332, in check_permissions
+    if not permission.has_permission(request, self):
+  File "/home/sergey/SkillFactory/NewsPortal/NewsPaper/news/permissions.py", line 27, in has_permission
+    if request.mehod in permissions.SAFE_METHODS:
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/request.py", line 418, in __getattr__
+    return self.__getattribute__(attr)
+AttributeError: 'Request' object has no attribute 'mehod'
+ERROR::2022-09-15 14:53:22,789::"GET /api/v1/post/100/ HTTP/1.1" 500 136476::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-15 14:54:20,899::Internal Server Error: /api/v1/post/100/::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'AttributeError'>, AttributeError("'IsOwnerOrReadOnly' object has no attribute 'get_object'"), <traceback object at 0x7f5524ecef80>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/response.py", line 70, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/renderers.py", line 724, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/renderers.py", line 656, in get_context
+    raw_data_put_form = self.get_raw_data_form(data, view, 'PUT', request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/renderers.py", line 541, in get_raw_data_form
+    if not self.show_form_for_method(view, method, request, instance):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/renderers.py", line 431, in show_form_for_method
+    view.check_permissions(request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/views.py", line 332, in check_permissions
+    if not permission.has_permission(request, self):
+  File "/home/sergey/SkillFactory/NewsPortal/NewsPaper/news/permissions.py", line 29, in has_permission
+    return bool(self.get_object().author_post.author_user.id == self.request.user.id)
+AttributeError: 'IsOwnerOrReadOnly' object has no attribute 'get_object'
+ERROR::2022-09-15 14:54:21,189::"GET /api/v1/post/100/ HTTP/1.1" 500 149717::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-15 14:55:24,263::Internal Server Error: /api/v1/post/100/::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'AttributeError'>, AttributeError("'IsOwnerOrReadOnly' object has no attribute 'author_post'"), <traceback object at 0x7fd9589eb1c0>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/response.py", line 70, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/renderers.py", line 724, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/renderers.py", line 656, in get_context
+    raw_data_put_form = self.get_raw_data_form(data, view, 'PUT', request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/renderers.py", line 541, in get_raw_data_form
+    if not self.show_form_for_method(view, method, request, instance):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/renderers.py", line 431, in show_form_for_method
+    view.check_permissions(request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/views.py", line 332, in check_permissions
+    if not permission.has_permission(request, self):
+  File "/home/sergey/SkillFactory/NewsPortal/NewsPaper/news/permissions.py", line 29, in has_permission
+    return bool(self.author_post.author_user.id == self.request.user.id)
+AttributeError: 'IsOwnerOrReadOnly' object has no attribute 'author_post'
+ERROR::2022-09-15 14:55:24,576::"GET /api/v1/post/100/ HTTP/1.1" 500 149695::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-15 14:58:20,788::Internal Server Error: /api/v1/post/100/::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'AttributeError'>, AttributeError("'Post' object has no attribute 'owner'"), <traceback object at 0x7f636f7b1f40>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/response.py", line 70, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/renderers.py", line 724, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/renderers.py", line 656, in get_context
+    raw_data_put_form = self.get_raw_data_form(data, view, 'PUT', request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/renderers.py", line 541, in get_raw_data_form
+    if not self.show_form_for_method(view, method, request, instance):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/renderers.py", line 433, in show_form_for_method
+    view.check_object_permissions(request, obj)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/views.py", line 345, in check_object_permissions
+    if not permission.has_object_permission(request, self, obj):
+  File "/home/sergey/SkillFactory/NewsPortal/NewsPaper/news/permissions.py", line 29, in has_object_permission
+    return obj.owner == request.user
+AttributeError: 'Post' object has no attribute 'owner'
+ERROR::2022-09-15 14:58:21,097::"GET /api/v1/post/100/ HTTP/1.1" 500 150352::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-15 15:16:17,958::Internal Server Error: /api/v1/post/::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'AttributeError'>, AttributeError("'User' object has no attribute 'is_authors'"), <traceback object at 0x7f8e0ab5cd40>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/response.py", line 70, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/renderers.py", line 724, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/renderers.py", line 655, in get_context
+    raw_data_post_form = self.get_raw_data_form(data, view, 'POST', request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/renderers.py", line 541, in get_raw_data_form
+    if not self.show_form_for_method(view, method, request, instance):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/renderers.py", line 431, in show_form_for_method
+    view.check_permissions(request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/views.py", line 332, in check_permissions
+    if not permission.has_permission(request, self):
+  File "/home/sergey/SkillFactory/NewsPortal/NewsPaper/news/permissions.py", line 29, in has_permission
+    return bool(request.user and request.user.is_authors)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/functional.py", line 268, in inner
+    return func(_wrapped, *args)
+AttributeError: 'User' object has no attribute 'is_authors'
+ERROR::2022-09-15 15:16:18,659::"GET /api/v1/post/ HTTP/1.1" 500 152304::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-15 15:17:12,674::Internal Server Error: /api/v1/post/::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'AttributeError'>, AttributeError("'User' object has no attribute 'authors'"), <traceback object at 0x7fe32c10be40>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/response.py", line 70, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/renderers.py", line 724, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/renderers.py", line 655, in get_context
+    raw_data_post_form = self.get_raw_data_form(data, view, 'POST', request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/renderers.py", line 541, in get_raw_data_form
+    if not self.show_form_for_method(view, method, request, instance):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/renderers.py", line 431, in show_form_for_method
+    view.check_permissions(request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/views.py", line 332, in check_permissions
+    if not permission.has_permission(request, self):
+  File "/home/sergey/SkillFactory/NewsPortal/NewsPaper/news/permissions.py", line 29, in has_permission
+    return bool(request.user and request.user.authors)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/functional.py", line 268, in inner
+    return func(_wrapped, *args)
+AttributeError: 'User' object has no attribute 'authors'
+ERROR::2022-09-15 15:17:13,162::"GET /api/v1/post/ HTTP/1.1" 500 152284::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-15 15:27:40,537::Internal Server Error: /api/v1/post/::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'AttributeError'>, AttributeError("'User' object has no attribute 'news'"), <traceback object at 0x7fb0b0893740>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/response.py", line 70, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/renderers.py", line 724, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/renderers.py", line 655, in get_context
+    raw_data_post_form = self.get_raw_data_form(data, view, 'POST', request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/renderers.py", line 541, in get_raw_data_form
+    if not self.show_form_for_method(view, method, request, instance):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/renderers.py", line 431, in show_form_for_method
+    view.check_permissions(request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/views.py", line 332, in check_permissions
+    if not permission.has_permission(request, self):
+  File "/home/sergey/SkillFactory/NewsPortal/NewsPaper/news/permissions.py", line 29, in has_permission
+    return bool(request.user and request.user.news.add_post)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/functional.py", line 268, in inner
+    return func(_wrapped, *args)
+AttributeError: 'User' object has no attribute 'news'
+ERROR::2022-09-15 15:27:41,089::"GET /api/v1/post/ HTTP/1.1" 500 151799::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-15 15:28:58,618::Internal Server Error: /api/v1/post/::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'AttributeError'>, AttributeError("'User' object has no attribute 'is_news'"), <traceback object at 0x7f15f1822d40>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/response.py", line 70, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/renderers.py", line 724, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/renderers.py", line 655, in get_context
+    raw_data_post_form = self.get_raw_data_form(data, view, 'POST', request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/renderers.py", line 541, in get_raw_data_form
+    if not self.show_form_for_method(view, method, request, instance):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/renderers.py", line 431, in show_form_for_method
+    view.check_permissions(request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/views.py", line 332, in check_permissions
+    if not permission.has_permission(request, self):
+  File "/home/sergey/SkillFactory/NewsPortal/NewsPaper/news/permissions.py", line 29, in has_permission
+    return bool(request.user and request.user.is_news.add_post)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/functional.py", line 268, in inner
+    return func(_wrapped, *args)
+AttributeError: 'User' object has no attribute 'is_news'
+ERROR::2022-09-15 15:28:59,055::"GET /api/v1/post/ HTTP/1.1" 500 151817::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-15 15:29:21,149::Internal Server Error: /api/v1/post/::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'AttributeError'>, AttributeError("'User' object has no attribute 'is_add_post'"), <traceback object at 0x7f93e3fdfc80>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/response.py", line 70, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/renderers.py", line 724, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/renderers.py", line 655, in get_context
+    raw_data_post_form = self.get_raw_data_form(data, view, 'POST', request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/renderers.py", line 541, in get_raw_data_form
+    if not self.show_form_for_method(view, method, request, instance):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/renderers.py", line 431, in show_form_for_method
+    view.check_permissions(request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/views.py", line 332, in check_permissions
+    if not permission.has_permission(request, self):
+  File "/home/sergey/SkillFactory/NewsPortal/NewsPaper/news/permissions.py", line 29, in has_permission
+    return bool(request.user and request.user.is_add_post)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/functional.py", line 268, in inner
+    return func(_wrapped, *args)
+AttributeError: 'User' object has no attribute 'is_add_post'
+ERROR::2022-09-15 15:29:21,580::"GET /api/v1/post/ HTTP/1.1" 500 151829::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None
+ERROR::2022-09-15 15:29:43,177::Internal Server Error: /api/v1/post/::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/log.py::(<class 'AttributeError'>, AttributeError("'User' object has no attribute 'add_post'"), <traceback object at 0x7f6e4b11cf00>)
+Traceback (most recent call last):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/response.py", line 70, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/renderers.py", line 724, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/renderers.py", line 655, in get_context
+    raw_data_post_form = self.get_raw_data_form(data, view, 'POST', request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/renderers.py", line 541, in get_raw_data_form
+    if not self.show_form_for_method(view, method, request, instance):
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/renderers.py", line 431, in show_form_for_method
+    view.check_permissions(request)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/rest_framework/views.py", line 332, in check_permissions
+    if not permission.has_permission(request, self):
+  File "/home/sergey/SkillFactory/NewsPortal/NewsPaper/news/permissions.py", line 29, in has_permission
+    return bool(request.user and request.user.add_post)
+  File "/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/utils/functional.py", line 268, in inner
+    return func(_wrapped, *args)
+AttributeError: 'User' object has no attribute 'add_post'
+ERROR::2022-09-15 15:29:43,750::"GET /api/v1/post/ HTTP/1.1" 500 151809::/home/sergey/SkillFactory/NewsPortal/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py::None

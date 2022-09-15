@@ -15,12 +15,15 @@ from django.views.generic import CreateView, DeleteView, UpdateView, \
     ListView, DetailView
 
 from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.decorators import action
+from rest_framework.response import Response
 
 from .fiters import PostFilter
 from .form import PostingForm, UserForm
 from .models import Post, Author, Comment, Category, PostCategory
 from .permissions import PermissionAndOwnerRequiredMixin, \
-    ProfileOwnerRequiredMixin
+    ProfileOwnerRequiredMixin, IsOwnerOrReadOnly, IsAuthorOrReadOnly
 from .serializers import PostSerializer
 
 
@@ -212,7 +215,7 @@ def request_upgrade_group(request):
     author_group = Group.objects.get(name='authors')
     if not request.user.groups.filter(name='authors').exists():
         author_group.user_set.add(user)
-    return redirect(f'/profile/{user.id}')
+    return redirect(f'/profile/{user.id}/')
 
 
 @login_required
@@ -298,8 +301,11 @@ def set_local_for_user(request):
 
 
 # Rest API
-class PostsViewset(viewsets.ModelViewSet):
+class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.order_by('-pk').all()
     serializer_class = PostSerializer
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
-    filterset_fields = ['name_ru', 'name_en']
+    filterset_fields = ['name_ru', 'name_en', 'date_pub']
+    permission_classes = (
+        IsAuthenticatedOrReadOnly, IsAuthorOrReadOnly, IsOwnerOrReadOnly,
+    )
