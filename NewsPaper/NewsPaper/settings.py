@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.vk',
     'django_apscheduler',
     'rest_framework',
+    'drf_yasg',
     ]
 
 SITE_ID = 1
