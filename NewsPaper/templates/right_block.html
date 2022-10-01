@@ -73,7 +73,7 @@
     <div class="p-4 mb-2 container-fluid shadow-lg rounded-3">
       <h4 class="fst-italic">{% trans "Архив" %}</h4>
       <ol class="list-unstyled mb-0 ms-4">
-          {% for item in archives %}
+          {% for item in archives reversed %}
               <li>
                   <a class="text-decoration-none" href="{% url 'news:archive' item.year item.month %}">{{ item.month|name_month }} {{ item.year }}</a>
                   <span class="blog-post-meta">({{ item.total }})</span>
